@@ -118,6 +118,11 @@
       border-color: var(--line);
       background: rgba(255,255,255,.03);
     }
+    .is-active{
+      border-color: rgba(45,106,79,.45) !important;
+      background: rgba(45,106,79,.10) !important;
+      color: rgba(245,245,245,.92) !important;
+    }
     .cta{
       display:inline-flex;
       align-items:center;
@@ -290,173 +295,6 @@
       max-width: 62ch;
     }
 
-    /* Work grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .card{
-      grid-column: span 6;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      overflow:hidden;
-      position:relative;
-      transition: transform .18s ease, border-color .18s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(245,245,245,.22);
-    }
-    .thumb{
-      width:100%;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      display:block;
-      border-bottom: 1px solid var(--line);
-      filter: contrast(1.05) saturate(.95);
-    }
-    .card-body{
-      padding: 16px 16px 18px;
-    }
-    .card-top{
-      display:flex;
-      justify-content:space-between;
-      gap: 14px;
-      align-items:flex-start;
-    }
-    .card h3{
-      margin:0;
-      font-family: Space Grotesk, Inter, system-ui, sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      font-size: 18px;
-      line-height: 1.15;
-    }
-    .card .smalltag{
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.03);
-      white-space:nowrap;
-    }
-    .card p{
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-    .bullets{
-      margin: 12px 0 0;
-      padding-left: 16px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .bullets li{ margin: 6px 0; }
-    .softline{
-      height:1px;
-      background: var(--line);
-      margin: 14px 0 12px;
-    }
-    .mini{
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-      margin-top: 12px;
-    }
-    .chip{
-      font-size: 12px;
-      color: rgba(245,245,245,.74);
-      border: 1px solid rgba(245,245,245,.10);
-      background: rgba(255,255,255,.02);
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-    .chip strong{
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* About + Skills layout */
-    .split{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items:start;
-    }
-    .panel{
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      padding: 18px;
-    }
-    .panel p{
-      margin:0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-    .panel h4{
-      margin:0 0 10px;
-      font-family: Space Grotesk, Inter, system-ui, sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      font-size: 14px;
-      color: var(--text);
-    }
-    .skillgrid{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 8px;
-    }
-    .skill{
-      border: 1px solid rgba(245,245,245,.10);
-      background: rgba(255,255,255,.02);
-      color: rgba(245,245,245,.78);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-    }
-
-    /* Proof images */
-    .proof-grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 10px;
-    }
-    .proof{
-      grid-column: span 4;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      overflow:hidden;
-      background: rgba(255,255,255,.02);
-    }
-    .proof img{
-      width:100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display:block;
-      filter: contrast(1.05) saturate(.95);
-    }
-    .proof .label{
-      padding: 12px 14px;
-      border-top: 1px solid var(--line);
-      font-size: 12px;
-      color: var(--muted);
-      display:flex;
-      justify-content:space-between;
-      gap: 12px;
-    }
-    .proof .label span{
-      color: rgba(245,245,245,.86);
-    }
-
     /* Contact */
     .contact{
       display:grid;
@@ -519,16 +357,13 @@
     @media (max-width: 900px){
       .hero{ grid-template-columns: 1fr; padding-top: 46px; }
       .brand{ min-width: 0; }
-      .card{ grid-column: span 12; }
-      .split{ grid-template-columns: 1fr; }
-      .proof{ grid-column: span 12; }
       .contact{ grid-template-columns: 1fr; }
     }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .card, .cta, .contact a{ transition:none; }
+      .cta, .contact a{ transition:none; }
     }
   </style>
 </head>
@@ -536,7 +371,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- NAV -->
+  <!-- NAV (ONLY: Home / Work / Available) -->
   <div class="nav">
     <div class="nav-inner">
       <div class="brand">
@@ -545,11 +380,8 @@
       </div>
 
       <div class="navlinks">
+        <a class="is-active" href="index.html">Home</a>
         <a href="work.html">Work</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#proof">Proof</a>
-        <a href="#contact">Contact</a>
         <a class="cta" href="#contact"><span class="dot"></span>Available</a>
       </div>
     </div>
@@ -582,203 +414,16 @@
             <div class="cap-title">Caspar Wackrow</div>
             <div class="cap-sub">Marketing • Strategy • Storytelling</div>
           </div>
-          <a href="#work" title="Jump to work">View work →</a>
+          <a href="work.html" title="Go to work page">View work →</a>
         </div>
       </div>
     </section>
 
-    <!-- WORK -->
-    <section class="section" id="work">
-      <div class="section-head">
-        <h2 class="section-title">Selected <span class="accent">Work</span></h2>
-        <p class="section-note"></p>
-      </div>
-
-      <div class="grid">
-        <!-- Project 1 -->
-        <article class="card">
-          <img class="thumb" src="assets/work-1.jpg" alt="Project image: Dad and Me" />
-          <div class="card-body">
-            <div class="card-top">
-              <h3>Dad &amp; Me — Brand + Content System</h3>
-              <div class="smalltag">Multi-channel</div>
-            </div>
-            <p>
-              Supported a growing brand across ads, photography, product design, website design, and social content —
-              keeping it cohesive and modern.
-            </p>
-
-            <div class="softline"></div>
-
-            <ul class="bullets">
-              <li><strong style="color:var(--text); font-weight:500;">Focus:</strong> visual identity, conversion-friendly website, consistent content.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Execution:</strong> ads + product visuals + web pages + social assets.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Outcome:</strong> cleaner brand feel + stronger consistency (metrics can be added later).</li>
-            </ul>
-
-            <div class="mini">
-              <div class="chip"><strong>Tools:</strong> Photo/Video</div>
-              <div class="chip"><strong>Skills:</strong> Ads</div>
-              <div class="chip"><strong>Skills:</strong> Web</div>
-              <div class="chip"><strong>Skills:</strong> Creative Direction</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 2 -->
-        <article class="card">
-          <img class="thumb" src="assets/work-2.jpg" alt="Project image: Leaft Foods" />
-          <div class="card-body">
-            <div class="card-top">
-              <h3>Leaft Foods — Brand Ambassador</h3>
-              <div class="smalltag">Field + Sales</div>
-            </div>
-            <p>
-              Worked as a brand ambassador across varied roles — supporting sales, customer conversations,
-              and strategy feedback from real interactions.
-            </p>
-
-            <div class="softline"></div>
-
-            <ul class="bullets">
-              <li><strong style="color:var(--text); font-weight:500;">Focus:</strong> messaging that lands, real objections, real answers.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Execution:</strong> demos, selling, feedback loops, on-site presence.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Outcome:</strong> stronger customer insight + better positioning cues.</li>
-            </ul>
-
-            <div class="mini">
-              <div class="chip"><strong>Skills:</strong> Sales</div>
-              <div class="chip"><strong>Skills:</strong> Communication</div>
-              <div class="chip"><strong>Skills:</strong> Market Insight</div>
-              <div class="chip"><strong>Skills:</strong> Brand</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="card">
-          <img class="thumb" src="assets/work-3.jpg" alt="Project image: Oneview Media shoots" />
-          <div class="card-body">
-            <div class="card-top">
-              <h3>Oneview Media — Commercial Shoots</h3>
-              <div class="smalltag">Content</div>
-            </div>
-            <p>
-              Shot and produced content for gyms and homeware stores — building clean visuals that feel premium
-              and match the brand’s vibe.
-            </p>
-
-            <div class="softline"></div>
-
-            <ul class="bullets">
-              <li><strong style="color:var(--text); font-weight:500;">Focus:</strong> cinematic but usable content for social + web.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Execution:</strong> planning, shooting, editing, delivery formats.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Outcome:</strong> better brand perception + consistent assets.</li>
-            </ul>
-
-            <div class="mini">
-              <div class="chip"><strong>Skills:</strong> Production</div>
-              <div class="chip"><strong>Skills:</strong> Editing</div>
-              <div class="chip"><strong>Skills:</strong> Storytelling</div>
-              <div class="chip"><strong>Skills:</strong> Creative Direction</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Extra card -->
-        <article class="card">
-          <div class="card-body">
-            <div class="card-top">
-              <h3>What I’m known for</h3>
-              <div class="smalltag">How I work</div>
-            </div>
-            <p>
-              I’m strongest when I can connect brand, message, and execution — turning strategy into assets people actually want to watch and click.
-            </p>
-
-            <div class="softline"></div>
-
-            <ul class="bullets">
-              <li><strong style="color:var(--text); font-weight:500;">Clarity:</strong> simplify what matters and what to say.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Taste:</strong> clean visuals, modern pacing, premium feel.</li>
-              <li><strong style="color:var(--text); font-weight:500;">Momentum:</strong> consistent output, fast iteration, no fluff.</li>
-            </ul>
-
-            <div class="mini">
-              <div class="chip"><strong>Mode:</strong> Strategy → Story → Execution</div>
-              <div class="chip"><strong>Strength:</strong> Brand consistency</div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ABOUT + SKILLS -->
-    <section class="section" id="about">
-      <div class="section-head">
-        <h2 class="section-title">About</h2>
-        <p class="section-note"></p>
-      </div>
-
-      <div class="split">
-        <div class="panel">
-          <h4>Quick summary</h4>
-          <p>
-            I’m a New Zealand-based marketer focused on building brands that feel clear, modern, and worth paying attention to.
-            I like work where strategy actually shows up in the execution — the story, the visuals, the copy, and the experience.
-          </p>
-          <p style="margin-top:12px;">
-            I’ve worked across brand and content systems, field marketing and sales, and commercial shoots —
-            which means I can think high-level and still ship clean deliverables.
-          </p>
-        </div>
-
-        <div class="panel" id="skills">
-          <h4>Skills</h4>
-          <div class="skillgrid">
-            <div class="skill">Brand strategy</div>
-            <div class="skill">Storytelling</div>
-            <div class="skill">Content planning</div>
-            <div class="skill">Photography</div>
-            <div class="skill">Short-form editing</div>
-            <div class="skill">Website design</div>
-            <div class="skill">Paid ads (creative)</div>
-            <div class="skill">Sales + field marketing</div>
-            <div class="skill">Customer insight</div>
-            <div class="skill">Creative direction</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROOF -->
-    <section class="section" id="proof">
-      <div class="section-head">
-        <h2 class="section-title">Proof <span class="accent">Assets</span></h2>
-        <p class="section-note"></p>
-      </div>
-
-      <div class="proof-grid">
-        <div class="proof">
-          <img src="assets/work-1.jpg" alt="Proof asset 1" />
-          <div class="label"><span>Dad &amp; Me</span><span>Ads / Web / Content</span></div>
-        </div>
-        <div class="proof">
-          <img src="assets/work-2.jpg" alt="Proof asset 2" />
-          <div class="label"><span>Leaft Foods</span><span>Field / Sales</span></div>
-        </div>
-        <div class="proof">
-          <img src="assets/work-3.jpg" alt="Proof asset 3" />
-          <div class="label"><span>Oneview Media</span><span>Shoots / Edits</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
+    <!-- SINGLE SECTION: CONTACT (Available) -->
     <section class="section" id="contact">
       <div class="section-head">
         <h2 class="section-title">Contact</h2>
-        <p class="section-note"></p>
+        <p class="section-note">If you’re hiring for graduate marketing roles, I’d love to connect.</p>
       </div>
 
       <div class="contact">
@@ -813,29 +458,7 @@
   </main>
 
   <script>
-    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Tiny polish: highlight active nav link on scroll (simple + lightweight)
-    const sections = ["work","about","skills","proof","contact"].map(id => document.getElementById(id)).filter(Boolean);
-    const links = Array.from(document.querySelectorAll(".navlinks a")).filter(a => a.getAttribute("href")?.startsWith("#"));
-
-    const setActive = () => {
-      const y = window.scrollY + 120;
-      let current = "top";
-      for (const s of sections) {
-        if (s.offsetTop <= y) current = s.id;
-      }
-      links.forEach(a => {
-        const href = a.getAttribute("href").replace("#","");
-        const active = (href === current);
-        a.style.borderColor = active ? "rgba(45,106,79,.45)" : "transparent";
-        a.style.background = active ? "rgba(45,106,79,.10)" : "transparent";
-        a.style.color = active ? "rgba(245,245,245,.92)" : "rgba(245,245,245,.72)";
-      });
-    };
-    window.addEventListener("scroll", setActive, { passive:true });
-    setActive();
   </script>
 </body>
 </html>
