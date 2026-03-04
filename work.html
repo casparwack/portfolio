@@ -1,16 +1,736 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Work - Caspar Wackrow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Caspar Wackrow</title>
+  <meta name="description" content="Selected work by Caspar Wackrow — strategy, storytelling, and clean execution." />
+
+  <!-- Fonts: same as index -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070707;
+      --panel:#0c0c0c;
+      --text:#f5f5f5;
+      --muted: rgba(245,245,245,.72);
+      --faint: rgba(245,245,245,.08);
+      --line: rgba(245,245,245,.12);
+      --accent:#2D6A4F; /* deep green */
+      --accent2: rgba(45,106,79,.25);
+
+      --radius: 22px;
+      --max: 1080px;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 70% -10%, rgba(45,106,79,.10), transparent 55%),
+                  radial-gradient(900px 700px at 10% 0%, rgba(255,255,255,.06), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing: -0.01em;
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ opacity:.92; }
+
+    /* Subtle film-grain */
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity:.14;
+    }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+
+    /* Top Nav (same) */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(7,7,7,.72), rgba(7,7,7,.36));
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      min-width: 220px;
+    }
+    .brand .name{
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      font-size: 15px;
+    }
+    .brand .tag{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .navlinks{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .navlinks a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 9px 10px;
+      border-radius:999px;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .is-active{
+      border-color: rgba(45,106,79,.45) !important;
+      background: rgba(45,106,79,.10) !important;
+      color: rgba(245,245,245,.92) !important;
+    }
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 13px;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius:999px;
+      border: 1px solid var(--accent2);
+      background: linear-gradient(180deg, rgba(45,106,79,.18), rgba(45,106,79,.08));
+      transition: transform .18s ease, border-color .18s ease;
+      white-space:nowrap;
+    }
+    .cta:hover{
+      transform: translateY(-1px);
+      border-color: rgba(45,106,79,.45);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(45,106,79,.12);
+    }
+
+    /* Page Hero */
+    .page-hero{
+      padding: 58px 0 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:end;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .kicker .line{
+      height:1px; width:46px; background: var(--line);
+    }
+    .title{
+      margin: 14px 0 10px;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-size: clamp(40px, 5.4vw, 68px);
+      line-height: 1.0;
+      letter-spacing: -0.05em;
+      font-weight: 600;
+    }
+    .sub{
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 64ch;
+    }
+    .meta{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .pill strong{ color: var(--text); font-weight: 500; }
+
+    .page-card{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .toc{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .toc a{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(245,245,245,.10);
+      background: rgba(255,255,255,.02);
+      color: rgba(245,245,245,.78);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .toc a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(45,106,79,.45);
+      color: rgba(245,245,245,.92);
+    }
+    .toc small{ color: var(--muted); font-size: 12px; }
+    .arrow{ color: var(--accent); }
+
+    /* Sections */
+    .section{
+      padding: 46px 0;
+      border-top: 1px solid var(--line);
+    }
+    .section-head{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .section-title{
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      font-size: 20px;
+      margin:0;
+    }
+    .section-title .accent{ color: var(--accent); font-weight: 600; }
+    .section-note{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      max-width: 68ch;
+    }
+
+    /* Case Study layout */
+    .case{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .case-hero{
+      width:100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display:block;
+      border-bottom: 1px solid var(--line);
+      filter: contrast(1.05) saturate(.95);
+    }
+    .case-body{
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 16px;
+      align-items:start;
+    }
+    .case h3{
+      margin:0;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+    .case p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .softline{
+      height:1px;
+      background: var(--line);
+      margin: 14px 0 12px;
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .chip{
+      font-size: 12px;
+      color: rgba(245,245,245,.74);
+      border: 1px solid rgba(245,245,245,.10);
+      background: rgba(255,255,255,.02);
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+    .chip strong{ color: var(--text); font-weight: 500; }
+
+    .box{
+      border: 1px solid rgba(245,245,245,.10);
+      background: rgba(255,255,255,.02);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .box h4{
+      margin:0 0 10px;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .box ul{
+      margin:0;
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .box li{ margin: 7px 0; }
+    .box b{ color: var(--text); font-weight: 500; }
+
+    /* Mini gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .g{
+      grid-column: span 4;
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+    .g img{
+      width:100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display:block;
+      filter: contrast(1.05) saturate(.95);
+    }
+    .g .label{
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .g .label span{ color: rgba(245,245,245,.86); }
+
+    /* Proof grid bottom */
+    .proof-grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .proof{
+      grid-column: span 3;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
+    }
+    .proof img{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display:block;
+      filter: contrast(1.05) saturate(.95);
+    }
+    .proof .label{
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .proof .label span{ color: rgba(245,245,245,.86); }
+
+    /* Footer */
+    footer{
+      padding-top: 26px;
+      color: rgba(245,245,245,.55);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    footer a{ color: rgba(245,245,245,.70); }
+    footer a:hover{ color: var(--text); }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .page-hero{ grid-template-columns: 1fr; padding-top: 46px; }
+      .case-body{ grid-template-columns: 1fr; }
+      .g{ grid-column: span 12; }
+      .proof{ grid-column: span 6; }
+    }
+    @media (max-width: 520px){
+      .proof{ grid-column: span 12; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .cta, .toc a{ transition:none; }
+    }
+  </style>
 </head>
 
-<body style="background:black;color:white;font-family:sans-serif">
+<body>
+  <div class="grain" aria-hidden="true"></div>
 
-<h1>My Work</h1>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="name">Caspar Wackrow</div>
+        <div class="tag">Graduate Marketing</div>
+      </div>
 
-<p>Projects and case studies will go here.</p>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a class="is-active" href="work.html">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="cta" href="index.html#contact"><span class="dot"></span>Available</a>
+      </div>
+    </div>
+  </div>
 
-<a href="index.html">Back home</a>
+  <main class="wrap">
+    <!-- PAGE HERO -->
+    <section class="page-hero" id="top">
+      <div>
+        <div class="kicker"><span class="line"></span> Selected Work <span class="line"></span></div>
 
+        <h1 class="title">Strategy<br/>that ships.</h1>
+
+        <p class="sub">
+          These projects show how I combine <span style="color:var(--text); font-weight:500;">brand thinking</span>,
+          <span style="color:var(--text); font-weight:500;">clean creative</span>, and
+          <span style="color:var(--text); font-weight:500;">real execution</span>.
+          (We can add proper metrics as you collect them.)
+        </p>
+
+        <div class="meta">
+          <div class="pill"><strong>Focus:</strong> Strategy • Storytelling • Content</div>
+          <div class="pill"><strong>Output:</strong> Ads • Web • Photo/Video</div>
+          <div class="pill"><strong>Location:</strong> New Zealand</div>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <div style="font-family: Space Grotesk, Inter, sans-serif; font-weight:600; letter-spacing:-.02em; font-size:14px;">
+          Jump to a case study
+        </div>
+        <div style="height:10px;"></div>
+
+        <div class="toc">
+          <a href="#dadandme">
+            <div>
+              <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Dad &amp; Me</span></div>
+              <small>Ads • Photography • Website • Content</small>
+            </div>
+            <div class="arrow">↘</div>
+          </a>
+          <a href="#leaft">
+            <div>
+              <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Leaft Foods</span></div>
+              <small>Field marketing • Sales • Insight</small>
+            </div>
+            <div class="arrow">↘</div>
+          </a>
+          <a href="#oneview">
+            <div>
+              <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Oneview Media</span></div>
+              <small>Commercial shoots • Editing</small>
+            </div>
+            <div class="arrow">↘</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="section" id="cases">
+      <div class="section-head">
+        <h2 class="section-title">Case <span class="accent">Studies</span></h2>
+        <p class="section-note">If you send me 2–3 real outcomes for each project, I’ll rewrite these into proper “problem → strategy → execution → result” case studies.</p>
+      </div>
+
+      <!-- Dad & Me -->
+      <article class="case" id="dadandme">
+        <img class="case-hero" src="assets/work-1.jpg" alt="Dad &amp; Me case study cover" />
+        <div class="case-body">
+          <div>
+            <h3>Dad &amp; Me — Brand + Content System</h3>
+            <p>
+              A multi-channel role supporting a growing brand with ads, photography, product design, website design, and social content —
+              keeping everything cohesive and modern.
+            </p>
+
+            <div class="softline"></div>
+
+            <div class="chips">
+              <div class="chip"><strong>Role:</strong> Marketing + Creative</div>
+              <div class="chip"><strong>Channels:</strong> Ads / Web / Social</div>
+              <div class="chip"><strong>Deliverables:</strong> Photo + Content Assets</div>
+            </div>
+
+            <div class="gallery">
+              <div class="g">
+                <img src="assets/work-1.jpg" alt="Dad &amp; Me gallery 1" />
+                <div class="label"><span>Ad creative</span><span>Concept → output</span></div>
+              </div>
+              <div class="g">
+                <img src="assets/work-2.jpg" alt="Dad &amp; Me gallery 2 placeholder" />
+                <div class="label"><span>Website</span><span>Structure + clarity</span></div>
+              </div>
+              <div class="g">
+                <img src="assets/work-3.jpg" alt="Dad &amp; Me gallery 3 placeholder" />
+                <div class="label"><span>Social content</span><span>Consistency</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box">
+            <h4>Overview</h4>
+            <ul>
+              <li><b>Problem:</b> Content existed, but needed a consistent premium feel.</li>
+              <li><b>Strategy:</b> Tighten visual identity + repeatable content system.</li>
+              <li><b>Execution:</b> Ads, product visuals, web updates, social assets.</li>
+              <li><b>Outcome:</b> Cleaner brand feel + more consistent output (add metrics later).</li>
+            </ul>
+
+            <div style="height:12px;"></div>
+
+            <h4>What I did</h4>
+            <ul>
+              <li>Directed visuals + content style so everything matched.</li>
+              <li>Created assets that could be reused across ads / web / social.</li>
+              <li>Helped make the brand “feel expensive” without over-designing.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <div style="height:14px;"></div>
+
+      <!-- Leaft Foods -->
+      <article class="case" id="leaft">
+        <img class="case-hero" src="assets/work-2.jpg" alt="Leaft Foods case study cover" />
+        <div class="case-body">
+          <div>
+            <h3>Leaft Foods — Brand Ambassador</h3>
+            <p>
+              Field marketing and sales work — demos, conversations, and feedback loops that turn real customer objections into sharper positioning.
+            </p>
+
+            <div class="softline"></div>
+
+            <div class="chips">
+              <div class="chip"><strong>Role:</strong> Brand Ambassador</div>
+              <div class="chip"><strong>Skills:</strong> Sales + Communication</div>
+              <div class="chip"><strong>Value:</strong> Customer insight</div>
+            </div>
+
+            <div class="gallery">
+              <div class="g">
+                <img src="assets/work-2.jpg" alt="Leaft gallery 1" />
+                <div class="label"><span>Field presence</span><span>Brand in reality</span></div>
+              </div>
+              <div class="g">
+                <img src="assets/work-1.jpg" alt="Leaft gallery 2 placeholder" />
+                <div class="label"><span>Messaging</span><span>What lands</span></div>
+              </div>
+              <div class="g">
+                <img src="assets/work-3.jpg" alt="Leaft gallery 3 placeholder" />
+                <div class="label"><span>Feedback</span><span>Objections → insight</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box">
+            <h4>Overview</h4>
+            <ul>
+              <li><b>Problem:</b> People don’t buy what they don’t understand quickly.</li>
+              <li><b>Strategy:</b> Short, clear explanation + confidence + proof.</li>
+              <li><b>Execution:</b> Demos, conversations, objection-handling, feedback.</li>
+              <li><b>Outcome:</b> Better customer insight + sharper messaging cues.</li>
+            </ul>
+
+            <div style="height:12px;"></div>
+
+            <h4>What I did</h4>
+            <ul>
+              <li>Spoke to customers, found friction points, refined the pitch.</li>
+              <li>Reported patterns back (what questions keep repeating).</li>
+              <li>Helped translate “product features” into benefits people care about.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <div style="height:14px;"></div>
+
+      <!-- Oneview Media -->
+      <article class="case" id="oneview">
+        <img class="case-hero" src="assets/work-3.jpg" alt="Oneview Media case study cover" />
+        <div class="case-body">
+          <div>
+            <h3>Oneview Media — Commercial Shoots</h3>
+            <p>
+              Shot and produced content for gyms and homeware stores — building clean visuals that feel premium and are usable across social and web.
+            </p>
+
+            <div class="softline"></div>
+
+            <div class="chips">
+              <div class="chip"><strong>Role:</strong> Producer / Editor</div>
+              <div class="chip"><strong>Deliverables:</strong> Photo + Short-form</div>
+              <div class="chip"><strong>Style:</strong> Clean • Modern • Premium</div>
+            </div>
+
+            <div class="gallery">
+              <div class="g">
+                <img src="assets/work-3.jpg" alt="Oneview gallery 1" />
+                <div class="label"><span>Hero visuals</span><span>Brand feel</span></div>
+              </div>
+              <div class="g">
+                <img src="assets/work-1.jpg" alt="Oneview gallery 2 placeholder" />
+                <div class="label"><span>Short-form</span><span>Hook → payoff</span></div>
+              </div>
+              <div class="g">
+                <img src="assets/work-2.jpg" alt="Oneview gallery 3 placeholder" />
+                <div class="label"><span>Delivery</span><span>Usable formats</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box">
+            <h4>Overview</h4>
+            <ul>
+              <li><b>Problem:</b> Brands need modern content that doesn’t feel generic.</li>
+              <li><b>Strategy:</b> Build a simple visual system + repeatable output.</li>
+              <li><b>Execution:</b> Plan, shoot, edit, deliver in multiple ratios.</li>
+              <li><b>Outcome:</b> Better perception + consistent content library.</li>
+            </ul>
+
+            <div style="height:12px;"></div>
+
+            <h4>What I did</h4>
+            <ul>
+              <li>Planned shots to match brand vibe (not just “nice footage”).</li>
+              <li>Edited for clarity + pacing so it performs on socials.</li>
+              <li>Delivered files ready for use (web + reels + stories).</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- MORE PROOF -->
+    <section class="section" id="proof">
+      <div class="section-head">
+        <h2 class="section-title">More <span class="accent">Proof</span></h2>
+        <p class="section-note">If you upload more images (assets/work-4.jpg etc.), I’ll expand this into a clean gallery.</p>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof">
+          <img src="assets/work-1.jpg" alt="Proof square 1" />
+          <div class="label"><span>Creative</span><span>Ads</span></div>
+        </div>
+        <div class="proof">
+          <img src="assets/work-2.jpg" alt="Proof square 2" />
+          <div class="label"><span>Field</span><span>Sales</span></div>
+        </div>
+        <div class="proof">
+          <img src="assets/work-3.jpg" alt="Proof square 3" />
+          <div class="label"><span>Shoots</span><span>Content</span></div>
+        </div>
+        <div class="proof">
+          <img src="assets/headshot.jpg" alt="Proof square 4" />
+          <div class="label"><span>Profile</span><span>Brand</span></div>
+        </div>
+      </div>
+
+      <footer>
+        <div>© <span id="year"></span> Caspar Wackrow</div>
+        <div>
+          <a href="index.html">Home</a>
+          <span style="opacity:.35;"> • </span>
+          <a href="#top">Back to top</a>
+          <span style="opacity:.35;"> • </span>
+          <a href="index.html#contact" style="color:var(--accent);">Hire / Connect</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
