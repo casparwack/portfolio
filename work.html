@@ -57,7 +57,7 @@
       padding: 28px 20px 80px;
     }
 
-    /* Top Nav (same) */
+    /* Top Nav (same look as index) */
     .nav{
       position:sticky;
       top:0;
@@ -93,7 +93,7 @@
       color: var(--muted);
       border: 1px solid var(--line);
       padding: 6px 10px;
-      border-radius:999px;
+      border-radius: 999px;
       background: rgba(255,255,255,.03);
     }
 
@@ -108,7 +108,7 @@
       font-size: 13px;
       color: var(--muted);
       padding: 9px 10px;
-      border-radius:999px;
+      border-radius: 999px;
       transition: background .2s ease, color .2s ease, border-color .2s ease;
       border: 1px solid transparent;
     }
@@ -129,7 +129,7 @@
       font-size: 13px;
       color: var(--text);
       padding: 10px 12px;
-      border-radius:999px;
+      border-radius: 999px;
       border: 1px solid var(--accent2);
       background: linear-gradient(180deg, rgba(45,106,79,.18), rgba(45,106,79,.08));
       transition: transform .18s ease, border-color .18s ease;
@@ -147,7 +147,7 @@
 
     /* Page Hero */
     .page-hero{
-      padding: 58px 0 18px;
+      padding: 58px 0 22px;
       display:grid;
       grid-template-columns: 1.2fr .8fr;
       gap: 18px;
@@ -162,9 +162,8 @@
       letter-spacing: .06em;
       text-transform: uppercase;
     }
-    .kicker .line{
-      height:1px; width:46px; background: var(--line);
-    }
+    .kicker .line{ height:1px; width:46px; background: var(--line); }
+
     .title{
       margin: 14px 0 10px;
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
@@ -178,7 +177,7 @@
       font-size: 15px;
       line-height: 1.75;
       color: var(--muted);
-      max-width: 64ch;
+      max-width: 70ch;
     }
     .meta{
       margin-top: 18px;
@@ -210,6 +209,7 @@
       display:flex;
       flex-direction:column;
       gap:10px;
+      margin-top: 10px;
     }
     .toc a{
       display:flex;
@@ -231,7 +231,7 @@
     .toc small{ color: var(--muted); font-size: 12px; }
     .arrow{ color: var(--accent); }
 
-    /* Sections */
+    /* Sections + Case study */
     .section{
       padding: 46px 0;
       border-top: 1px solid var(--line);
@@ -256,10 +256,9 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.7;
-      max-width: 68ch;
+      max-width: 78ch;
     }
 
-    /* Case Study layout */
     .case{
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -374,39 +373,6 @@
     }
     .g .label span{ color: rgba(245,245,245,.86); }
 
-    /* Proof grid bottom */
-    .proof-grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 10px;
-    }
-    .proof{
-      grid-column: span 3;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      overflow:hidden;
-      background: rgba(255,255,255,.02);
-    }
-    .proof img{
-      width:100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display:block;
-      filter: contrast(1.05) saturate(.95);
-    }
-    .proof .label{
-      padding: 10px 12px;
-      border-top: 1px solid var(--line);
-      font-size: 12px;
-      color: var(--muted);
-      display:flex;
-      justify-content:space-between;
-      gap: 10px;
-    }
-    .proof .label span{ color: rgba(245,245,245,.86); }
-
-    /* Footer */
     footer{
       padding-top: 26px;
       color: rgba(245,245,245,.55);
@@ -424,10 +390,6 @@
       .page-hero{ grid-template-columns: 1fr; padding-top: 46px; }
       .case-body{ grid-template-columns: 1fr; }
       .g{ grid-column: span 12; }
-      .proof{ grid-column: span 6; }
-    }
-    @media (max-width: 520px){
-      .proof{ grid-column: span 12; }
     }
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
@@ -439,7 +401,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- NAV -->
+  <!-- NAV: ONLY HOME + WORK -->
   <div class="nav">
     <div class="nav-inner">
       <div class="brand">
@@ -450,27 +412,24 @@
       <div class="navlinks">
         <a href="index.html">Home</a>
         <a class="is-active" href="work.html">Work</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#skills">Skills</a>
-        <a href="index.html#contact">Contact</a>
         <a class="cta" href="index.html#contact"><span class="dot"></span>Available</a>
       </div>
     </div>
   </div>
 
   <main class="wrap">
-    <!-- PAGE HERO -->
+    <!-- HERO -->
     <section class="page-hero" id="top">
       <div>
         <div class="kicker"><span class="line"></span> Selected Work <span class="line"></span></div>
 
-        <h1 class="title">Strategy<br/>that ships.</h1>
+        <h1 class="title">Work<br/>that feels premium.</h1>
 
         <p class="sub">
-          These projects show how I combine <span style="color:var(--text); font-weight:500;">brand thinking</span>,
-          <span style="color:var(--text); font-weight:500;">clean creative</span>, and
-          <span style="color:var(--text); font-weight:500;">real execution</span>.
-          (We can add proper metrics as you collect them.)
+          A small selection of projects that show how I combine
+          <span style="color:var(--text); font-weight:500;">sharp strategy</span> with
+          <span style="color:var(--text); font-weight:500;">compelling storytelling</span>,
+          then execute it cleanly across ads, web, and content.
         </p>
 
         <div class="meta">
@@ -482,15 +441,14 @@
 
       <div class="page-card">
         <div style="font-family: Space Grotesk, Inter, sans-serif; font-weight:600; letter-spacing:-.02em; font-size:14px;">
-          Jump to a case study
+          Jump to a project
         </div>
-        <div style="height:10px;"></div>
 
         <div class="toc">
           <a href="#dadandme">
             <div>
               <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Dad &amp; Me</span></div>
-              <small>Ads • Photography • Website • Content</small>
+              <small>Ads • Photography • Website • Social</small>
             </div>
             <div class="arrow">↘</div>
           </a>
@@ -512,11 +470,14 @@
       </div>
     </section>
 
-    <!-- CASE STUDIES -->
-    <section class="section" id="cases">
+    <!-- WORK ONLY -->
+    <section class="section" id="work">
       <div class="section-head">
-        <h2 class="section-title">Case <span class="accent">Studies</span></h2>
-        <p class="section-note">If you send me 2–3 real outcomes for each project, I’ll rewrite these into proper “problem → strategy → execution → result” case studies.</p>
+        <h2 class="section-title">Work <span class="accent">Overview</span></h2>
+        <p class="section-note">
+          Want me to turn these into proper “Problem → Strategy → Execution → Result” case studies?
+          Send 2–3 outcomes (even non-numeric) per project and I’ll rewrite them instantly.
+        </p>
       </div>
 
       <!-- Dad & Me -->
@@ -526,8 +487,8 @@
           <div>
             <h3>Dad &amp; Me — Brand + Content System</h3>
             <p>
-              A multi-channel role supporting a growing brand with ads, photography, product design, website design, and social content —
-              keeping everything cohesive and modern.
+              Supported a growing brand across ads, photography, product design, website design, and social content —
+              keeping everything cohesive, modern, and premium.
             </p>
 
             <div class="softline"></div>
@@ -535,7 +496,7 @@
             <div class="chips">
               <div class="chip"><strong>Role:</strong> Marketing + Creative</div>
               <div class="chip"><strong>Channels:</strong> Ads / Web / Social</div>
-              <div class="chip"><strong>Deliverables:</strong> Photo + Content Assets</div>
+              <div class="chip"><strong>Deliverables:</strong> Visuals + Content</div>
             </div>
 
             <div class="gallery">
@@ -549,27 +510,27 @@
               </div>
               <div class="g">
                 <img src="assets/work-3.jpg" alt="Dad &amp; Me gallery 3 placeholder" />
-                <div class="label"><span>Social content</span><span>Consistency</span></div>
+                <div class="label"><span>Social</span><span>Consistency</span></div>
               </div>
             </div>
           </div>
 
           <div class="box">
-            <h4>Overview</h4>
+            <h4>Case study (draft)</h4>
             <ul>
               <li><b>Problem:</b> Content existed, but needed a consistent premium feel.</li>
-              <li><b>Strategy:</b> Tighten visual identity + repeatable content system.</li>
+              <li><b>Strategy:</b> Tighten identity + build a repeatable content system.</li>
               <li><b>Execution:</b> Ads, product visuals, web updates, social assets.</li>
-              <li><b>Outcome:</b> Cleaner brand feel + more consistent output (add metrics later).</li>
+              <li><b>Outcome:</b> Cleaner brand feel + more consistent output.</li>
             </ul>
 
             <div style="height:12px;"></div>
 
-            <h4>What I did</h4>
+            <h4>What I owned</h4>
             <ul>
-              <li>Directed visuals + content style so everything matched.</li>
-              <li>Created assets that could be reused across ads / web / social.</li>
-              <li>Helped make the brand “feel expensive” without over-designing.</li>
+              <li>Kept visuals consistent across channels.</li>
+              <li>Built assets that could be reused (web + ads + social).</li>
+              <li>Made it feel “expensive” without over-designing.</li>
             </ul>
           </div>
         </div>
@@ -577,7 +538,7 @@
 
       <div style="height:14px;"></div>
 
-      <!-- Leaft Foods -->
+      <!-- Leaft -->
       <article class="case" id="leaft">
         <img class="case-hero" src="assets/work-2.jpg" alt="Leaft Foods case study cover" />
         <div class="case-body">
@@ -591,14 +552,14 @@
 
             <div class="chips">
               <div class="chip"><strong>Role:</strong> Brand Ambassador</div>
-              <div class="chip"><strong>Skills:</strong> Sales + Communication</div>
+              <div class="chip"><strong>Skills:</strong> Sales + Comms</div>
               <div class="chip"><strong>Value:</strong> Customer insight</div>
             </div>
 
             <div class="gallery">
               <div class="g">
                 <img src="assets/work-2.jpg" alt="Leaft gallery 1" />
-                <div class="label"><span>Field presence</span><span>Brand in reality</span></div>
+                <div class="label"><span>Field</span><span>Brand in reality</span></div>
               </div>
               <div class="g">
                 <img src="assets/work-1.jpg" alt="Leaft gallery 2 placeholder" />
@@ -612,21 +573,21 @@
           </div>
 
           <div class="box">
-            <h4>Overview</h4>
+            <h4>Case study (draft)</h4>
             <ul>
               <li><b>Problem:</b> People don’t buy what they don’t understand quickly.</li>
-              <li><b>Strategy:</b> Short, clear explanation + confidence + proof.</li>
-              <li><b>Execution:</b> Demos, conversations, objection-handling, feedback.</li>
+              <li><b>Strategy:</b> Short, clear pitch + proof + confident delivery.</li>
+              <li><b>Execution:</b> Demos, selling, objection-handling, insight capture.</li>
               <li><b>Outcome:</b> Better customer insight + sharper messaging cues.</li>
             </ul>
 
             <div style="height:12px;"></div>
 
-            <h4>What I did</h4>
+            <h4>What I owned</h4>
             <ul>
-              <li>Spoke to customers, found friction points, refined the pitch.</li>
-              <li>Reported patterns back (what questions keep repeating).</li>
-              <li>Helped translate “product features” into benefits people care about.</li>
+              <li>Customer conversations + common objections.</li>
+              <li>Feedback loops (what kept repeating).</li>
+              <li>Translating features into benefits people care about.</li>
             </ul>
           </div>
         </div>
@@ -634,14 +595,14 @@
 
       <div style="height:14px;"></div>
 
-      <!-- Oneview Media -->
+      <!-- Oneview -->
       <article class="case" id="oneview">
         <img class="case-hero" src="assets/work-3.jpg" alt="Oneview Media case study cover" />
         <div class="case-body">
           <div>
             <h3>Oneview Media — Commercial Shoots</h3>
             <p>
-              Shot and produced content for gyms and homeware stores — building clean visuals that feel premium and are usable across social and web.
+              Shot and produced content for gyms and homeware stores — building clean visuals that feel premium and work across social and web.
             </p>
 
             <div class="softline"></div>
@@ -669,52 +630,25 @@
           </div>
 
           <div class="box">
-            <h4>Overview</h4>
+            <h4>Case study (draft)</h4>
             <ul>
               <li><b>Problem:</b> Brands need modern content that doesn’t feel generic.</li>
-              <li><b>Strategy:</b> Build a simple visual system + repeatable output.</li>
+              <li><b>Strategy:</b> Simple visual system + repeatable output.</li>
               <li><b>Execution:</b> Plan, shoot, edit, deliver in multiple ratios.</li>
               <li><b>Outcome:</b> Better perception + consistent content library.</li>
             </ul>
 
             <div style="height:12px;"></div>
 
-            <h4>What I did</h4>
+            <h4>What I owned</h4>
             <ul>
-              <li>Planned shots to match brand vibe (not just “nice footage”).</li>
+              <li>Planned shots to match the brand vibe (not just “nice footage”).</li>
               <li>Edited for clarity + pacing so it performs on socials.</li>
               <li>Delivered files ready for use (web + reels + stories).</li>
             </ul>
           </div>
         </div>
       </article>
-    </section>
-
-    <!-- MORE PROOF -->
-    <section class="section" id="proof">
-      <div class="section-head">
-        <h2 class="section-title">More <span class="accent">Proof</span></h2>
-        <p class="section-note">If you upload more images (assets/work-4.jpg etc.), I’ll expand this into a clean gallery.</p>
-      </div>
-
-      <div class="proof-grid">
-        <div class="proof">
-          <img src="assets/work-1.jpg" alt="Proof square 1" />
-          <div class="label"><span>Creative</span><span>Ads</span></div>
-        </div>
-        <div class="proof">
-          <img src="assets/work-2.jpg" alt="Proof square 2" />
-          <div class="label"><span>Field</span><span>Sales</span></div>
-        </div>
-        <div class="proof">
-          <img src="assets/work-3.jpg" alt="Proof square 3" />
-          <div class="label"><span>Shoots</span><span>Content</span></div>
-        </div>
-        <div class="proof">
-          <img src="assets/headshot.jpg" alt="Proof square 4" />
-          <div class="label"><span>Profile</span><span>Brand</span></div>
-        </div>
-      </div>
 
       <footer>
         <div>© <span id="year"></span> Caspar Wackrow</div>
