@@ -67,7 +67,7 @@ align-items:center;
 }
 
 .brand .name{
-font-family:"Space Grotesk";
+font-family:"Plus Jakarta Sans", sans-serif;
 font-weight:600;
 }
 
@@ -184,7 +184,7 @@ border-top:1px solid var(--line);
 }
 
 .section-title{
-font-family:"Space Grotesk";
+font-family:"Plus Jakarta Sans", sans-serif;
 font-size:22px;
 margin-bottom:20px;
 }
@@ -286,6 +286,15 @@ display:none;
 .contact{grid-template-columns:1fr}
 }
 
+/* smaller title on iPhones */
+
+@media(max-width:500px){
+h1{
+font-size:40px;
+line-height:1.1;
+}
+}
+
 /* hide Marketing & Strategy Specialist on phones */
 
 @media(max-width:420px){
@@ -354,13 +363,11 @@ display:none;
 <h2 class="section-title">What I do</h2>
 
 <p class="about">
-
 I’m in my final year studying marketing and strategy at the University of Canterbury.
 
 I help businesses think through how they want to show up, and then help build the pieces that make it happen — strategy, branding, ads, social content, websites, and sales.
 
 I enjoy working across the whole process, from the early idea to the finished result.
-
 </p>
 
 <br>
