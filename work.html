@@ -73,19 +73,23 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
+      gap:14px;
+      flex-wrap: nowrap;              /* ✅ keep single row */
+      min-width: 0;
     }
     .brand{
       display:flex;
       align-items:baseline;
       gap:10px;
-      min-width: 220px;
+      min-width: 0;                  /* ✅ allow shrinking on phones */
+      flex: 1 1 auto;
     }
     .brand .name{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
       font-weight: 600;
       letter-spacing: -0.02em;
       font-size: 15px;
+      white-space: nowrap;
     }
     .brand .tag{
       font-size: 12px;
@@ -94,14 +98,17 @@
       padding: 6px 10px;
       border-radius: 999px;
       background: rgba(255,255,255,.03);
+      white-space: nowrap;
     }
 
     .navlinks{
       display:flex;
-      gap: 14px;
+      gap: 12px;
       align-items:center;
-      flex-wrap:wrap;
+      flex-wrap: nowrap;             /* ✅ no stacking */
       justify-content:flex-end;
+      white-space: nowrap;
+      flex: 0 0 auto;
     }
     .navlinks a{
       font-size: 13px;
@@ -110,6 +117,7 @@
       border-radius: 999px;
       transition: background .2s ease, color .2s ease, border-color .2s ease;
       border: 1px solid transparent;
+      white-space: nowrap;
     }
     .navlinks a:hover{
       color: var(--text);
@@ -318,22 +326,6 @@
       background: var(--line);
       margin: 14px 0 12px;
     }
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .chip{
-      font-size: 12px;
-      color: rgba(245,245,245,.74);
-      border: 1px solid rgba(245,245,245,.10);
-      background: rgba(255,255,255,.02);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
-    }
-    .chip strong{ color: var(--text); font-weight: 500; }
 
     .box{
       border: 1px solid rgba(245,245,245,.10);
@@ -341,23 +333,23 @@
       border-radius: 18px;
       padding: 14px;
     }
-    .box h4{
-      margin:0 0 10px;
+
+    /* ✅ cleaner “case study bubble” text blocks */
+    .cs h4{
+      margin: 0 0 6px;
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
       font-weight: 600;
       letter-spacing: -0.02em;
       font-size: 14px;
       color: var(--text);
     }
-    .box ul{
-      margin:0;
-      padding-left: 16px;
+    .cs p{
+      margin: 0 0 12px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
-    .box li{ margin: 7px 0; }
-    .box b{ color: var(--text); font-weight: 500; }
+    .cs p:last-child{ margin-bottom: 0; }
 
     /* Video card */
     .video-card{
@@ -381,6 +373,33 @@
       width:100%;
       display:block;
       background:#000;
+    }
+
+    /* Dad & Me button */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,245,245,.14);
+      background: rgba(255,255,255,.03);
+      color: rgba(245,245,245,.88);
+      font-size: 13px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(45,106,79,.55);
+      background: rgba(45,106,79,.10);
+    }
+    .btn .icon{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(45,106,79,.12);
+      flex: 0 0 auto;
     }
 
     /* 3-image mini gallery (Leaft section) */
@@ -431,9 +450,10 @@
     }
     @media (max-width: 520px){
       .wrap{ padding-left: 16px; padding-right: 16px; }
-      .nav-inner{ padding-left: 16px; padding-right: 16px; }
-      .navlinks a{ padding: 9px 9px; }
-      .cta{ padding: 10px 11px; }
+      .nav-inner{ padding-left: 16px; padding-right: 16px; gap:10px; }
+      .navlinks{ gap:8px; }
+      .navlinks a{ padding: 8px 9px; font-size: 13px; }
+      .cta{ padding: 9px 10px; }
       .navbtn{ width:40px; height:40px; }
       .hero-counter{ right:10px; bottom:10px; }
       .mini-gallery{ gap: 8px; }
@@ -441,7 +461,7 @@
     }
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .cta, .toc a, .navbtn, .mini-gallery a{ transition:none; }
+      .cta, .toc a, .navbtn, .mini-gallery a, .btn{ transition:none; }
     }
   </style>
 </head>
@@ -456,6 +476,7 @@
         <div class="tag">Graduate Marketing</div>
       </div>
 
+      <!-- ✅ 4) stays single-row on iPhone -->
       <div class="navlinks">
         <a href="index.html">Home</a>
         <a class="is-active" href="work.html">Work</a>
@@ -476,8 +497,6 @@
           <span style="color:var(--text); font-weight:500;">compelling storytelling</span>,
           then execute it cleanly across ads, web, and content.
         </p>
-
-        <!-- ✅ 1) removed the focus/output/location bubbles -->
       </div>
 
       <div class="page-card">
@@ -504,7 +523,7 @@
 
           <a href="#oneview">
             <div>
-              <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Oneview Media</span></div>
+              <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Oneview Studios</span></div>
               <small>Building an agency</small>
             </div>
             <div class="arrow">↘</div>
@@ -536,44 +555,53 @@
               keeping everything cohesive, modern, and premium.
             </p>
 
-            <div class="softline"></div>
+            <!-- ✅ 2) pretty button link -->
+            <a class="btn" href="https://thedadandmecompany.com/?srsltid=AfmBOopi5aSBJXuQTeoNArZINp61sH8s9qKDLY0j8pNCKWGRqvIc61FR" target="_blank" rel="noopener noreferrer">
+              <span class="icon" aria-hidden="true"></span>
+              Check out the company
+              <span style="color:var(--accent);">↗</span>
+            </a>
 
-            <div class="chips">
-              <div class="chip"><strong>Role:</strong> Marketing + Creative</div>
-              <div class="chip"><strong>Channels:</strong> Ads / Web / Social</div>
-              <div class="chip"><strong>Deliverables:</strong> Visuals + Content</div>
-            </div>
+            <!-- ✅ 1) removed the Role/Channels/Deliverables bubbles entirely -->
 
-            <!-- ✅ 2) moved the Dad & Me ad to the LEFT (under the chips) -->
             <div class="video-card">
               <div class="vh">
                 <div><strong>Ad I made</strong> <span>(video)</span></div>
                 <div style="color:var(--accent);">▶</div>
               </div>
-              <!-- Replace src with your real file -->
               <video controls preload="metadata" playsinline>
                 <source src="assets/dadandme-ad.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
 
+          <!-- ✅ 3) replaced the case study bubble content -->
           <div class="box">
-            <h4>Case study (draft)</h4>
-            <ul>
-              <li><b>Problem:</b> Content existed, but needed a consistent premium feel.</li>
-              <li><b>Strategy:</b> Tighten identity + build a repeatable content system.</li>
-              <li><b>Execution:</b> Ads, product visuals, web updates, social assets.</li>
-              <li><b>Outcome:</b> Cleaner brand feel + more consistent output.</li>
-            </ul>
+            <div class="cs">
+              <h4>Problem</h4>
+              <p>
+                The brand wanted to expand into Asian markets, where trust and product credibility are critical in the children’s nutrition category.
+                Their content needed to better communicate safety, quality, and the reliability associated with New Zealand dairy.
+              </p>
 
-            <div style="height:12px;"></div>
+              <h4>Strategy</h4>
+              <p>
+                Refine the visual identity and establish a repeatable content system that consistently communicated quality, safety,
+                and New Zealand provenance — key signals of trust for parents.
+              </p>
 
-            <h4>What I owned</h4>
-            <ul>
-              <li>Kept visuals consistent across channels.</li>
-              <li>Built assets that could be reused (web + ads + social).</li>
-              <li>Made it feel “expensive” without over-designing.</li>
-            </ul>
+              <h4>Execution</h4>
+              <p>
+                Produced product visuals, advertising assets, website updates, and social media content built around a clean, consistent aesthetic.
+                Created reusable assets and templates so the brand could scale content across platforms while maintaining a polished, premium feel.
+              </p>
+
+              <h4>Outcome</h4>
+              <p>
+                The brand presented a clearer and more trustworthy identity across web, advertising, and social channels, helping reinforce the
+                perception of high-quality New Zealand nutrition for families in Asian markets.
+              </p>
+            </div>
           </div>
         </div>
       </article>
@@ -590,15 +618,8 @@
               Field marketing and sales work — demos, conversations, and feedback loops that turn real customer objections into sharper positioning.
             </p>
 
-            <div class="softline"></div>
+            <!-- ✅ 1) removed the Role/Skills/Value bubbles entirely -->
 
-            <div class="chips">
-              <div class="chip"><strong>Role:</strong> Brand Ambassador</div>
-              <div class="chip"><strong>Skills:</strong> Sales + Comms</div>
-              <div class="chip"><strong>Value:</strong> Customer insight</div>
-            </div>
-
-            <!-- ✅ 3) put back the three images under the left section -->
             <div class="mini-gallery" aria-label="Leaft image gallery">
               <a href="assets/work-1.jpg" aria-label="Open image 1">
                 <img src="assets/work-1.jpg" alt="Leaft related image 1" />
@@ -612,23 +633,35 @@
             </div>
           </div>
 
+          <!-- ✅ 5) replaced the case study bubble content -->
           <div class="box">
-            <h4>Case study (draft)</h4>
-            <ul>
-              <li><b>Problem:</b> People don’t buy what they don’t understand quickly.</li>
-              <li><b>Strategy:</b> Short, clear pitch + proof + confident delivery.</li>
-              <li><b>Execution:</b> Demos, selling, objection-handling, insight capture.</li>
-              <li><b>Outcome:</b> Better customer insight + sharper messaging cues.</li>
-            </ul>
+            <div class="cs">
+              <h4>Problem</h4>
+              <p>
+                As a startup introducing the world’s first Rubisco-based protein product, Leaft Foods needed to build awareness and gather real consumer feedback
+                on a completely new type of protein. Early in the product’s lifecycle, the challenge was helping people understand the ingredient while also collecting
+                insights that could inform product development.
+              </p>
 
-            <div style="height:12px;"></div>
+              <h4>Strategy</h4>
+              <p>
+                Use direct, in-person engagement to introduce the product to consumers, gather honest market feedback, and test early product-market fit.
+                The focus was on translating real conversations with customers into useful insights for the product team.
+              </p>
 
-            <h4>What I owned</h4>
-            <ul>
-              <li>Customer conversations + common objections.</li>
-              <li>Feedback loops (what kept repeating).</li>
-              <li>Translating features into benefits people care about.</li>
-            </ul>
+              <h4>Execution</h4>
+              <p>
+                Worked as a brand ambassador, taking product samples directly to potential customers and approaching people in public spaces to introduce the concept
+                of Rubisco protein. Sold early versions of the product while simultaneously collecting feedback on taste, messaging, and consumer perception.
+                Structured the insights from these conversations and reported them back to the team to help guide product adjustments.
+              </p>
+
+              <h4>Outcome</h4>
+              <p>
+                The approach generated early sales while providing valuable on-the-ground market insights. Direct consumer feedback helped the team better understand
+                how people perceived the product and identify opportunities to refine both the product and how it was communicated.
+              </p>
+            </div>
           </div>
         </div>
       </article>
@@ -637,9 +670,8 @@
 
       <!-- Oneview -->
       <article class="case" id="oneview">
-        <!-- ✅ 4) oneview carousel + arrows -->
         <div class="case-hero-wrap">
-          <img class="case-hero" id="oneHero" src="assets/work-3.jpg" alt="Oneview Media case study cover" />
+          <img class="case-hero" id="oneHero" src="assets/work-3.jpg" alt="Oneview Studios case study cover" />
           <button class="navbtn left" type="button" aria-label="Previous image" id="onePrev"><span>←</span></button>
           <button class="navbtn right" type="button" aria-label="Next image" id="oneNext"><span>→</span></button>
           <div class="hero-counter" id="oneCounter">1 / 3</div>
@@ -647,39 +679,45 @@
 
         <div class="case-body">
           <div>
-            <h3>Oneview Media — Building my agency</h3>
+            <h3>Oneview Studios — Building my agency</h3>
             <p>
-              I started my own agency and began landing clients through real work — projects like Dad &amp; Me, plus shoots for gyms,
+              I started my own studio and began landing clients through real work — projects like Dad &amp; Me, plus shoots for gyms,
               athletes, and homeware stores. The focus was always the same: clean visuals, strong pacing, and content that feels premium
               without feeling overdone.
             </p>
 
-            <div class="softline"></div>
-
-            <div class="chips">
-              <div class="chip"><strong>Role:</strong> Founder / Producer / Editor</div>
-              <div class="chip"><strong>Deliverables:</strong> Photo + Short-form</div>
-              <div class="chip"><strong>Style:</strong> Clean • Modern • Premium</div>
-            </div>
+            <!-- ✅ 1) removed the Role/Deliverables/Style bubbles entirely -->
           </div>
 
+          <!-- ✅ 6) replaced the Oneview case study bubble content -->
           <div class="box">
-            <h4>Case study (draft)</h4>
-            <ul>
-              <li><b>Problem:</b> Brands need modern content that doesn’t feel generic.</li>
-              <li><b>Strategy:</b> Simple visual system + repeatable output.</li>
-              <li><b>Execution:</b> Plan, shoot, edit, deliver in multiple ratios.</li>
-              <li><b>Outcome:</b> Better perception + consistent content library.</li>
-            </ul>
+            <div class="cs">
+              <h4>Problem</h4>
+              <p>
+                Many small businesses produce content inconsistently or without a clear brand direction, which makes it difficult for them to stand out
+                or communicate their value effectively online.
+              </p>
 
-            <div style="height:12px;"></div>
+              <h4>Strategy</h4>
+              <p>
+                Build an independent creative studio focused on helping brands communicate more clearly through strong visual identity and storytelling.
+                The goal was to combine branding, strategy, and cinematic-style content to create marketing assets that feel intentional and consistent.
+              </p>
 
-            <h4>What I owned</h4>
-            <ul>
-              <li>Planned shots to match the brand vibe (not just “nice footage”).</li>
-              <li>Edited for clarity + pacing so it performs on socials.</li>
-              <li>Delivered files ready for use (web + reels + stories).</li>
-            </ul>
+              <h4>Execution</h4>
+              <p>
+                Founded Oneview Studios, handling everything from brand development and creative direction to filming, editing, and delivery of final assets.
+                Developed skills across branding, content production, and client communication while working with a range of businesses to understand their needs
+                and translate them into visual content. Produced creative work for several brands, including Dad &amp; Me, focusing on content that felt authentic
+                and aligned with each brand’s identity.
+              </p>
+
+              <h4>Outcome</h4>
+              <p>
+                Established the foundations of a creative agency and began building a portfolio of real client work. The early projects helped refine the studio’s
+                approach to storytelling-driven content and provided practical experience in delivering creative work for businesses.
+              </p>
+            </div>
           </div>
         </div>
       </article>
@@ -728,9 +766,8 @@
       renderDad();
     });
 
-    // Oneview carousel (✅ 4)
-    // Replace these with your real oneview images later, e.g.:
-    // "assets/oneview-1.jpg", "assets/oneview-2.jpg", "assets/oneview-3.jpg"
+    // Oneview carousel
+    // Replace these with your real oneview images later (oneview-1.jpg etc.)
     const oneImages = [
       "assets/work-3.jpg",
       "assets/work-1.jpg",
@@ -756,20 +793,6 @@
     oneNext.addEventListener("click", () => {
       oneIndex = (oneIndex + 1) % oneImages.length;
       renderOne();
-    });
-
-    // Keyboard support
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        // If you're scrolled near Oneview, this still works fine — both carousels can be used.
-        // Keep it simple: left arrow moves both only when their buttons exist (they do).
-        dadPrev.click();
-        onePrev.click();
-      }
-      if (e.key === "ArrowRight") {
-        dadNext.click();
-        oneNext.click();
-      }
     });
 
     renderDad();
