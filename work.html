@@ -42,21 +42,43 @@
     a{ color:inherit; text-decoration:none; }
     a:hover{ opacity:.92; }
 
+    /* ===== Cursor blob (FROM HOME PAGE) ===== */
+    .cursor-blob{
+      position:fixed;
+      left:0;
+      top:0;
+      width:220px;
+      height:220px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(45,106,79,.6) 0%, rgba(45,106,79,0) 70%);
+      filter:blur(6px);
+      pointer-events:none;
+      z-index:1;
+      transform:translate3d(-999px,-999px,0);
+    }
+    /* hide cursor on phones + tablets */
+    @media (hover:none) and (pointer:coarse){
+      .cursor-blob{ display:none; }
+    }
+
     .grain{
       pointer-events:none;
       position:fixed; inset:0;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
       opacity:.14;
+      z-index: 2;
     }
 
     .wrap{
+      position: relative;
+      z-index: 3; /* keep content above cursor blob */
       max-width: var(--max);
       margin: 0 auto;
       padding: 28px 20px 80px;
     }
 
-    /* ✅ Floating tracking bubble (like main page vibe) */
+    /* ===== Floating tracking bubble ===== */
     .tracker{
       position: fixed;
       left: 18px;
@@ -90,7 +112,7 @@
       .tracker{ left: 14px; bottom: 14px; padding: 9px 11px; }
     }
 
-    /* Nav */
+    /* ===== Nav ===== */
     .nav{
       position:sticky;
       top:0;
@@ -108,7 +130,7 @@
       align-items:center;
       justify-content:space-between;
       gap:14px;
-      flex-wrap: nowrap;
+      flex-wrap: nowrap;   /* keep one line */
       min-width: 0;
     }
     .brand{
@@ -139,7 +161,7 @@
       display:flex;
       gap: 12px;
       align-items:center;
-      flex-wrap: nowrap;
+      flex-wrap: nowrap;  /* no stacking */
       justify-content:flex-end;
       white-space: nowrap;
       flex: 0 0 auto;
@@ -186,7 +208,7 @@
       box-shadow: 0 0 0 6px rgba(45,106,79,.12);
     }
 
-    /* Page Hero */
+    /* ===== Page Hero ===== */
     .page-hero{
       padding: 58px 0 22px;
       display:grid;
@@ -194,7 +216,6 @@
       gap: 18px;
       align-items:end;
     }
-
     .title{
       margin: 14px 0 10px;
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
@@ -244,7 +265,7 @@
     .toc small{ color: var(--muted); font-size: 12px; }
     .arrow{ color: var(--accent); }
 
-    /* Sections + Case study */
+    /* ===== Sections + Case study ===== */
     .section{
       padding: 46px 0;
       border-top: 1px solid var(--line);
@@ -355,11 +376,6 @@
       font-size: 14px;
       line-height: 1.75;
     }
-    .softline{
-      height:1px;
-      background: var(--line);
-      margin: 14px 0 12px;
-    }
 
     .box{
       border: 1px solid rgba(245,245,245,.10);
@@ -367,7 +383,6 @@
       border-radius: 18px;
       padding: 14px;
     }
-
     .cs h4{
       margin: 0 0 6px;
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
@@ -435,7 +450,7 @@
       flex: 0 0 auto;
     }
 
-    /* ✅ Big “fills the space” media layout (3 photos) */
+    /* Big media grid to fill blank space */
     .media-grid{
       margin-top: 14px;
       display:grid;
@@ -450,7 +465,6 @@
       border: 1px solid rgba(245,245,245,.10);
       background: rgba(255,255,255,.02);
       transition: transform .18s ease, border-color .18s ease;
-      position: relative;
     }
     .media-grid a:hover{
       transform: translateY(-1px);
@@ -505,9 +519,13 @@
 </head>
 
 <body>
+  <!-- Cursor blob -->
+  <div class="cursor-blob"></div>
+
+  <!-- Grain overlay -->
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ✅ Tracking bubble -->
+  <!-- Tracking bubble -->
   <div class="tracker" id="tracker" aria-live="polite">
     <span class="t-dot" aria-hidden="true"></span>
     <span id="trackText">Tracking: <strong>Dad &amp; Me</strong></span>
@@ -657,7 +675,6 @@
               Field marketing and sales work — demos, conversations, and feedback loops that turn real customer objections into sharper positioning.
             </p>
 
-            <!-- ✅ Bigger photos to fill the space -->
             <div class="media-grid" aria-label="Leaft image gallery">
               <a class="big" href="assets/work-1.jpg" aria-label="Open image 1">
                 <img src="assets/work-1.jpg" alt="Leaft related image 1" />
@@ -723,7 +740,6 @@
               without feeling overdone.
             </p>
 
-            <!-- ✅ Bigger photos to fill the space (separate from the hero carousel) -->
             <div class="media-grid" aria-label="Oneview image gallery">
               <a class="big" href="assets/work-3.jpg" aria-label="Open image 1">
                 <img src="assets/work-3.jpg" alt="Oneview related image 1" />
@@ -814,7 +830,6 @@
     });
 
     // Oneview carousel
-    // Replace these with your real oneview images later
     const oneImages = [
       "assets/work-3.jpg",
       "assets/work-1.jpg",
@@ -845,12 +860,11 @@
     renderDad();
     renderOne();
 
-    // ✅ Tracking bubble logic (updates to the section you're viewing)
+    // Tracking bubble logic (updates to the section you're viewing)
     const trackText = document.getElementById("trackText");
     const trackSections = Array.from(document.querySelectorAll("article.case[data-track]"));
 
     const obs = new IntersectionObserver((entries) => {
-      // pick the most visible intersecting section
       const visible = entries
         .filter(e => e.isIntersecting)
         .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
@@ -861,6 +875,47 @@
     }, { threshold: [0.25, 0.4, 0.55, 0.7] });
 
     trackSections.forEach(s => obs.observe(s));
+
+    // Cursor blob (SAME AS HOME PAGE)
+    if (window.matchMedia("(hover:hover)").matches) {
+
+      const blob = document.querySelector(".cursor-blob");
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+
+      let x = mouseX;
+      let y = mouseY;
+      let vx = 0;
+      let vy = 0;
+
+      const stiffness = 0.08;
+      const damping = 0.78;
+
+      window.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animate() {
+        const dx = mouseX - x;
+        const dy = mouseY - y;
+
+        vx += dx * stiffness;
+        vy += dy * stiffness;
+
+        vx *= damping;
+        vy *= damping;
+
+        x += vx;
+        y += vy;
+
+        blob.style.transform = `translate3d(${x - 110}px, ${y - 110}px, 0)`;
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
   </script>
 </body>
 </html>
