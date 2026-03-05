@@ -58,17 +58,20 @@ padding:16px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:12px; /* helps on small widths */
 }
 
 .brand{
 display:flex;
 gap:10px;
 align-items:center;
+min-width:0; /* allows text to shrink nicely */
 }
 
 .brand .name{
 font-family:"Space Grotesk";
 font-weight:600;
+white-space:nowrap;
 }
 
 .brand .tag{
@@ -77,12 +80,14 @@ color:var(--muted);
 border:1px solid var(--line);
 padding:5px 10px;
 border-radius:999px;
+white-space:nowrap;
 }
 
 .navlinks{
 display:flex;
 gap:14px;
 align-items:center;
+flex-wrap:nowrap;
 }
 
 .navlinks a{
@@ -90,6 +95,7 @@ font-size:13px;
 color:var(--muted);
 padding:8px 10px;
 border-radius:999px;
+white-space:nowrap;
 }
 
 .navlinks a:hover{
@@ -281,8 +287,41 @@ display:none;
 }
 }
 
+/* ✅ MOBILE/TABLET ONLY CHANGES (YOUR REQUEST) */
+@media (max-width: 820px){
+
+/* 1) make nav text smaller so it fits */
+.brand .tag{ font-size:10px; padding:4px 8px; }
+.navlinks a{ font-size:11px; padding:6px 8px; }
+.cta{ padding:7px 9px; }
+.dot{ width:7px; height:7px; }
+
+/* optional: slightly tighter nav spacing */
+.nav-inner{ padding:12px 14px; }
+.navlinks{ gap:8px; }
+
+/* 2) make profile picture slightly smaller */
+.hero{
+  grid-template-columns:1fr; /* stack on mobile/tablet */
+  padding:56px 0 28px;
+}
+.hero-card{
+  max-width:420px;          /* controls photo card size */
+  margin:16px auto 0;       /* centers it */
+}
+.portrait{
+  aspect-ratio:4/5;         /* keeps same shape */
+}
+h1{ font-size:46px; }
+}
+
+@media(max-width:420px){
+/* extra small phones */
+.hero-card{ max-width:340px; }
+h1{ font-size:40px; }
+}
+
 @media(max-width:900px){
-.hero{grid-template-columns:1fr}
 .contact{grid-template-columns:1fr}
 }
 
@@ -417,12 +456,7 @@ Off the clock →
 </main>
 
 <script>
-
-/* year */
-
 document.getElementById("year").textContent=new Date().getFullYear()
-
-/* only run cursor effect on devices with mouse */
 
 if(window.matchMedia("(hover:hover)").matches){
 
@@ -467,7 +501,6 @@ requestAnimationFrame(animate)
 animate()
 
 }
-
 </script>
 
 </body>
