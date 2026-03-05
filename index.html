@@ -70,7 +70,7 @@ max-width:var(--max);
 margin:auto;
 padding:28px 20px 80px;
 position:relative;
-z-index:2; /* keep content above background layers */
+z-index:2;
 }
 
 /* Make visual sections go full-width on large screens */
@@ -203,9 +203,12 @@ overflow:hidden;
 width:100%;
 aspect-ratio:4/5;
 object-fit:cover;
+display:block; /* important: prevents tiny gaps under images */
 }
 
+/* ✅ FULL-WIDTH GREY LINE FIX */
 .cap{
+width:100%;
 border-top:1px solid var(--line);
 }
 
@@ -273,7 +276,6 @@ justify-content:space-between;
 }
 
 /* scrolling work bar */
-
 .marquee{
 overflow:hidden;
 white-space:nowrap;
@@ -289,7 +291,6 @@ animation:scroll 35s linear infinite;
 align-items:center;
 }
 
-/* image hover effect (premium) */
 .marquee img{
 height:140px;
 border-radius:14px;
@@ -311,7 +312,6 @@ filter:saturate(1.08) contrast(1.08);
 }
 
 /* mouse follower */
-
 .cursor-blob{
 position:fixed;
 left:0;
@@ -326,8 +326,6 @@ z-index:1;
 transform:translate3d(-999px,-999px,0);
 }
 
-/* hide cursor on phones + tablets */
-
 @media (hover:none) and (pointer:coarse){
 .cursor-blob{display:none;}
 }
@@ -337,16 +335,9 @@ transform:translate3d(-999px,-999px,0);
 .contact{grid-template-columns:1fr}
 }
 
-/* smaller title on iPhones */
-
 @media(max-width:500px){
-h1{
-font-size:40px;
-line-height:1.1;
+h1{font-size:40px;line-height:1.1;}
 }
-}
-
-/* hide Marketing & Strategy Specialist on phones */
 
 @media(max-width:420px){
 .brand .tag{display:none;}
@@ -360,133 +351,124 @@ line-height:1.1;
 <div class="cursor-blob"></div>
 
 <div class="nav">
-<div class="nav-inner">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="name">Caspar Wackrow</div>
+      <div class="tag">Marketing & Strategy Specialist</div>
+    </div>
 
-<div class="brand">
-<div class="name">Caspar Wackrow</div>
-<div class="tag">Marketing & Strategy Specialist</div>
-</div>
-
-<div class="navlinks">
-<a class="is-active" href="index.html">Home</a>
-<a href="work.html">Work</a>
-<a class="cta" href="#contact"><span class="dot"></span>Available</a>
-</div>
-
-</div>
+    <div class="navlinks">
+      <a class="is-active" href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a class="cta" href="#contact"><span class="dot"></span>Available</a>
+    </div>
+  </div>
 </div>
 
 <main class="wrap">
 
-<section class="hero">
-
-<div>
-<h1>It's not luck,<br>It's storytelling.</h1>
-
-<div class="hero-buttons">
-<a class="primary-btn" href="work.html">View my work →</a>
-</div>
-</div>
-
-<div class="hero-card">
-<img class="portrait" src="assets/headshot.jpg" alt="Caspar headshot">
-<div class="cap">
-  <div class="cap-inner">
+  <section class="hero">
 
     <div>
-      <div class="cap-title">Caspar Wackrow</div>
+      <h1>It's not luck,<br>It's storytelling.</h1>
+
+      <div class="hero-buttons">
+        <a class="primary-btn" href="work.html">View my work →</a>
+      </div>
     </div>
 
-    <a href="work.html">Work →</a>
+    <!-- ✅ FIXED STRUCTURE (this was broken before) -->
+    <div class="hero-card">
+      <img class="portrait" src="assets/headshot.jpg" alt="Caspar headshot">
 
-  </div>
-</div>
+      <div class="cap">
+        <div class="cap-inner">
+          <div>
+            <div class="cap-title">Caspar Wackrow</div>
+          </div>
+          <a href="work.html">Work →</a>
+        </div>
+      </div>
+    </div>
 
-</section>
+  </section>
 
-<section class="section">
+  <section class="section">
+    <h2 class="section-title">What I do</h2>
 
-<h2 class="section-title">What I do</h2>
+    <p class="about">
+      I’m in my final year studying marketing and strategy at the University of Canterbury.
+      I help businesses think through how they want to show up, and then help build the pieces that make it happen — strategy, branding, ads, social content, websites, and sales.
+      I enjoy working across the whole process, from the early idea to the finished result.
+    </p>
 
-<p class="about">
-I’m in my final year studying marketing and strategy at the University of Canterbury.
-I help businesses think through how they want to show up, and then help build the pieces that make it happen — strategy, branding, ads, social content, websites, and sales.
-I enjoy working across the whole process, from the early idea to the finished result.
-</p>
+    <br>
 
-<br>
+    <a class="primary-btn" href="off-the-clock.html">
+      Off the clock →
+    </a>
+  </section>
 
-<a class="primary-btn" href="off-the-clock.html">
-Off the clock →
-</a>
+  <section class="marquee full-bleed">
+    <div class="marquee-inner">
 
-</section>
+      <img src="assets/IMG_2173.jpg" alt="Work image IMG_2173">
+      <img src="assets/DSC08893.jpg" alt="Work image DSC08893">
+      <img src="assets/IMG_2035.jpg" alt="Work image IMG_2035">
+      <img src="assets/DSC01055.jpg" alt="Work image DSC01055">
+      <img src="assets/IMG_2167.jpg" alt="Work image IMG_2167">
+      <img src="assets/DSC00432.jpg" alt="Work image DSC00432">
+      <img src="assets/IMG_2516.jpg" alt="Work image IMG_2516">
+      <img src="assets/DSC08892.jpg" alt="Work image DSC08892">
+      <img src="assets/IMG_2158.jpg" alt="Work image IMG_2158">
+      <img src="assets/DSC09994.jpg" alt="Work image DSC09994">
+      <img src="assets/IMG_2044.jpg" alt="Work image IMG_2044">
+      <img src="assets/DSC01029.jpg" alt="Work image DSC01029">
 
-<!-- FULL-WIDTH visual section -->
-<section class="marquee full-bleed">
-<div class="marquee-inner">
+      <img src="assets/IMG_2173.jpg" alt="">
+      <img src="assets/DSC08893.jpg" alt="">
+      <img src="assets/IMG_2035.jpg" alt="">
+      <img src="assets/DSC01055.jpg" alt="">
+      <img src="assets/IMG_2167.jpg" alt="">
+      <img src="assets/DSC00432.jpg" alt="">
+      <img src="assets/IMG_2516.jpg" alt="">
+      <img src="assets/DSC08892.jpg" alt="">
+      <img src="assets/IMG_2158.jpg" alt="">
+      <img src="assets/DSC09994.jpg" alt="">
+      <img src="assets/IMG_2044.jpg" alt="">
+      <img src="assets/DSC01029.jpg" alt="">
 
-  <!-- Set 1 (re-ordered, removed requested images) -->
-  <img src="assets/IMG_2173.jpg" alt="Work image IMG_2173">
-  <img src="assets/DSC08893.jpg" alt="Work image DSC08893">
-  <img src="assets/IMG_2035.jpg" alt="Work image IMG_2035">
-  <img src="assets/DSC01055.jpg" alt="Work image DSC01055">
-  <img src="assets/IMG_2167.jpg" alt="Work image IMG_2167">
-  <img src="assets/DSC00432.jpg" alt="Work image DSC00432">
-  <img src="assets/IMG_2516.jpg" alt="Work image IMG_2516">
-  <img src="assets/DSC08892.jpg" alt="Work image DSC08892">
-  <img src="assets/IMG_2158.jpg" alt="Work image IMG_2158">
-  <img src="assets/DSC09994.jpg" alt="Work image DSC09994">
-  <img src="assets/IMG_2044.jpg" alt="Work image IMG_2044">
-  <img src="assets/DSC01029.jpg" alt="Work image DSC01029">
+    </div>
+  </section>
 
-  <!-- Set 2 (duplicate for seamless loop) -->
-  <img src="assets/IMG_2173.jpg" alt="">
-  <img src="assets/DSC08893.jpg" alt="">
-  <img src="assets/IMG_2035.jpg" alt="">
-  <img src="assets/DSC01055.jpg" alt="">
-  <img src="assets/IMG_2167.jpg" alt="">
-  <img src="assets/DSC00432.jpg" alt="">
-  <img src="assets/IMG_2516.jpg" alt="">
-  <img src="assets/DSC08892.jpg" alt="">
-  <img src="assets/IMG_2158.jpg" alt="">
-  <img src="assets/DSC09994.jpg" alt="">
-  <img src="assets/IMG_2044.jpg" alt="">
-  <img src="assets/DSC01029.jpg" alt="">
+  <section class="section" id="contact">
+    <h2 class="section-title">Contact</h2>
 
-</div>
-</section>
+    <div class="contact">
 
-<section class="section" id="contact">
+      <a href="mailto:casparwack@gmail.com">
+        <div>
+          <div class="k">Email</div>
+          <div class="v">casparwack@gmail.com</div>
+        </div>
+        <div>↗</div>
+      </a>
 
-<h2 class="section-title">Contact</h2>
+      <a href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank">
+        <div>
+          <div class="k">LinkedIn</div>
+          <div class="v">/in/caspar-wackrow</div>
+        </div>
+        <div>↗</div>
+      </a>
 
-<div class="contact">
+    </div>
 
-<a href="mailto:casparwack@gmail.com">
-<div>
-<div class="k">Email</div>
-<div class="v">casparwack@gmail.com</div>
-</div>
-<div>↗</div>
-</a>
-
-<a href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank">
-<div>
-<div class="k">LinkedIn</div>
-<div class="v">/in/caspar-wackrow</div>
-</div>
-<div>↗</div>
-</a>
-
-</div>
-
-<footer>
-<div>© <span id="year"></span> Caspar Wackrow</div>
-<div><a href="work.html">Work</a></div>
-</footer>
-
-</section>
+    <footer>
+      <div>© <span id="year"></span> Caspar Wackrow</div>
+      <div><a href="work.html">Work</a></div>
+    </footer>
+  </section>
 
 </main>
 
