@@ -218,18 +218,14 @@ z-index:1;
 transform:translate3d(-999px,-999px,0);
 }
 
-/* hide cursor on phones/tablets */
-
 @media (hover:none) and (pointer:coarse){
 .cursor-blob{display:none}
 }
 
 @media(max-width:900px){
-
 .playlist{grid-template-columns:1fr}
 .photo-grid{grid-template-columns:1fr}
 h1{font-size:46px}
-
 }
 
 </style>
@@ -287,7 +283,7 @@ Overall, I’m a big believer in working hard while still making time for the th
 <div class="playlist">
 
 <div class="artist">
-<img src="assets/pearl-jam.jpg" alt="Pearl Jam">
+<img src="assets/pearljam.jpg" alt="Pearl Jam">
 <div class="artist-info">
 <div class="artist-name">Pearl Jam</div>
 <div class="artist-note">Late night focus music</div>
@@ -303,7 +299,7 @@ Overall, I’m a big believer in working hard while still making time for the th
 </div>
 
 <div class="artist">
-<img src="assets/elliot-smith.jpg" alt="Elliot Smith">
+<img src="assets/elliottsmith.jpg" alt="Elliot Smith">
 <div class="artist-info">
 <div class="artist-name">Elliot Smith</div>
 <div class="artist-note">Quiet thinking music</div>
@@ -328,19 +324,19 @@ Training and fighting keeps my mind sharp and grounded outside creative work.
 <div class="photo-grid">
 
 <div class="photo">
-<img src="assets/fight1.jpg" alt="Kickboxing photo 1">
+<img src="assets/fight1.jpg">
 </div>
 
 <div class="photo">
-<img src="assets/fight2.jpg" alt="Kickboxing photo 2">
+<img src="assets/fight2.jpg">
 </div>
 
 <div class="photo">
-<img src="assets/fight3.jpg" alt="Kickboxing photo 3">
+<img src="assets/fight3.jpg">
 </div>
 
 <div class="photo">
-<img src="assets/fight4.jpg" alt="Kickboxing photo 4">
+<img src="assets/fight4.jpg">
 </div>
 
 </div>
@@ -360,47 +356,7 @@ Training and fighting keeps my mind sharp and grounded outside creative work.
 </main>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-if (window.matchMedia("(hover:hover)").matches) {
-  const blob = document.querySelector(".cursor-blob");
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-
-  let x = mouseX;
-  let y = mouseY;
-  let vx = 0;
-  let vy = 0;
-
-  const stiffness = 0.08;
-  const damping = 0.78;
-
-  window.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  function animate() {
-    const dx = mouseX - x;
-    const dy = mouseY - y;
-
-    vx += dx * stiffness;
-    vy += dy * stiffness;
-
-    vx *= damping;
-    vy *= damping;
-
-    x += vx;
-    y += vy;
-
-    blob.style.transform = `translate3d(${x - 110}px,${y - 110}px,0)`;
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-}
+document.getElementById("year").textContent=new Date().getFullYear()
 </script>
 
 </body>
