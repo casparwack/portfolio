@@ -1,77 +1,654 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Off the clock — Caspar Wackrow</title>
 
-<title>Off The Clock — Caspar Wackrow</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
-
-body{
-margin:0;
-background:#070707;
-color:#f5f5f5;
-font-family:Inter;
-padding:60px 20px;
+:root{
+  --bg:#070707;
+  --text:#f5f5f5;
+  --muted:rgba(245,245,245,.72);
+  --line:rgba(245,245,245,.12);
+  --accent:#2D6A4F;
+  --accent2:rgba(45,106,79,.25);
+  --radius:22px;
+  --max:1080px;
 }
 
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui;
+  letter-spacing:-0.01em;
+  overflow-x:hidden;
+}
+
+a{ color:inherit; text-decoration:none; }
+
+.page{ position:relative; z-index:2; }
+
 .wrap{
-max-width:900px;
-margin:auto;
+  max-width:var(--max);
+  margin:auto;
+  padding:28px 20px 80px;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  background:rgba(7,7,7,.8);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  z-index:10;
+}
+
+.nav-inner{
+  max-width:var(--max);
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.brand .name{
+  font-family:"Space Grotesk";
+  font-weight:600;
+}
+
+.brand .tag{
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  padding:5px 10px;
+  border-radius:999px;
+}
+
+.navlinks{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+.navlinks a{
+  font-size:13px;
+  color:var(--muted);
+  padding:8px 10px;
+  border-radius:999px;
+}
+
+.navlinks a:hover{
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+}
+
+.is-active{
+  border:1px solid var(--accent2);
+  background:rgba(45,106,79,.12);
+  color:var(--text);
+}
+
+.cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid var(--accent2);
+  background:rgba(45,106,79,.12);
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:var(--accent);
+}
+
+/* ---- hero ---- */
+.hero{
+  padding:72px 0 24px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:28px;
+  align-items:start;
+}
+
+.kicker{
+  font-size:12px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
 }
 
 h1{
-font-family:"Space Grotesk";
-font-size:52px;
-margin-bottom:20px;
+  font-family:"Space Grotesk";
+  font-size:58px;
+  line-height:1.02;
+  margin:10px 0 10px;
 }
 
-p{
-color:rgba(255,255,255,.7);
-line-height:1.7;
-font-size:16px;
+.sub{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.7;
+  max-width:560px;
 }
 
-.back{
-margin-top:40px;
-display:inline-block;
-padding:10px 16px;
-border-radius:999px;
-border:1px solid rgba(255,255,255,.15);
-text-decoration:none;
+.hero-buttons{
+  margin-top:22px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
-.back:hover{
-background:rgba(255,255,255,.05);
+.primary-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1px solid var(--accent2);
+  background:rgba(45,106,79,.18);
 }
 
+.primary-btn:hover{ background:rgba(45,106,79,.28); }
+
+.secondary-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--muted);
+}
+
+.secondary-btn:hover{
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+}
+
+.hero-card{
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+
+.hero-card .img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  display:block;
+}
+
+.card-cap{
+  padding:14px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.card-cap .title{ font-size:13px; }
+.card-cap .meta{ font-size:12px; color:var(--muted); }
+
+/* ---- sections ---- */
+.section{
+  padding:56px 0;
+  border-top:1px solid var(--line);
+}
+
+.section-title{
+  font-family:"Space Grotesk";
+  font-size:22px;
+  margin:0 0 16px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:16px;
+  align-items:start;
+}
+
+.card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.02);
+  padding:18px;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.85;
+  font-size:15px;
+}
+
+.pill{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 12px;
+  color:var(--muted);
+  font-size:13px;
+  background:rgba(255,255,255,.02);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.pill strong{ color:var(--text); font-weight:500; }
+
+.small{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* ---- playlist ---- */
+.playlist{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+}
+
+.track{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+  display:flex;
+  flex-direction:column;
+}
+
+.track .cover{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  display:block;
+  background:#0b0b0b;
+}
+
+.track .info{
+  padding:14px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.track .artist{
+  font-size:13px;
+  line-height:1.25;
+}
+
+.track .artist span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+}
+
+.badge{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--accent2);
+  background:rgba(45,106,79,.12);
+  color:var(--text);
+  white-space:nowrap;
+}
+
+/* ---- photo grids ---- */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+}
+
+.photo{
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  background:#0b0b0b;
+  position:relative;
+}
+
+.photo img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.02);
+}
+
+.photo .label{
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  font-size:12px;
+  color:rgba(255,255,255,.9);
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  padding:6px 10px;
+  border-radius:999px;
+  backdrop-filter:blur(8px);
+}
+
+/* ---- footer ---- */
+footer{
+  padding-top:30px;
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid var(--line);
+  margin-top:60px;
+}
+
+/* ---- mouse follower ---- */
+.cursor-blob{
+  position:fixed;
+  left:0; top:0;
+  width:220px;
+  height:220px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, rgba(45,106,79,.65), rgba(45,106,79,.12) 55%, rgba(45,106,79,0) 72%);
+  filter:blur(6px);
+  transform:translate3d(-999px,-999px,0);
+  pointer-events:none;
+  z-index:1; /* behind content */
+  mix-blend-mode:screen;
+  opacity:.95;
+}
+
+/* hide cursor bubble on phones + tablets */
+@media (hover:none) and (pointer:coarse){
+  .cursor-blob{ display:none; }
+}
+
+/* responsive */
+@media(max-width:900px){
+  .hero{ grid-template-columns:1fr; }
+  .playlist{ grid-template-columns:1fr; }
+  .photo-grid{ grid-template-columns:1fr; }
+  h1{ font-size:48px; }
+}
 </style>
 </head>
 
 <body>
+<div class="cursor-blob" aria-hidden="true"></div>
 
-<div class="wrap">
+<div class="page">
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="name">Caspar Wackrow</div>
+        <div class="tag">Off the clock</div>
+      </div>
 
-<h1>Off the clock</h1>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a class="is-active" href="off-the-clock.html">Off the clock</a>
+        <a class="cta" href="index.html#contact"><span class="dot"></span>Available</a>
+      </div>
+    </div>
+  </div>
 
-<p>
-This is the human side of me. The things that don't show up on a resume.
-</p>
+  <main class="wrap">
 
-<p>
-Favourite films. Books that changed how I think. 
-Things I'm building. Ideas I'm obsessed with.
-</p>
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="kicker">The part you don’t put on LinkedIn</div>
+        <h1>Real life, real taste,<br>real fuel.</h1>
+        <p class="sub">
+          This page is the behind-the-scenes layer: what I watch, what I listen to while I work,
+          and the sport that keeps my brain quiet. If the portfolio is the “what”, this is the “why”.
+        </p>
 
-<a class="back" href="index.html">← Back to home</a>
+        <div class="hero-buttons">
+          <a class="primary-btn" href="index.html">← Back to home</a>
+          <a class="secondary-btn" href="work.html">See the work →</a>
+        </div>
+      </div>
 
+      <div class="hero-card">
+        <!-- optional header image for this page -->
+        <img class="img" src="assets/offclock-hero.jpg" alt="Off the clock cover image" />
+        <div class="card-cap">
+          <div>
+            <div class="title">Off the clock</div>
+            <div class="meta">music • movies • fighting</div>
+          </div>
+          <div class="small">scroll ↓</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REAL ME (writing) -->
+    <section class="section" id="real-me">
+      <h2 class="section-title">The real me</h2>
+
+      <div class="grid">
+        <div class="card">
+          <p>
+            <!-- Replace this with your real blurb -->
+            I’m at my best when I’m building something: a story, a brand, a training block, a camera setup,
+            a plan that turns chaos into momentum. I like work that feels cinematic — not “flashy”, but
+            intentional. The kind of creative that has silence in it.
+            <br><br>
+            I’m obsessive (in a good way) about detail: pacing, tone, what’s left unsaid. I’ll happily spend
+            an hour moving one line of copy if it changes how the whole thing feels. That same energy shows
+            up outside work too — music on repeat, film scenes I remember years later, and combat sport as
+            a reset button.
+          </p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="pill"><strong>Default mode</strong><span>quiet focus</span></div>
+          <div class="pill"><strong>Creative obsession</strong><span>tone + pacing</span></div>
+          <div class="pill"><strong>Reset button</strong><span>kickboxing</span></div>
+          <div class="pill"><strong>Good sign</strong><span>goosebumps from a story</span></div>
+        </div>
+      </div>
+
+      <div class="small" style="margin-top:10px;">Tip: keep this honest + specific. One weird detail beats ten generic claims.</div>
+    </section>
+
+    <!-- WORK PLAYLIST -->
+    <section class="section" id="playlist">
+      <h2 class="section-title">Work playlist</h2>
+      <div class="playlist">
+
+        <div class="track">
+          <img class="cover" src="assets/artist-pearl-jam.jpg" alt="Pearl Jam cover" />
+          <div class="info">
+            <div class="artist">
+              Pearl Jam
+              <span>for long edits + late nights</span>
+            </div>
+            <div class="badge">On repeat</div>
+          </div>
+        </div>
+
+        <div class="track">
+          <img class="cover" src="assets/artist-kanye.jpg" alt="Kanye West cover" />
+          <div class="info">
+            <div class="artist">
+              Kanye West
+              <span>for energy + momentum</span>
+            </div>
+            <div class="badge">Fuel</div>
+          </div>
+        </div>
+
+        <div class="track">
+          <img class="cover" src="assets/artist-elliott-smith.jpg" alt="Elliott Smith cover" />
+          <div class="info">
+            <div class="artist">
+              Elliott Smith
+              <span>for mood + meaning</span>
+            </div>
+            <div class="badge">Mood</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="small" style="margin-top:10px;">
+        Swap these images anytime — just keep the filenames the same.
+      </div>
+    </section>
+
+    <!-- KICKBOXING / MUAY THAI -->
+    <section class="section" id="kickboxing">
+      <h2 class="section-title">Kickboxing &amp; Muay Thai</h2>
+
+      <div class="grid">
+        <div class="card">
+          <p>
+            <!-- Replace this with your real blurb -->
+            Combat sport is my favourite kind of honest. No algorithm. No shortcuts. Just reps, timing,
+            pressure, and learning how to stay calm when it matters. It’s the best balance to marketing:
+            one is all perception, the other is brutally real.
+            <br><br>
+            I love the discipline, the theatre, and the humility of it — you earn every improvement. And
+            weirdly, it makes my creative work better: sharper decisions, less overthinking, more follow-through.
+          </p>
+        </div>
+
+        <div class="card" style="padding:18px;">
+          <div class="small" style="margin-bottom:10px;">Photos from fights / training</div>
+          <div class="photo-grid" style="grid-template-columns:repeat(2, 1fr);">
+            <div class="photo">
+              <img src="assets/fight-1.jpg" alt="Fight photo 1" />
+              <div class="label">Fight 1</div>
+            </div>
+            <div class="photo">
+              <img src="assets/fight-2.jpg" alt="Fight photo 2" />
+              <div class="label">Fight 2</div>
+            </div>
+            <div class="photo">
+              <img src="assets/fight-3.jpg" alt="Fight photo 3" />
+              <div class="label">Fight 3</div>
+            </div>
+            <div class="photo">
+              <img src="assets/fight-4.jpg" alt="Fight photo 4" />
+              <div class="label">Training</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small" style="margin-top:10px;">
+        If you only have 2 photos right now, just duplicate filenames (fight-1 and fight-2) and swap later.
+      </div>
+    </section>
+
+    <!-- FAV MOVIES -->
+    <section class="section" id="movies">
+      <h2 class="section-title">3 favourite movies</h2>
+
+      <div class="photo-grid">
+        <div class="photo">
+          <img src="assets/movie-eternal-sunshine.jpg" alt="Eternal Sunshine of the Spotless Mind" />
+          <div class="label">Eternal Sunshine of the Spotless Mind</div>
+        </div>
+
+        <div class="photo">
+          <img src="assets/movie-pursuit-of-happyness.jpg" alt="The Pursuit of Happyness" />
+          <div class="label">The Pursuit of Happyness</div>
+        </div>
+
+        <div class="photo">
+          <img src="assets/movie-spirited-away.jpg" alt="Spirited Away" />
+          <div class="label">Spirited Away</div>
+        </div>
+      </div>
+
+      <div class="small" style="margin-top:10px;">
+        Use posters, still frames, or your own photos that match the vibe — anything works.
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Caspar Wackrow</div>
+      <div><a href="index.html">Home</a></div>
+    </footer>
+
+  </main>
 </div>
+
+<script>
+  // year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Only run cursor effect on devices with hover/mouse
+  if (window.matchMedia("(hover:hover)").matches) {
+    const blob = document.querySelector(".cursor-blob");
+
+    let mouseX = window.innerWidth * 0.5;
+    let mouseY = window.innerHeight * 0.4;
+
+    let x = mouseX, y = mouseY;
+    let vx = 0, vy = 0;
+
+    const stiffness = 0.08;  // snappy
+    const damping   = 0.78;  // bouncy
+    const maxSpeed  = 65;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }, { passive:true });
+
+    function animate(){
+      const dx = mouseX - x;
+      const dy = mouseY - y;
+
+      vx += dx * stiffness;
+      vy += dy * stiffness;
+
+      vx *= damping;
+      vy *= damping;
+
+      vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
+      vy = Math.max(-maxSpeed, Math.min(maxSpeed, vy));
+
+      x += vx;
+      y += vy;
+
+      blob.style.transform = `translate3d(${x - 110}px, ${y - 110}px, 0)`;
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+</script>
 
 </body>
 </html>
