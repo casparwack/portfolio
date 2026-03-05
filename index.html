@@ -1,357 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caspar Wackrow — Graduate Marketing</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Caspar Wackrow — Marketing & Strategy Specialist</title>
+<meta name="description" content="Caspar Wackrow — Marketing & Strategy Specialist. I help brands grow by combining sharp strategy with compelling storytelling." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
-
 :root{
---bg:#070707;
---text:#f5f5f5;
---muted:rgba(245,245,245,.72);
---line:rgba(245,245,245,.12);
---accent:#2D6A4F;
---accent2:rgba(45,106,79,.25);
---radius:22px;
---max:1080px;
+  --bg:#070707;
+  --panel:#0c0c0c;
+  --text:#f5f5f5;
+  --muted:rgba(245,245,245,.72);
+  --line:rgba(245,245,245,.12);
+  --accent:#2D6A4F;
+  --accent2:rgba(45,106,79,.25);
+  --radius:22px;
+  --max:1080px;
 }
 
-*{box-sizing:border-box}
+*{ box-sizing:border-box; }
+
+html, body { height:100%; }
 
 body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:Inter,system-ui;
-letter-spacing:-0.01em;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui;
+  letter-spacing:-0.01em;
+  overflow-x:hidden;
 }
 
-a{color:inherit;text-decoration:none}
+a{ color:inherit; text-decoration:none; }
+
+.page{
+  position:relative;
+  z-index:2; /* keeps content above the cursor circle */
+}
 
 .wrap{
-max-width:var(--max);
-margin:auto;
-padding:28px 20px 80px;
+  max-width:var(--max);
+  margin:auto;
+  padding:28px 20px 80px;
 }
 
 .nav{
-position:sticky;
-top:0;
-background:rgba(7,7,7,.8);
-backdrop-filter:blur(10px);
-border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  background:rgba(7,7,7,.8);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  z-index:10;
 }
 
 .nav-inner{
-max-width:var(--max);
-margin:auto;
-padding:16px 20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  max-width:var(--max);
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .brand{
-display:flex;
-gap:10px;
-align-items:center;
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
 .brand .name{
-font-family:"Space Grotesk";
-font-weight:600;
+  font-family:"Space Grotesk";
+  font-weight:600;
 }
 
 .brand .tag{
-font-size:12px;
-color:var(--muted);
-border:1px solid var(--line);
-padding:5px 10px;
-border-radius:999px;
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  padding:5px 10px;
+  border-radius:999px;
 }
 
 .navlinks{
-display:flex;
-gap:14px;
-align-items:center;
+  display:flex;
+  gap:14px;
+  align-items:center;
 }
 
 .navlinks a{
-font-size:13px;
-color:var(--muted);
-padding:8px 10px;
-border-radius:999px;
+  font-size:13px;
+  color:var(--muted);
+  padding:8px 10px;
+  border-radius:999px;
 }
 
 .navlinks a:hover{
-background:rgba(255,255,255,.05);
-color:var(--text);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
 }
 
 .is-active{
-border:1px solid var(--accent2);
-background:rgba(45,106,79,.12);
-color:var(--text);
+  border:1px solid var(--accent2);
+  background:rgba(45,106,79,.12);
+  color:var(--text);
 }
 
 .cta{
-display:inline-flex;
-align-items:center;
-gap:8px;
-padding:9px 12px;
-border-radius:999px;
-border:1px solid var(--accent2);
-background:rgba(45,106,79,.12);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid var(--accent2);
+  background:rgba(45,106,79,.12);
 }
 
 .dot{
-width:8px;
-height:8px;
-border-radius:999px;
-background:var(--accent);
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:var(--accent);
 }
 
 .hero{
-padding:80px 0 40px;
-display:grid;
-grid-template-columns:1.2fr .8fr;
-gap:28px;
-align-items:center;
+  padding:80px 0 40px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:28px;
+  align-items:center;
 }
 
 .kicker{
-font-size:12px;
-color:var(--muted);
-text-transform:uppercase;
-letter-spacing:.08em;
+  font-size:12px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
 }
 
 h1{
-font-family:"Space Grotesk";
-font-size:64px;
-line-height:1;
-margin:10px 0;
+  font-family:"Space Grotesk";
+  font-size:64px;
+  line-height:1;
+  margin:10px 0;
 }
 
 .sub{
-color:var(--muted);
-font-size:16px;
-max-width:500px;
-line-height:1.6;
+  color:var(--muted);
+  font-size:16px;
+  max-width:520px;
+  line-height:1.6;
 }
 
 .hero-buttons{
-margin-top:26px;
+  margin-top:26px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 .primary-btn{
-display:inline-flex;
-align-items:center;
-gap:8px;
-font-size:14px;
-padding:12px 18px;
-border-radius:999px;
-border:1px solid var(--accent2);
-background:rgba(45,106,79,.18);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1px solid var(--accent2);
+  background:rgba(45,106,79,.18);
 }
 
-.primary-btn:hover{
-background:rgba(45,106,79,.28);
+.primary-btn:hover{ background:rgba(45,106,79,.28); }
+
+.secondary-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--muted);
+}
+
+.secondary-btn:hover{
+  background:rgba(255,255,255,.06);
+  color:var(--text);
 }
 
 .hero-card{
-border-radius:var(--radius);
-border:1px solid var(--line);
-overflow:hidden;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
 }
 
 .portrait{
-width:100%;
-aspect-ratio:4/5;
-object-fit:cover;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
 }
 
 .cap{
-padding:14px;
-border-top:1px solid var(--line);
-display:flex;
-justify-content:space-between;
-align-items:center;
+  padding:14px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.cap-title{
-font-size:13px;
-}
-
-.cap-sub{
-font-size:12px;
-color:var(--muted);
-}
+.cap-title{ font-size:13px; }
+.cap-sub{ font-size:12px; color:var(--muted); }
 
 .section{
-padding:60px 0;
-border-top:1px solid var(--line);
+  padding:60px 0;
+  border-top:1px solid var(--line);
 }
 
 .section-title{
-font-family:"Space Grotesk";
-font-size:22px;
-margin-bottom:20px;
+  font-family:"Space Grotesk";
+  font-size:22px;
+  margin:0 0 14px;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:18px;
+  align-items:start;
+}
+
+.about-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  background:rgba(255,255,255,.02);
+}
+
+.about-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:15px;
+}
+
+.about-side{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.pill{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 12px;
+  color:var(--muted);
+  font-size:13px;
+  background:rgba(255,255,255,.02);
 }
 
 .contact{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
 
 .contact a{
-padding:16px;
-border-radius:var(--radius);
-border:1px solid var(--line);
-display:flex;
-justify-content:space-between;
+  padding:16px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  background:rgba(255,255,255,.02);
 }
 
-.contact a:hover{
-border-color:var(--accent);
+.contact a:hover{ border-color:var(--accent); }
+
+.k{ font-size:12px; color:var(--muted); }
+.v{ font-size:14px; }
+
+/* --- Auto-scrolling work bar --- */
+.marquee-wrap{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
 }
 
-.k{
-font-size:12px;
-color:var(--muted);
+.marquee{
+  display:flex;
+  gap:14px;
+  padding:14px;
+  width:max-content;
+  animation: scroll 22s linear infinite;
 }
 
-.v{
-font-size:14px;
+.marquee:hover{ animation-play-state:paused; }
+
+@keyframes scroll{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+
+.work-thumb{
+  width:240px;
+  height:150px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  flex:0 0 auto;
+  position:relative;
+  background:#0b0b0b;
+}
+
+.work-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.02);
+}
+
+.work-thumb::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+  opacity:.35;
+  pointer-events:none;
 }
 
 footer{
-padding-top:30px;
-font-size:12px;
-color:var(--muted);
-display:flex;
-justify-content:space-between;
+  padding-top:30px;
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid var(--line);
+  margin-top:60px;
+}
+
+/* --- Mouse tracking circle --- */
+.cursor-blob{
+  position:fixed;
+  left:0; top:0;
+  width:220px;
+  height:220px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, rgba(45,106,79,.65), rgba(45,106,79,.12) 55%, rgba(45,106,79,0) 72%);
+  filter:blur(6px);
+  transform:translate3d(-999px,-999px,0);
+  pointer-events:none;
+  z-index:1;     /* behind content, above background */
+  mix-blend-mode:screen;
+  opacity:.95;
 }
 
 @media(max-width:900px){
-.hero{grid-template-columns:1fr}
-.contact{grid-template-columns:1fr}
+  .hero{ grid-template-columns:1fr; }
+  .contact{ grid-template-columns:1fr; }
+  .about-grid{ grid-template-columns:1fr; }
+  h1{ font-size:52px; }
+  .work-thumb{ width:210px; height:132px; }
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="nav">
-<div class="nav-inner">
+<!-- green mouse-follow circle (behind text) -->
+<div class="cursor-blob" aria-hidden="true"></div>
 
-<div class="brand">
-<div class="name">Caspar Wackrow</div>
-<div class="tag">Graduate Marketing</div>
+<div class="page">
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="name">Caspar Wackrow</div>
+        <div class="tag">Marketing &amp; Strategy Specialist</div>
+      </div>
+
+      <div class="navlinks">
+        <a class="is-active" href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a class="cta" href="#contact"><span class="dot"></span>Available</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <!-- removed "New Zealand" -->
+
+        <h1>It's not luck,<br>It's storytelling.</h1>
+
+        <!-- removed the paragraph under the picture (and also removed the small tagline in the photo card below) -->
+        <div class="hero-buttons">
+          <a class="primary-btn" href="work.html">View my work →</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img class="portrait" src="assets/headshot.jpg" alt="Headshot" />
+        <div class="cap">
+          <div>
+            <div class="cap-title">Caspar Wackrow</div>
+            <!-- removed "Marketing • Strategy • Storytelling" -->
+          </div>
+          <a href="work.html">Work →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: About section -->
+    <section class="section" id="about">
+      <h2 class="section-title">About</h2>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <p>
+            <!-- Replace this blurb with your own -->
+            I’m a marketing and strategy specialist who loves turning messy ideas into clean positioning,
+            strong creative direction, and content that actually makes people feel something. I’m especially
+            drawn to brands that sell experiences — the kind you remember weeks later.
+          </p>
+        </div>
+
+        <div class="about-side">
+          <div class="pill">Built for: strategy, storytelling, fast execution</div>
+          <div class="pill">Vibe: dark, clean, premium</div>
+
+          <a class="secondary-btn" href="off-the-clock.html">Off the clock →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2 class="section-title">Contact</h2>
+
+      <div class="contact">
+        <a href="mailto:casparwack@gmail.com">
+          <div>
+            <div class="k">Email</div>
+            <div class="v">casparwack@gmail.com</div>
+          </div>
+          <div>↗</div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank" rel="noreferrer">
+          <div>
+            <div class="k">LinkedIn</div>
+            <div class="v">/in/caspar-wackrow</div>
+          </div>
+          <div>↗</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- NEW: auto-scrolling work sneak peek bar -->
+    <section class="section" aria-label="Sneak peek of work">
+      <h2 class="section-title">Sneak peek</h2>
+
+      <div class="marquee-wrap">
+        <!-- duplicate the same set twice so it loops seamlessly -->
+        <div class="marquee">
+          <a class="work-thumb" href="work.html"><img src="assets/work-1.jpg" alt="Work preview 1" /></a>
+          <a class="work-thumb" href="work.html"><img src="assets/work-2.jpg" alt="Work preview 2" /></a>
+          <a class="work-thumb" href="work.html"><img src="assets/work-3.jpg" alt="Work preview 3" /></a>
+          <a class="work-thumb" href="work.html"><img src="assets/work-1.jpg" alt="Work preview 1 duplicate" /></a>
+          <a class="work-thumb" href="work.html"><img src="assets/work-2.jpg" alt="Work preview 2 duplicate" /></a>
+          <a class="work-thumb" href="work.html"><img src="assets/work-3.jpg" alt="Work preview 3 duplicate" /></a>
+        </div>
+      </div>
+
+      <div class="k" style="margin-top:10px;">Tip: hover to pause.</div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Caspar Wackrow</div>
+      <div><a href="work.html">Work</a></div>
+    </footer>
+  </main>
 </div>
-
-<div class="navlinks">
-<a class="is-active" href="index.html">Home</a>
-<a href="work.html">Work</a>
-<a class="cta" href="#contact"><span class="dot"></span>Available</a>
-</div>
-
-</div>
-</div>
-
-<main class="wrap">
-
-<section class="hero">
-
-<div>
-
-<div class="kicker">New Zealand</div>
-
-<h1>It's not luck,<br>It's storytelling.</h1>
-
-<p class="sub">
-I help brands grow by combining <strong>sharp strategy</strong> with <strong>compelling storytelling</strong>.
-</p>
-
-<div class="hero-buttons">
-<a class="primary-btn" href="work.html">View my work →</a>
-</div>
-
-</div>
-
-<div class="hero-card">
-
-<img class="portrait" src="assets/headshot.jpg">
-
-<div class="cap">
-<div>
-<div class="cap-title">Caspar Wackrow</div>
-<div class="cap-sub">Marketing • Strategy • Storytelling</div>
-</div>
-
-<a href="work.html">Work →</a>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="contact">
-
-<h2 class="section-title">Contact</h2>
-
-<div class="contact">
-
-<a href="mailto:casparwack@gmail.com">
-
-<div>
-<div class="k">Email</div>
-<div class="v">casparwack@gmail.com</div>
-</div>
-
-<div>↗</div>
-
-</a>
-
-<a href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank">
-
-<div>
-<div class="k">LinkedIn</div>
-<div class="v">/in/caspar-wackrow</div>
-</div>
-
-<div>↗</div>
-
-</a>
-
-</div>
-
-<footer>
-
-<div>© <span id="year"></span> Caspar Wackrow</div>
-
-<div>
-<a href="work.html">Work</a>
-</div>
-
-</footer>
-
-</section>
-
-</main>
 
 <script>
-document.getElementById("year").textContent=new Date().getFullYear()
+  // year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // --- Mouse tracking circle with delay + cartoony bounce (spring) ---
+  const blob = document.querySelector(".cursor-blob");
+
+  let mouseX = window.innerWidth * 0.5;
+  let mouseY = window.innerHeight * 0.4;
+
+  // blob position + velocity
+  let x = mouseX, y = mouseY;
+  let vx = 0, vy = 0;
+
+  // spring tuning (cartoony bounce)
+  const stiffness = 0.08;   // higher = snappier
+  const damping   = 0.78;   // lower = bouncier
+  const maxSpeed  = 65;     // safety cap
+
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  function animate(){
+    const dx = mouseX - x;
+    const dy = mouseY - y;
+
+    // spring force
+    vx += dx * stiffness;
+    vy += dy * stiffness;
+
+    // damping
+    vx *= damping;
+    vy *= damping;
+
+    // cap speed so it stays smooth
+    vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
+    vy = Math.max(-maxSpeed, Math.min(maxSpeed, vy));
+
+    x += vx;
+    y += vy;
+
+    // center the blob
+    blob.style.transform = `translate3d(${x - 110}px, ${y - 110}px, 0)`;
+
+    requestAnimationFrame(animate);
+  }
+  animate();
 </script>
 
 </body>
