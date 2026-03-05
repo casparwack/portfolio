@@ -56,6 +56,40 @@
       padding: 28px 20px 80px;
     }
 
+    /* ✅ Floating tracking bubble (like main page vibe) */
+    .tracker{
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 80;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,245,245,.14);
+      background: rgba(0,0,0,.30);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: rgba(245,245,245,.86);
+      font-size: 12px;
+      letter-spacing: -0.01em;
+      box-shadow: 0 16px 50px rgba(0,0,0,.45);
+      user-select: none;
+    }
+    .tracker .t-dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(45,106,79,.14);
+      flex: 0 0 auto;
+    }
+    .tracker strong{ font-weight: 600; color: rgba(245,245,245,.92); }
+    @media (max-width: 520px){
+      .tracker{ left: 14px; bottom: 14px; padding: 9px 11px; }
+    }
+
     /* Nav */
     .nav{
       position:sticky;
@@ -74,14 +108,14 @@
       align-items:center;
       justify-content:space-between;
       gap:14px;
-      flex-wrap: nowrap;              /* ✅ keep single row */
+      flex-wrap: nowrap;
       min-width: 0;
     }
     .brand{
       display:flex;
       align-items:baseline;
       gap:10px;
-      min-width: 0;                  /* ✅ allow shrinking on phones */
+      min-width: 0;
       flex: 1 1 auto;
     }
     .brand .name{
@@ -105,7 +139,7 @@
       display:flex;
       gap: 12px;
       align-items:center;
-      flex-wrap: nowrap;             /* ✅ no stacking */
+      flex-wrap: nowrap;
       justify-content:flex-end;
       white-space: nowrap;
       flex: 0 0 auto;
@@ -334,7 +368,6 @@
       padding: 14px;
     }
 
-    /* ✅ cleaner “case study bubble” text blocks */
     .cs h4{
       margin: 0 0 6px;
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
@@ -402,28 +435,31 @@
       flex: 0 0 auto;
     }
 
-    /* 3-image mini gallery (Leaft section) */
-    .mini-gallery{
-      margin-top: 12px;
+    /* ✅ Big “fills the space” media layout (3 photos) */
+    .media-grid{
+      margin-top: 14px;
       display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: 1.25fr .75fr;
+      grid-auto-rows: 128px;
+      gap: 12px;
     }
-    .mini-gallery a{
+    .media-grid a{
       display:block;
-      border-radius: 16px;
+      border-radius: 18px;
       overflow:hidden;
       border: 1px solid rgba(245,245,245,.10);
       background: rgba(255,255,255,.02);
       transition: transform .18s ease, border-color .18s ease;
+      position: relative;
     }
-    .mini-gallery a:hover{
+    .media-grid a:hover{
       transform: translateY(-1px);
       border-color: rgba(45,106,79,.45);
     }
-    .mini-gallery img{
+    .media-grid a.big{ grid-row: span 2; }
+    .media-grid img{
       width:100%;
-      aspect-ratio: 4/3;
+      height:100%;
       object-fit: cover;
       display:block;
       filter: contrast(1.03) saturate(.95);
@@ -447,6 +483,8 @@
       .case-body{ grid-template-columns: 1fr; }
       .navbtn{ width:42px; height:42px; }
       .brand .tag{ display:none; }
+      .media-grid{ grid-template-columns: 1fr; grid-auto-rows: 160px; }
+      .media-grid a.big{ grid-row: auto; }
     }
     @media (max-width: 520px){
       .wrap{ padding-left: 16px; padding-right: 16px; }
@@ -456,18 +494,24 @@
       .cta{ padding: 9px 10px; }
       .navbtn{ width:40px; height:40px; }
       .hero-counter{ right:10px; bottom:10px; }
-      .mini-gallery{ gap: 8px; }
-      .mini-gallery a{ border-radius: 14px; }
+      .media-grid{ gap: 10px; grid-auto-rows: 150px; }
+      .media-grid a{ border-radius: 16px; }
     }
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .cta, .toc a, .navbtn, .mini-gallery a, .btn{ transition:none; }
+      .cta, .toc a, .navbtn, .btn, .media-grid a{ transition:none; }
     }
   </style>
 </head>
 
 <body>
   <div class="grain" aria-hidden="true"></div>
+
+  <!-- ✅ Tracking bubble -->
+  <div class="tracker" id="tracker" aria-live="polite">
+    <span class="t-dot" aria-hidden="true"></span>
+    <span id="trackText">Tracking: <strong>Dad &amp; Me</strong></span>
+  </div>
 
   <div class="nav">
     <div class="nav-inner">
@@ -476,7 +520,6 @@
         <div class="tag">Graduate Marketing</div>
       </div>
 
-      <!-- ✅ 4) stays single-row on iPhone -->
       <div class="navlinks">
         <a href="index.html">Home</a>
         <a class="is-active" href="work.html">Work</a>
@@ -515,7 +558,7 @@
 
           <a href="#leaft">
             <div>
-              <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Leaft Foods (Brand Ambassador)</span></div>
+              <div><span style="color:rgba(245,245,245,.92); font-weight:500;">Leaft Foods</span></div>
               <small>Field marketing • Sales • Insight</small>
             </div>
             <div class="arrow">↘</div>
@@ -539,7 +582,7 @@
       </div>
 
       <!-- Dad & Me -->
-      <article class="case" id="dadandme">
+      <article class="case" id="dadandme" data-track="Dad &amp; Me">
         <div class="case-hero-wrap">
           <img class="case-hero" id="dadHero" src="assets/work-1.jpg" alt="Dad &amp; Me case study cover" />
           <button class="navbtn left" type="button" aria-label="Previous image" id="dadPrev"><span>←</span></button>
@@ -555,14 +598,11 @@
               keeping everything cohesive, modern, and premium.
             </p>
 
-            <!-- ✅ 2) pretty button link -->
             <a class="btn" href="https://thedadandmecompany.com/?srsltid=AfmBOopi5aSBJXuQTeoNArZINp61sH8s9qKDLY0j8pNCKWGRqvIc61FR" target="_blank" rel="noopener noreferrer">
               <span class="icon" aria-hidden="true"></span>
               Check out the company
               <span style="color:var(--accent);">↗</span>
             </a>
-
-            <!-- ✅ 1) removed the Role/Channels/Deliverables bubbles entirely -->
 
             <div class="video-card">
               <div class="vh">
@@ -575,7 +615,6 @@
             </div>
           </div>
 
-          <!-- ✅ 3) replaced the case study bubble content -->
           <div class="box">
             <div class="cs">
               <h4>Problem</h4>
@@ -609,7 +648,7 @@
       <div style="height:14px;"></div>
 
       <!-- Leaft -->
-      <article class="case" id="leaft">
+      <article class="case" id="leaft" data-track="Leaft Foods">
         <img class="case-hero" src="assets/work-2.jpg" alt="Leaft Foods case study cover" />
         <div class="case-body">
           <div>
@@ -618,10 +657,9 @@
               Field marketing and sales work — demos, conversations, and feedback loops that turn real customer objections into sharper positioning.
             </p>
 
-            <!-- ✅ 1) removed the Role/Skills/Value bubbles entirely -->
-
-            <div class="mini-gallery" aria-label="Leaft image gallery">
-              <a href="assets/work-1.jpg" aria-label="Open image 1">
+            <!-- ✅ Bigger photos to fill the space -->
+            <div class="media-grid" aria-label="Leaft image gallery">
+              <a class="big" href="assets/work-1.jpg" aria-label="Open image 1">
                 <img src="assets/work-1.jpg" alt="Leaft related image 1" />
               </a>
               <a href="assets/work-2.jpg" aria-label="Open image 2">
@@ -633,7 +671,6 @@
             </div>
           </div>
 
-          <!-- ✅ 5) replaced the case study bubble content -->
           <div class="box">
             <div class="cs">
               <h4>Problem</h4>
@@ -669,7 +706,7 @@
       <div style="height:14px;"></div>
 
       <!-- Oneview -->
-      <article class="case" id="oneview">
+      <article class="case" id="oneview" data-track="Oneview Studios">
         <div class="case-hero-wrap">
           <img class="case-hero" id="oneHero" src="assets/work-3.jpg" alt="Oneview Studios case study cover" />
           <button class="navbtn left" type="button" aria-label="Previous image" id="onePrev"><span>←</span></button>
@@ -686,10 +723,20 @@
               without feeling overdone.
             </p>
 
-            <!-- ✅ 1) removed the Role/Deliverables/Style bubbles entirely -->
+            <!-- ✅ Bigger photos to fill the space (separate from the hero carousel) -->
+            <div class="media-grid" aria-label="Oneview image gallery">
+              <a class="big" href="assets/work-3.jpg" aria-label="Open image 1">
+                <img src="assets/work-3.jpg" alt="Oneview related image 1" />
+              </a>
+              <a href="assets/work-1.jpg" aria-label="Open image 2">
+                <img src="assets/work-1.jpg" alt="Oneview related image 2" />
+              </a>
+              <a href="assets/work-2.jpg" aria-label="Open image 3">
+                <img src="assets/work-2.jpg" alt="Oneview related image 3" />
+              </a>
+            </div>
           </div>
 
-          <!-- ✅ 6) replaced the Oneview case study bubble content -->
           <div class="box">
             <div class="cs">
               <h4>Problem</h4>
@@ -767,7 +814,7 @@
     });
 
     // Oneview carousel
-    // Replace these with your real oneview images later (oneview-1.jpg etc.)
+    // Replace these with your real oneview images later
     const oneImages = [
       "assets/work-3.jpg",
       "assets/work-1.jpg",
@@ -797,6 +844,23 @@
 
     renderDad();
     renderOne();
+
+    // ✅ Tracking bubble logic (updates to the section you're viewing)
+    const trackText = document.getElementById("trackText");
+    const trackSections = Array.from(document.querySelectorAll("article.case[data-track]"));
+
+    const obs = new IntersectionObserver((entries) => {
+      // pick the most visible intersecting section
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
+
+      if (!visible) return;
+      const label = visible.target.getAttribute("data-track");
+      trackText.innerHTML = `Tracking: <strong>${label}</strong>`;
+    }, { threshold: [0.25, 0.4, 0.55, 0.7] });
+
+    trackSections.forEach(s => obs.observe(s));
   </script>
 </body>
 </html>
