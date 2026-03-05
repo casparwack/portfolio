@@ -260,7 +260,7 @@ h1{font-size:46px}
 
 <section class="hero">
 
-<h1>The real side<br>of the story.</h1>
+<h1>Off the clock</h1>
 
 <p class="sub">
 This is the part of me that doesn’t show up on LinkedIn.  
@@ -274,12 +274,8 @@ The music I work to, the sport that clears my head, and the things that keep me 
 <h2 class="section-title">The real me</h2>
 
 <div class="card">
-
-Write your personal blurb here. Talk about the things that actually shape how you think and work.  
-Maybe how storytelling shows up in your life outside marketing, or how discipline from sport shapes your mindset.
-
-Keep this honest and a bit personal.
-
+Outside of work I’m a 20-year-old uni student and the big brother to three other siblings. I currently live in a flat with seven boys, which means most weeknights involve training, uni work, and watching questionable romance movies. I’m a pretty social person, so weekends are usually spent with mates and tend to be slightly unproductive. I also get pretty fixated on learning things, which means there’s normally a new hobby or interest on the go.<br><br>
+Overall, I’m a big believer in working hard while still making time for the things you enjoy.
 </div>
 
 </section>
@@ -291,7 +287,7 @@ Keep this honest and a bit personal.
 <div class="playlist">
 
 <div class="artist">
-<img src="assets/pearl-jam.jpg">
+<img src="assets/pearl-jam.jpg" alt="Pearl Jam">
 <div class="artist-info">
 <div class="artist-name">Pearl Jam</div>
 <div class="artist-note">Late night focus music</div>
@@ -299,7 +295,7 @@ Keep this honest and a bit personal.
 </div>
 
 <div class="artist">
-<img src="assets/kanye.jpg">
+<img src="assets/kanye.jpg" alt="Kanye West">
 <div class="artist-info">
 <div class="artist-name">Kanye West</div>
 <div class="artist-note">Creative energy</div>
@@ -307,7 +303,7 @@ Keep this honest and a bit personal.
 </div>
 
 <div class="artist">
-<img src="assets/elliot-smith.jpg">
+<img src="assets/elliot-smith.jpg" alt="Elliot Smith">
 <div class="artist-info">
 <div class="artist-name">Elliot Smith</div>
 <div class="artist-note">Quiet thinking music</div>
@@ -323,30 +319,28 @@ Keep this honest and a bit personal.
 <h2 class="section-title">Kickboxing & Muay Thai</h2>
 
 <div class="card" style="margin-bottom:20px">
-
 Kickboxing and Muay Thai are a huge part of my life.  
 There is something honest about combat sport — discipline, pressure, timing, and learning to stay calm in uncomfortable moments.
-
+<br><br>
 Training and fighting keeps my mind sharp and grounded outside creative work.
-
 </div>
 
 <div class="photo-grid">
 
 <div class="photo">
-<img src="assets/fight1.jpg">
+<img src="assets/fight1.jpg" alt="Kickboxing photo 1">
 </div>
 
 <div class="photo">
-<img src="assets/fight2.jpg">
+<img src="assets/fight2.jpg" alt="Kickboxing photo 2">
 </div>
 
 <div class="photo">
-<img src="assets/fight3.jpg">
+<img src="assets/fight3.jpg" alt="Kickboxing photo 3">
 </div>
 
 <div class="photo">
-<img src="assets/fight4.jpg">
+<img src="assets/fight4.jpg" alt="Kickboxing photo 4">
 </div>
 
 </div>
@@ -366,53 +360,47 @@ Training and fighting keeps my mind sharp and grounded outside creative work.
 </main>
 
 <script>
+document.getElementById("year").textContent = new Date().getFullYear();
 
-document.getElementById("year").textContent=new Date().getFullYear()
+if (window.matchMedia("(hover:hover)").matches) {
+  const blob = document.querySelector(".cursor-blob");
 
-if(window.matchMedia("(hover:hover)").matches){
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
 
-const blob=document.querySelector(".cursor-blob")
+  let x = mouseX;
+  let y = mouseY;
+  let vx = 0;
+  let vy = 0;
 
-let mouseX=window.innerWidth/2
-let mouseY=window.innerHeight/2
+  const stiffness = 0.08;
+  const damping = 0.78;
 
-let x=mouseX
-let y=mouseY
-let vx=0
-let vy=0
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
 
-const stiffness=0.08
-const damping=0.78
+  function animate() {
+    const dx = mouseX - x;
+    const dy = mouseY - y;
 
-window.addEventListener("mousemove",(e)=>{
-mouseX=e.clientX
-mouseY=e.clientY
-})
+    vx += dx * stiffness;
+    vy += dy * stiffness;
 
-function animate(){
+    vx *= damping;
+    vy *= damping;
 
-const dx=mouseX-x
-const dy=mouseY-y
+    x += vx;
+    y += vy;
 
-vx+=dx*stiffness
-vy+=dy*stiffness
+    blob.style.transform = `translate3d(${x - 110}px,${y - 110}px,0)`;
 
-vx*=damping
-vy*=damping
+    requestAnimationFrame(animate);
+  }
 
-x+=vx
-y+=vy
-
-blob.style.transform=`translate3d(${x-110}px,${y-110}px,0)`
-
-requestAnimationFrame(animate)
-
+  animate();
 }
-
-animate()
-
-}
-
 </script>
 
 </body>
