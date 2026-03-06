@@ -27,6 +27,7 @@
 
 body{
 margin:0;
+/* moving gradient layers + base */
 background:
 radial-gradient(circle at 20% 20%, rgba(45,106,79,.15), transparent 40%),
 radial-gradient(circle at 80% 80%, rgba(45,106,79,.08), transparent 40%),
@@ -38,7 +39,7 @@ overflow-x:hidden;
 position:relative;
 }
 
-/* grain */
+/* grain overlay */
 body::after{
 content:"";
 position:fixed;
@@ -52,6 +53,7 @@ pointer-events:none;
 z-index:0;
 }
 
+/* extra soft glow for depth */
 body::before{
 content:"";
 position:fixed;
@@ -68,15 +70,14 @@ max-width:var(--max);
 margin:auto;
 padding:28px 20px 80px;
 position:relative;
-z-index:2;
+z-index:2; /* keep content above background layers */
 }
 
+/* Make visual sections go full-width on large screens */
 .full-bleed{
 width:100vw;
 margin-left:calc(50% - 50vw);
 }
-
-/* NAV */
 
 .nav{
 position:sticky;
@@ -136,6 +137,7 @@ color:var(--text);
 .is-active{
 border:1px solid var(--accent2);
 background:rgba(45,106,79,.12);
+color:var(--text);
 }
 
 .cta{
@@ -155,8 +157,6 @@ border-radius:999px;
 background:var(--accent);
 }
 
-/* HERO */
-
 .hero{
 padding:80px 0 40px;
 display:grid;
@@ -165,27 +165,11 @@ gap:28px;
 align-items:center;
 }
 
-/* BASE HEADING */
-
 h1{
 font-family:"Plus Jakarta Sans", sans-serif;
 font-size:64px;
 line-height:1;
 margin:10px 0;
-}
-
-/* DESKTOP MASSIVE HEADING */
-
-@media (min-width:1000px){
-
-h1{
-font-size:120px;
-line-height:.92;
-letter-spacing:-0.04em;
-width:140%;
-margin-left:-80px;
-}
-
 }
 
 .hero-buttons{
@@ -209,8 +193,6 @@ background:rgba(45,106,79,.28);
 transform:translateY(-1px);
 }
 
-/* HERO CARD */
-
 .hero-card{
 border-radius:var(--radius);
 border:1px solid var(--line);
@@ -221,11 +203,9 @@ overflow:hidden;
 width:100%;
 aspect-ratio:4/5;
 object-fit:cover;
-display:block;
 }
 
 .cap{
-width:100%;
 border-top:1px solid var(--line);
 }
 
@@ -239,8 +219,6 @@ align-items:center;
 .cap-title{
 font-size:13px;
 }
-
-/* SECTIONS */
 
 .section{
 padding:60px 0;
@@ -258,8 +236,6 @@ max-width:620px;
 color:var(--muted);
 line-height:1.7;
 }
-
-/* CONTACT */
 
 .contact{
 display:grid;
@@ -296,7 +272,7 @@ display:flex;
 justify-content:space-between;
 }
 
-/* MARQUEE */
+/* scrolling work bar */
 
 .marquee{
 overflow:hidden;
@@ -313,15 +289,20 @@ animation:scroll 35s linear infinite;
 align-items:center;
 }
 
+/* image hover effect (premium) */
 .marquee img{
 height:140px;
 border-radius:14px;
 border:1px solid var(--line);
-transition:transform .35s ease;
+transform:translateZ(0);
+transition:transform .35s ease, border-color .35s ease, filter .35s ease;
+filter:saturate(.98) contrast(1.02);
 }
 
 .marquee img:hover{
 transform:scale(1.06);
+border-color:rgba(245,245,245,.28);
+filter:saturate(1.08) contrast(1.08);
 }
 
 @keyframes scroll{
@@ -329,7 +310,7 @@ transform:scale(1.06);
 100%{transform:translateX(-50%)}
 }
 
-/* CURSOR */
+/* mouse follower */
 
 .cursor-blob{
 position:fixed;
@@ -345,6 +326,8 @@ z-index:1;
 transform:translate3d(-999px,-999px,0);
 }
 
+/* hide cursor on phones + tablets */
+
 @media (hover:none) and (pointer:coarse){
 .cursor-blob{display:none;}
 }
@@ -354,9 +337,16 @@ transform:translate3d(-999px,-999px,0);
 .contact{grid-template-columns:1fr}
 }
 
+/* smaller title on iPhones */
+
 @media(max-width:500px){
-h1{font-size:40px;line-height:1.1;}
+h1{
+font-size:40px;
+line-height:1.1;
 }
+}
+
+/* hide Marketing & Strategy Specialist on phones */
 
 @media(max-width:420px){
 .brand .tag{display:none;}
@@ -399,16 +389,149 @@ h1{font-size:40px;line-height:1.1;}
 </div>
 
 <div class="hero-card">
-
 <img class="portrait" src="assets/headshot.jpg" alt="Caspar headshot">
-
 <div class="cap">
-<div class="cap-inner">
-<div class="cap-title">Caspar Wackrow</div>
-<a href="work.html">Work →</a>
-</div>
-</div>
+  <div class="cap-inner">
 
+    <div>
+      <div class="cap-title">Caspar Wackrow</div>
+    </div>
+
+    <a href="work.html">Work →</a>
+
+  </div>
 </div>
 
 </section>
+
+<section class="section">
+
+<h2 class="section-title">What I do</h2>
+
+<p class="about">
+I’m in my final year studying marketing and strategy at the University of Canterbury.
+I help businesses think through how they want to show up, and then help build the pieces that make it happen — strategy, branding, ads, social content, websites, and sales.
+I enjoy working across the whole process, from the early idea to the finished result.
+</p>
+
+<br>
+
+<a class="primary-btn" href="off-the-clock.html">
+Off the clock →
+</a>
+
+</section>
+
+<!-- FULL-WIDTH visual section -->
+<section class="marquee full-bleed">
+<div class="marquee-inner">
+
+  <!-- Set 1 (re-ordered, removed requested images) -->
+  <img src="assets/IMG_2173.jpg" alt="Work image IMG_2173">
+  <img src="assets/DSC08893.jpg" alt="Work image DSC08893">
+  <img src="assets/IMG_2035.jpg" alt="Work image IMG_2035">
+  <img src="assets/DSC01055.jpg" alt="Work image DSC01055">
+  <img src="assets/IMG_2167.jpg" alt="Work image IMG_2167">
+  <img src="assets/DSC00432.jpg" alt="Work image DSC00432">
+  <img src="assets/IMG_2516.jpg" alt="Work image IMG_2516">
+  <img src="assets/DSC08892.jpg" alt="Work image DSC08892">
+  <img src="assets/IMG_2158.jpg" alt="Work image IMG_2158">
+  <img src="assets/DSC09994.jpg" alt="Work image DSC09994">
+  <img src="assets/IMG_2044.jpg" alt="Work image IMG_2044">
+  <img src="assets/DSC01029.jpg" alt="Work image DSC01029">
+
+  <!-- Set 2 (duplicate for seamless loop) -->
+  <img src="assets/IMG_2173.jpg" alt="">
+  <img src="assets/DSC08893.jpg" alt="">
+  <img src="assets/IMG_2035.jpg" alt="">
+  <img src="assets/DSC01055.jpg" alt="">
+  <img src="assets/IMG_2167.jpg" alt="">
+  <img src="assets/DSC00432.jpg" alt="">
+  <img src="assets/IMG_2516.jpg" alt="">
+  <img src="assets/DSC08892.jpg" alt="">
+  <img src="assets/IMG_2158.jpg" alt="">
+  <img src="assets/DSC09994.jpg" alt="">
+  <img src="assets/IMG_2044.jpg" alt="">
+  <img src="assets/DSC01029.jpg" alt="">
+
+</div>
+</section>
+
+<section class="section" id="contact">
+
+<h2 class="section-title">Contact</h2>
+
+<div class="contact">
+
+<a href="mailto:casparwack@gmail.com">
+<div>
+<div class="k">Email</div>
+<div class="v">casparwack@gmail.com</div>
+</div>
+<div>↗</div>
+</a>
+
+<a href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank">
+<div>
+<div class="k">LinkedIn</div>
+<div class="v">/in/caspar-wackrow</div>
+</div>
+<div>↗</div>
+</a>
+
+</div>
+
+<footer>
+<div>© <span id="year"></span> Caspar Wackrow</div>
+<div><a href="work.html">Work</a></div>
+</footer>
+
+</section>
+
+</main>
+
+<script>
+document.getElementById("year").textContent=new Date().getFullYear()
+
+if(window.matchMedia("(hover:hover)").matches){
+  const blob=document.querySelector(".cursor-blob")
+
+  let mouseX=window.innerWidth/2
+  let mouseY=window.innerHeight/2
+
+  let x=mouseX
+  let y=mouseY
+  let vx=0
+  let vy=0
+
+  const stiffness=0.08
+  const damping=0.78
+
+  window.addEventListener("mousemove",(e)=>{
+    mouseX=e.clientX
+    mouseY=e.clientY
+  })
+
+  function animate(){
+    const dx=mouseX-x
+    const dy=mouseY-y
+
+    vx+=dx*stiffness
+    vy+=dy*stiffness
+
+    vx*=damping
+    vy*=damping
+
+    x+=vx
+    y+=vy
+
+    blob.style.transform=`translate3d(${x-110}px,${y-110}px,0)`
+    requestAnimationFrame(animate)
+  }
+
+  animate()
+}
+</script>
+
+</body>
+</html>
