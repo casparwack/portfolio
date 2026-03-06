@@ -7,385 +7,562 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#070707;
+  --panel:#0f0f10;
+  --panel-2:#131314;
   --text:#f5f5f5;
-  --muted:rgba(245,245,245,.72);
-  --line:rgba(245,245,245,.12);
-  --accent:#2D6A4F;
-  --accent2:rgba(45,106,79,.25);
-  --radius:22px;
-  --max:1080px;
+  --muted:rgba(245,245,245,.68);
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.16);
+  --accent:#95ff80;
+  --accent-soft:rgba(149,255,128,.12);
+  --purple:#9d7bff;
+  --cyan:#6ae4ff;
+  --pink:#ff7fbf;
+  --yellow:#ffd84e;
+  --radius:26px;
+  --max:1440px;
+  --sidebar:120px;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-
 body{
   margin:0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(45,106,79,.14), transparent 45%),
-    radial-gradient(circle at 80% 80%, rgba(45,106,79,.08), transparent 45%),
+    radial-gradient(circle at 15% 20%, rgba(157,123,255,.10), transparent 35%),
+    radial-gradient(circle at 82% 15%, rgba(106,228,255,.10), transparent 32%),
+    radial-gradient(circle at 70% 82%, rgba(255,127,191,.08), transparent 30%),
     var(--bg);
   color:var(--text);
-  font-family:Inter,system-ui;
-  letter-spacing:-0.01em;
+  font-family:Inter,system-ui,sans-serif;
   overflow-x:hidden;
   position:relative;
+  letter-spacing:-0.01em;
 }
 
 a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
 
-/* ========= BACKGROUND LAYERS ========= */
-
-/* soft glow */
 body::before{
   content:"";
   position:fixed;
-  inset:-40%;
-  background:radial-gradient(circle at 30% 18%, rgba(45,106,79,.12), transparent 55%);
+  inset:-30%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(149,255,128,.06), transparent 30%),
+    radial-gradient(circle at 75% 70%, rgba(106,228,255,.06), transparent 28%);
   pointer-events:none;
   z-index:0;
 }
 
-/* animated grain (subtle static buzz) */
 body::after{
   content:"";
   position:fixed;
   inset:0;
-  pointer-events:none;
   z-index:1;
+  pointer-events:none;
   opacity:.055;
   mix-blend-mode:overlay;
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-  background-size:240px 240px;
-  animation:grainShift .9s steps(2) infinite;
-  filter:contrast(120%) brightness(110%);
+  background-size:220px 220px;
+  animation:grain 1s steps(2) infinite;
 }
 
-@keyframes grainShift{
-  0%   { transform:translate3d(0,0,0); opacity:.045; }
-  10%  { transform:translate3d(-1%, 1%,0); opacity:.06; }
-  20%  { transform:translate3d(-2%,-1%,0); opacity:.05; }
-  30%  { transform:translate3d( 1%,-2%,0); opacity:.065; }
-  40%  { transform:translate3d(-1%, 2%,0); opacity:.05; }
-  50%  { transform:translate3d( 2%, 1%,0); opacity:.06; }
-  60%  { transform:translate3d( 1%,-1%,0); opacity:.05; }
-  70%  { transform:translate3d(-2%, 1%,0); opacity:.062; }
-  80%  { transform:translate3d( 2%,-2%,0); opacity:.05; }
-  90%  { transform:translate3d(-1%,-1%,0); opacity:.06; }
-  100% { transform:translate3d(0,0,0); opacity:.05; }
+@keyframes grain{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-1.2%,.8%)}
+  50%{transform:translate(.8%,-1%)}
+  75%{transform:translate(-.8%,-.6%)}
+  100%{transform:translate(0,0)}
 }
 
-/* colorful shifting blocks */
+/* background blocks */
 .bg-blocks{
   position:fixed;
   inset:0;
-  z-index:0;
   pointer-events:none;
+  z-index:0;
   overflow:hidden;
 }
-
-.bg-blocks .block{
+.bg-block{
   position:absolute;
-  border-radius:20px;
-  opacity:.22;
-  filter:saturate(1.05) contrast(1.02);
-  transform:translate3d(0,0,0);
-  will-change:transform;
+  border-radius:28px;
+  opacity:.18;
+  filter:saturate(1.02);
   box-shadow:
     0 20px 80px rgba(0,0,0,.45),
     inset 0 0 0 1px rgba(255,255,255,.08);
+  will-change:transform;
 }
+.bg-1{width:360px;height:360px;left:12vw;top:14vh;background:linear-gradient(135deg, rgba(157,123,255,.95), rgba(157,123,255,0));}
+.bg-2{width:520px;height:280px;right:8vw;top:10vh;background:linear-gradient(135deg, rgba(106,228,255,.92), rgba(106,228,255,0));}
+.bg-3{width:440px;height:500px;right:12vw;top:62vh;background:linear-gradient(135deg, rgba(255,127,191,.9), rgba(255,127,191,0));}
+.bg-4{width:540px;height:220px;left:8vw;top:78vh;background:linear-gradient(135deg, rgba(255,216,78,.86), rgba(255,216,78,0));}
 
-/* modern-minimal but bright */
-.bg-blocks .b1{ width:360px; height:360px; left:6vw;  top:14vh; background:linear-gradient(135deg, rgba(120,72,255,.95), rgba(45,106,79,.25)); }
-.bg-blocks .b2{ width:520px; height:340px; left:58vw; top:10vh; background:linear-gradient(135deg, rgba(0,196,255,.9), rgba(255,255,255,.0)); border-radius:28px; opacity:.18; }
-.bg-blocks .b3{ width:420px; height:520px; left:68vw; top:58vh; background:linear-gradient(135deg, rgba(255,66,143,.85), rgba(0,0,0,0)); opacity:.16; }
-.bg-blocks .b4{ width:520px; height:240px; left:10vw; top:66vh; background:linear-gradient(135deg, rgba(255,196,0,.85), rgba(45,106,79,.18)); opacity:.14; border-radius:26px; }
-
-.bg-blocks .block::after{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  border-radius:inherit;
-  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 60%);
-  opacity:.55;
-}
-
-/* ========= LAYOUT ========= */
-
-.wrap{
-  max-width:var(--max);
-  margin:auto;
-  padding:28px 20px 80px;
+.page{
   position:relative;
-  z-index:2; /* above bg layers */
+  z-index:2;
+  min-height:100vh;
 }
 
-/* Make visual sections go full-width on large screens */
-.full-bleed{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-}
-
-/* ========= NAV ========= */
-
-.nav{
-  position:sticky;
+/* LEFT RAIL */
+.side-rail{
+  position:fixed;
   top:0;
-  background:rgba(7,7,7,.78);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-  z-index:10;
-}
-
-.nav-inner{
-  max-width:var(--max);
-  margin:auto;
-  padding:16px 20px;
+  left:0;
+  width:var(--sidebar);
+  height:100vh;
+  border-right:1px solid var(--line);
+  background:rgba(7,7,7,.62);
+  backdrop-filter:blur(14px);
+  z-index:20;
   display:flex;
+  flex-direction:column;
   justify-content:space-between;
   align-items:center;
+  padding:24px 14px;
 }
 
-.brand{
+.side-brand{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(245,245,245,.9);
+}
+
+.side-nav{
   display:flex;
+  flex-direction:column;
   gap:10px;
+  width:100%;
   align-items:center;
 }
 
-.brand .name{
-  font-family:"Plus Jakarta Sans", sans-serif;
-  font-weight:600;
-}
-
-.brand .tag{
-  font-size:12px;
-  color:var(--muted);
+.side-nav a{
+  width:64px;
+  min-height:64px;
   border:1px solid var(--line);
-  padding:5px 10px;
-  border-radius:999px;
-}
-
-.navlinks{
+  border-radius:18px;
   display:flex;
-  gap:14px;
   align-items:center;
-}
-
-.navlinks a{
-  font-size:13px;
+  justify-content:center;
+  text-align:center;
+  padding:8px;
+  font-size:11px;
+  line-height:1.15;
   color:var(--muted);
-  padding:8px 10px;
-  border-radius:999px;
+  background:rgba(255,255,255,.02);
+  transition:.25s ease;
 }
 
-.navlinks a:hover{
-  background:rgba(255,255,255,.05);
+.side-nav a:hover,
+.side-nav a.active{
+  background:rgba(255,255,255,.06);
   color:var(--text);
+  border-color:var(--line-strong);
+  transform:translateY(-1px);
 }
 
-.is-active{
-  border:1px solid var(--accent2);
-  background:rgba(45,106,79,.12);
-  color:var(--text);
-}
-
-.cta{
-  display:inline-flex;
+.side-availability{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  display:flex;
   align-items:center;
   gap:8px;
-  padding:9px 12px;
-  border-radius:999px;
-  border:1px solid var(--accent2);
-  background:rgba(45,106,79,.12);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:var(--muted);
 }
 
-.dot{
+.side-availability::before{
+  content:"";
   width:8px;
   height:8px;
   border-radius:999px;
   background:var(--accent);
+  box-shadow:0 0 18px rgba(149,255,128,.65);
+  display:inline-block;
 }
 
-/* ========= HERO ========= */
+/* MAIN */
+.main{
+  margin-left:var(--sidebar);
+  padding:0 32px 40px;
+}
 
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+}
+
+/* HERO */
 .hero{
-  padding:92px 0 44px;
+  min-height:100vh;
   display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:28px;
-  align-items:center;
+  grid-template-columns:minmax(0,1.2fr) 390px;
+  gap:36px;
+  align-items:start;
+  padding:28px 0 40px;
 }
 
-h1{
-  font-family:"Plus Jakarta Sans", sans-serif;
-  font-size:82px;          /* bigger */
-  line-height:.98;         /* tighter so the two lines lock up */
-  margin:10px 0;
-  letter-spacing:-0.03em;
+.hero-left{
+  position:relative;
+  padding-top:24px;
+  min-width:0;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:var(--muted);
+  margin-bottom:22px;
+}
+.eyebrow::before{
+  content:"";
+  width:32px;
+  height:1px;
+  background:rgba(255,255,255,.24);
+}
+
+.hero-title-wrap{
+  position:relative;
+  min-height:62vh;
+  display:flex;
+  align-items:flex-start;
 }
 
 .hero-title{
-  display:inline-block;
+  margin:0;
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-size:clamp(68px, 10vw, 156px);
+  line-height:.88;
+  letter-spacing:-0.06em;
+  max-width:980px;
   position:relative;
+  z-index:2;
 }
 
-/* letter spans (for “fall apart”) */
-.hero-title .ch{
-  display:inline-block;
-  will-change:transform, opacity;
-  transform:translate3d(0,0,0);
-}
-
-.hero-title .space{
-  width:.35em;
-}
-
-.hero-buttons{
-  margin-top:26px;
-}
-
-.primary-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-size:14px;
-  padding:12px 18px;
-  border-radius:999px;
-  border:1px solid var(--accent2);
-  background:rgba(45,106,79,.18);
-  transition:background .2s ease, transform .2s ease;
-}
-
-.primary-btn:hover{
-  background:rgba(45,106,79,.28);
-  transform:translateY(-1px);
-}
-
-.hero-card{
-  border-radius:var(--radius);
-  border:1px solid var(--line);
-  overflow:hidden;
-  background:rgba(255,255,255,.02);
-}
-
-.portrait{
-  width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
+.hero-title .line{
   display:block;
 }
 
-.cap{
-  border-top:1px solid var(--line);
+.hero-title .ch{
+  display:inline-block;
+  will-change:transform, opacity;
 }
 
-.cap-inner{
+.hero-sub{
+  max-width:520px;
+  margin-top:26px;
+  font-size:18px;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+.hero-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:14px 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+  font-size:14px;
+  transition:.25s ease;
+}
+.btn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.06);
+  border-color:var(--line-strong);
+}
+.btn-primary{
+  background:var(--accent-soft);
+  border-color:rgba(149,255,128,.22);
+}
+.btn-primary:hover{
+  background:rgba(149,255,128,.18);
+}
+
+/* huge side word */
+.hero-ghost{
+  position:absolute;
+  right:-8px;
+  top:34px;
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-weight:800;
+  font-size:clamp(80px, 12vw, 220px);
+  line-height:.84;
+  letter-spacing:-0.08em;
+  color:rgba(255,255,255,.045);
+  text-align:right;
+  pointer-events:none;
+  user-select:none;
+  z-index:1;
+}
+
+/* profile card */
+.profile-card{
+  position:sticky;
+  top:28px;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:rgba(16,16,17,.78);
+  backdrop-filter:blur(12px);
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.profile-image-wrap{
   padding:14px;
+}
+.profile-image{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:20px;
+}
+
+.profile-body{
+  padding:0 18px 18px;
+}
+
+.profile-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  margin-bottom:18px;
+}
+.profile-name{
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-size:22px;
+  font-weight:700;
+  line-height:1.05;
+}
+.profile-role{
+  margin-top:7px;
+  font-size:13px;
+  line-height:1.5;
+  color:var(--muted);
+}
+
+.profile-chip{
+  border:1px solid rgba(149,255,128,.24);
+  background:rgba(149,255,128,.08);
+  color:var(--text);
+  border-radius:999px;
+  padding:8px 10px;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.profile-list{
+  display:grid;
+  gap:10px;
+  margin-top:16px;
+}
+.profile-item{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:12px;
+  padding:13px 14px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.02);
+  transition:.25s ease;
+}
+.profile-item:hover{
+  background:rgba(255,255,255,.05);
+  border-color:var(--line-strong);
+}
+.profile-k{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--muted);
+  margin-bottom:3px;
+}
+.profile-v{
+  font-size:14px;
+  line-height:1.4;
 }
 
-.cap-title{
+/* sections */
+.section{
+  padding:48px 0 18px;
+  border-top:1px solid var(--line);
+}
+.section-grid{
+  display:grid;
+  grid-template-columns:240px minmax(0,1fr);
+  gap:28px;
+}
+.section-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:var(--muted);
+  padding-top:10px;
+}
+.section-content{
+  min-width:0;
+}
+.section-title{
+  margin:0 0 18px;
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-size:clamp(28px, 4vw, 56px);
+  line-height:.98;
+  letter-spacing:-0.05em;
+}
+.section-copy{
+  max-width:760px;
+  font-size:18px;
+  line-height:1.8;
+  color:var(--muted);
+}
+
+/* stats strip */
+.stat-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:28px;
+}
+.stat{
+  padding:18px 18px 20px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(255,255,255,.02);
+}
+.stat-num{
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-weight:800;
+  font-size:34px;
+  letter-spacing:-0.05em;
+  margin-bottom:6px;
+}
+.stat-label{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:18px;
+  margin-top:14px;
+}
+.stack{
+  display:grid;
+  gap:18px;
+}
+.media-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.02);
+  min-height:240px;
+}
+.media-card.tall{min-height:620px}
+.media-card.mid{min-height:420px}
+.media-card.small{min-height:300px}
+.media-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s ease, filter .4s ease;
+}
+.media-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.40), rgba(0,0,0,.02) 46%, rgba(0,0,0,.04));
+}
+.media-card:hover img{
+  transform:scale(1.045);
+  filter:contrast(1.04) saturate(1.04);
+}
+
+.media-meta{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:12px;
+  z-index:2;
+}
+.media-title{
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-size:18px;
+  font-weight:700;
+  line-height:1.1;
+}
+.media-tag{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:rgba(255,255,255,.82);
+}
+
+/* off clock strip */
+.offclock{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:18px;
+  align-items:center;
+  padding:22px 24px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+}
+.offclock-copy{
+  font-size:16px;
+  line-height:1.7;
+  color:var(--muted);
+  max-width:760px;
+}
+
+/* footer */
+.footer{
+  padding:50px 0 20px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  color:var(--muted);
   font-size:13px;
 }
-
-.section{
-  padding:60px 0;
-  border-top:1px solid var(--line);
-}
-
-.section-title{
-  font-family:"Plus Jakarta Sans", sans-serif;
-  font-size:22px;
-  margin-bottom:20px;
-}
-
-.about{
-  max-width:620px;
-  color:var(--muted);
-  line-height:1.7;
-}
-
-/* ========= CONTACT ========= */
-
-.contact{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.contact a{
-  padding:16px;
-  border-radius:var(--radius);
-  border:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  transition:border-color .2s ease, transform .2s ease;
-}
-
-.contact a:hover{
-  border-color:var(--accent);
-  transform:translateY(-1px);
-}
-
-.k{font-size:12px;color:var(--muted)}
-.v{font-size:14px}
-
-footer{
-  padding-top:30px;
-  font-size:12px;
-  color:var(--muted);
-  display:flex;
-  justify-content:space-between;
-}
-
-/* ========= SCROLLING WORK BAR ========= */
-
-.marquee{
-  overflow:hidden;
-  white-space:nowrap;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:18px 0;
-  position:relative;
-}
-
-.marquee-inner{
-  display:inline-flex;
-  gap:20px;
-  animation:scroll 35s linear infinite;
-  align-items:center;
-  padding-left:12px;
-}
-
-.marquee img{
-  height:180px; /* bigger so it feels high-budget on desktop */
-  border-radius:14px;
-  border:1px solid var(--line);
-  transform:translateZ(0);
-  transition:transform .35s ease, border-color .35s ease, filter .35s ease;
-  filter:saturate(.98) contrast(1.02);
-}
-
-.marquee img:hover{
-  transform:scale(1.06);
-  border-color:rgba(245,245,245,.28);
-  filter:saturate(1.08) contrast(1.08);
-}
-
-@keyframes scroll{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-
-/* ========= MOUSE FOLLOWER ========= */
 
 .cursor-blob{
   position:fixed;
@@ -394,175 +571,393 @@ footer{
   width:220px;
   height:220px;
   border-radius:999px;
-  background:radial-gradient(circle, rgba(45,106,79,.55) 0%, rgba(45,106,79,0) 70%);
-  filter:blur(10px);
   pointer-events:none;
   z-index:1;
+  background:radial-gradient(circle, rgba(149,255,128,.26) 0%, rgba(149,255,128,0) 70%);
+  filter:blur(16px);
   transform:translate3d(-999px,-999px,0);
 }
 
-/* hide cursor on phones + tablets */
-@media (hover:none) and (pointer:coarse){
-  .cursor-blob{display:none;}
+/* mobile nav */
+.mobile-top{
+  display:none;
 }
 
 /* responsive */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .contact{grid-template-columns:1fr}
-  .marquee img{height:150px}
-  h1{font-size:56px; line-height:1.02}
+@media (max-width:1180px){
+  .hero{
+    grid-template-columns:1fr 360px;
+  }
+  .section-grid{
+    grid-template-columns:180px 1fr;
+  }
 }
 
-@media(max-width:500px){
-  h1{font-size:42px; line-height:1.08}
+@media (max-width:980px){
+  :root{ --sidebar:0px; }
+  .side-rail{ display:none; }
+  .mobile-top{
+    display:flex;
+    position:sticky;
+    top:0;
+    z-index:30;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 18px;
+    background:rgba(7,7,7,.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-brand{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .mobile-links{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  .mobile-links a{
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 10px;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .main{
+    margin-left:0;
+    padding:0 18px 30px;
+  }
+  .hero{
+    min-height:auto;
+    grid-template-columns:1fr;
+    padding-top:28px;
+  }
+  .profile-card{
+    position:relative;
+    top:auto;
+  }
+  .section-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .stat-row{
+    grid-template-columns:1fr;
+  }
+  .gallery{
+    grid-template-columns:1fr;
+  }
+  .hero-ghost{
+    right:0;
+    top:18px;
+    font-size:clamp(64px, 18vw, 120px);
+  }
 }
 
-/* hide Marketing & Strategy Specialist on phones */
-@media(max-width:420px){
-  .brand .tag{display:none;}
+@media (max-width:640px){
+  .hero-title{
+    font-size:clamp(54px, 17vw, 92px);
+    line-height:.92;
+  }
+  .hero-sub{
+    font-size:16px;
+  }
+  .offclock{
+    grid-template-columns:1fr;
+    align-items:start;
+  }
+  .footer{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .media-card.tall{min-height:440px}
+  .media-card.mid{min-height:320px}
+  .media-card.small{min-height:260px}
 }
 </style>
 </head>
 
 <body>
-<!-- colorful moving blocks -->
+
 <div class="bg-blocks" aria-hidden="true">
-  <div class="block b1" data-speed="0.18" data-rot="0.03"></div>
-  <div class="block b2" data-speed="0.10" data-rot="-0.02"></div>
-  <div class="block b3" data-speed="0.22" data-rot="0.035"></div>
-  <div class="block b4" data-speed="0.14" data-rot="-0.03"></div>
+  <div class="bg-block bg-1" data-speed="0.16" data-rot="0.025"></div>
+  <div class="bg-block bg-2" data-speed="0.10" data-rot="-0.02"></div>
+  <div class="bg-block bg-3" data-speed="0.22" data-rot="0.03"></div>
+  <div class="bg-block bg-4" data-speed="0.12" data-rot="-0.018"></div>
 </div>
 
 <div class="cursor-blob"></div>
 
-<div class="nav">
-  <div class="nav-inner">
-    <div class="brand">
-      <div class="name">Caspar Wackrow</div>
-      <div class="tag">Marketing & Strategy Specialist</div>
-    </div>
+<aside class="side-rail">
+  <div class="side-brand">Caspar Wackrow</div>
 
-    <div class="navlinks">
-      <a class="is-active" href="index.html">Home</a>
-      <a href="work.html">Work</a>
-      <a class="cta" href="#contact"><span class="dot"></span>Available</a>
-    </div>
+  <nav class="side-nav">
+    <a class="active" href="#top">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="side-availability">Available</div>
+</aside>
+
+<div class="mobile-top">
+  <div class="mobile-brand">Caspar Wackrow</div>
+  <div class="mobile-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
   </div>
 </div>
 
-<main class="wrap">
+<div class="page">
+  <main class="main">
+    <div class="container">
 
-  <section class="hero" id="top">
-    <div>
-      <!-- NOTE: keep your exact wording, we’ll split into letters in JS -->
-      <h1 class="hero-title" id="heroTitle">It's not luck,<br>It's storytelling.</h1>
+      <section class="hero" id="top">
+        <div class="hero-left">
+          <div class="eyebrow">Marketing & Strategy Specialist</div>
 
-      <div class="hero-buttons">
-        <a class="primary-btn" href="work.html">View my work →</a>
-      </div>
-    </div>
+          <div class="hero-title-wrap">
+            <div class="hero-ghost">STORY<br>TELLING</div>
 
-    <div class="hero-card">
-      <img class="portrait" src="assets/headshot.jpg" alt="Caspar headshot">
-      <div class="cap">
-        <div class="cap-inner">
-          <div>
-            <div class="cap-title">Caspar Wackrow</div>
+            <h1 class="hero-title" id="heroTitle">
+              <span class="line">It's not luck,</span>
+              <span class="line">It's storytelling.</span>
+            </h1>
           </div>
-          <a href="work.html">Work →</a>
+
+          <p class="hero-sub">
+            I help brands grow by combining strategy, branding, content, websites, and sales into work that feels clear, cinematic, and worth paying attention to.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">View my work →</a>
+            <a class="btn" href="off-the-clock.html">Off the clock →</a>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <h2 class="section-title">What I do</h2>
+        <aside class="profile-card">
+          <div class="profile-image-wrap">
+            <img class="profile-image" src="assets/headshot.jpg" alt="Caspar headshot">
+          </div>
 
-    <p class="about">
-      I’m in my final year studying marketing and strategy at the University of Canterbury.
-      I help businesses think through how they want to show up, and then help build the pieces that make it happen — strategy, branding, ads, social content, websites, and sales.
-      I enjoy working across the whole process, from the early idea to the finished result.
-    </p>
+          <div class="profile-body">
+            <div class="profile-top">
+              <div>
+                <div class="profile-name">Caspar<br>Wackrow</div>
+                <div class="profile-role">Marketing & Strategy Specialist</div>
+              </div>
+              <div class="profile-chip">Available</div>
+            </div>
 
-    <br>
+            <div class="profile-list">
+              <a class="profile-item" href="mailto:casparwack@gmail.com">
+                <div>
+                  <div class="profile-k">Email</div>
+                  <div class="profile-v">casparwack@gmail.com</div>
+                </div>
+                <div>↗</div>
+              </a>
 
-    <a class="primary-btn" href="off-the-clock.html">Off the clock →</a>
-  </section>
+              <a class="profile-item" href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank" rel="noopener">
+                <div>
+                  <div class="profile-k">LinkedIn</div>
+                  <div class="profile-v">/in/caspar-wackrow</div>
+                </div>
+                <div>↗</div>
+              </a>
 
-  <!-- FULL-WIDTH visual section -->
-  <section class="marquee full-bleed">
-    <div class="marquee-inner">
-      <!-- Set 1 -->
-      <img src="assets/IMG_2173.jpg" alt="Work image IMG_2173">
-      <img src="assets/DSC08893.jpg" alt="Work image DSC08893">
-      <img src="assets/IMG_2035.jpg" alt="Work image IMG_2035">
-      <img src="assets/DSC01055.jpg" alt="Work image DSC01055">
-      <img src="assets/IMG_2167.jpg" alt="Work image IMG_2167">
-      <img src="assets/DSC00432.jpg" alt="Work image DSC00432">
-      <img src="assets/IMG_2516.jpg" alt="Work image IMG_2516">
-      <img src="assets/DSC08892.jpg" alt="Work image DSC08892">
-      <img src="assets/IMG_2158.jpg" alt="Work image IMG_2158">
-      <img src="assets/DSC09994.jpg" alt="Work image DSC09994">
-      <img src="assets/IMG_2044.jpg" alt="Work image IMG_2044">
-      <img src="assets/DSC01029.jpg" alt="Work image DSC01029">
+              <a class="profile-item" href="#work">
+                <div>
+                  <div class="profile-k">Projects</div>
+                  <div class="profile-v">Selected creative work</div>
+                </div>
+                <div>↘</div>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </section>
 
-      <!-- Set 2 (duplicate for seamless loop) -->
-      <img src="assets/IMG_2173.jpg" alt="">
-      <img src="assets/DSC08893.jpg" alt="">
-      <img src="assets/IMG_2035.jpg" alt="">
-      <img src="assets/DSC01055.jpg" alt="">
-      <img src="assets/IMG_2167.jpg" alt="">
-      <img src="assets/DSC00432.jpg" alt="">
-      <img src="assets/IMG_2516.jpg" alt="">
-      <img src="assets/DSC08892.jpg" alt="">
-      <img src="assets/IMG_2158.jpg" alt="">
-      <img src="assets/DSC09994.jpg" alt="">
-      <img src="assets/IMG_2044.jpg" alt="">
-      <img src="assets/DSC01029.jpg" alt="">
-    </div>
-  </section>
+      <section class="section" id="about">
+        <div class="section-grid">
+          <div class="section-label">About</div>
 
-  <section class="section" id="contact">
-    <h2 class="section-title">Contact</h2>
+          <div class="section-content">
+            <h2 class="section-title">What I do</h2>
 
-    <div class="contact">
-      <a href="mailto:casparwack@gmail.com">
-        <div>
-          <div class="k">Email</div>
-          <div class="v">casparwack@gmail.com</div>
+            <div class="section-copy">
+              I’m in my final year studying marketing and strategy at the University of Canterbury.
+              I help businesses think through how they want to show up, and then help build the pieces that make it happen — strategy, branding, ads, social content, websites, and sales.
+              I enjoy working across the whole process, from the early idea to the finished result.
+            </div>
+
+            <div class="stat-row">
+              <div class="stat">
+                <div class="stat-num">Strategy</div>
+                <div class="stat-label">Positioning, brand direction, and figuring out how a business should show up.</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-num">Content</div>
+                <div class="stat-label">Cinematic visuals, social assets, ads, and creative that feels premium and intentional.</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-num">Execution</div>
+                <div class="stat-label">Turning a good idea into the finished thing — quickly, clearly, and without losing the feel.</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>↗</div>
-      </a>
+      </section>
 
-      <a href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank" rel="noopener">
-        <div>
-          <div class="k">LinkedIn</div>
-          <div class="v">/in/caspar-wackrow</div>
+      <section class="section" id="work">
+        <div class="section-grid">
+          <div class="section-label">Selected Work</div>
+
+          <div class="section-content">
+            <h2 class="section-title">Media that carries a brand properly.</h2>
+
+            <div class="gallery">
+              <div class="stack">
+                <div class="media-card tall">
+                  <img src="assets/IMG_2173.jpg" alt="Work image IMG_2173">
+                  <div class="media-meta">
+                    <div>
+                      <div class="media-title">Brand Visuals</div>
+                      <div class="media-tag">Creative Direction</div>
+                    </div>
+                    <div>01</div>
+                  </div>
+                </div>
+
+                <div class="media-card small">
+                  <img src="assets/DSC08893.jpg" alt="Work image DSC08893">
+                  <div class="media-meta">
+                    <div>
+                      <div class="media-title">Content Systems</div>
+                      <div class="media-tag">Social + Web</div>
+                    </div>
+                    <div>02</div>
+                  </div>
+                </div>
+
+                <div class="media-card mid">
+                  <img src="assets/IMG_2035.jpg" alt="Work image IMG_2035">
+                  <div class="media-meta">
+                    <div>
+                      <div class="media-title">Campaign Feel</div>
+                      <div class="media-tag">Storytelling</div>
+                    </div>
+                    <div>03</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stack">
+                <div class="media-card small">
+                  <img src="assets/DSC01055.jpg" alt="Work image DSC01055">
+                  <div class="media-meta">
+                    <div>
+                      <div class="media-title">Product Presence</div>
+                      <div class="media-tag">Brand Assets</div>
+                    </div>
+                    <div>04</div>
+                  </div>
+                </div>
+
+                <div class="media-card tall">
+                  <img src="assets/IMG_2167.jpg" alt="Work image IMG_2167">
+                  <div class="media-meta">
+                    <div>
+                      <div class="media-title">Premium Content</div>
+                      <div class="media-tag">Photo + Motion</div>
+                    </div>
+                    <div>05</div>
+                  </div>
+                </div>
+
+                <div class="media-card small">
+                  <img src="assets/DSC00432.jpg" alt="Work image DSC00432">
+                  <div class="media-meta">
+                    <div>
+                      <div class="media-title">Brand Moments</div>
+                      <div class="media-tag">Experience</div>
+                    </div>
+                    <div>06</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:18px;">
+              <a class="btn btn-primary" href="work.html">See more work →</a>
+            </div>
+          </div>
         </div>
-        <div>↗</div>
-      </a>
+      </section>
+
+      <section class="section">
+        <div class="section-grid">
+          <div class="section-label">Off the Clock</div>
+
+          <div class="section-content">
+            <div class="offclock">
+              <div class="offclock-copy">
+                Outside of the work itself, this is the slightly more personal side — what I pay attention to, what I’m into, and the things that shape how I think and create.
+              </div>
+              <a class="btn" href="off-the-clock.html">Open page →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-grid">
+          <div class="section-label">Contact</div>
+
+          <div class="section-content">
+            <h2 class="section-title">Let’s work together.</h2>
+
+            <div class="section-copy">
+              Whether it’s content, branding, website work, or helping a business sharpen how it presents itself, feel free to reach out.
+            </div>
+
+            <div class="hero-actions" style="margin-top:24px;">
+              <a class="btn btn-primary" href="mailto:casparwack@gmail.com">casparwack@gmail.com ↗</a>
+              <a class="btn" href="https://www.linkedin.com/in/caspar-wackrow-b16501310" target="_blank" rel="noopener">LinkedIn ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> Caspar Wackrow</div>
+        <div>Marketing & Strategy Specialist</div>
+      </footer>
+
     </div>
-
-    <footer>
-      <div>© <span id="year"></span> Caspar Wackrow</div>
-      <div><a href="work.html">Work</a></div>
-    </footer>
-  </section>
-
-</main>
+  </main>
+</div>
 
 <script>
-/* year */
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* mouse blob */
+/* cursor blob */
 if (window.matchMedia("(hover:hover)").matches) {
   const blob = document.querySelector(".cursor-blob");
-
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
-  let x = mouseX, y = mouseY, vx = 0, vy = 0;
+  let x = mouseX;
+  let y = mouseY;
+  let vx = 0;
+  let vy = 0;
 
   const stiffness = 0.08;
   const damping = 0.78;
@@ -572,13 +967,12 @@ if (window.matchMedia("(hover:hover)").matches) {
     mouseY = e.clientY;
   });
 
-  function animate() {
+  function animateBlob() {
     const dx = mouseX - x;
     const dy = mouseY - y;
 
     vx += dx * stiffness;
     vy += dy * stiffness;
-
     vx *= damping;
     vy *= damping;
 
@@ -586,116 +980,99 @@ if (window.matchMedia("(hover:hover)").matches) {
     y += vy;
 
     blob.style.transform = `translate3d(${x - 110}px, ${y - 110}px, 0)`;
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateBlob);
   }
-  animate();
+  animateBlob();
 }
 
-/* split hero title into letter spans (for fall-apart effect) */
+/* split title for letter motion */
 (function splitTitle(){
-  const el = document.getElementById("heroTitle");
-  if(!el) return;
+  const title = document.getElementById("heroTitle");
+  if (!title) return;
 
-  const raw = el.innerHTML; // contains <br>
-  const parts = raw.split("<br>");
+  const lines = Array.from(title.querySelectorAll(".line"));
+  lines.forEach((line, lineIndex) => {
+    const text = line.textContent;
+    line.innerHTML = "";
 
-  const makeLine = (text) => {
-    const frag = document.createDocumentFragment();
-    for(let i=0;i<text.length;i++){
-      const ch = text[i];
-      if(ch === " "){
-        const s = document.createElement("span");
-        s.className = "ch space";
-        s.innerHTML = "&nbsp;";
-        s.dataset.i = i;
-        frag.appendChild(s);
-        continue;
-      }
-      const s = document.createElement("span");
-      s.className = "ch";
-      s.textContent = ch;
-      s.dataset.i = i;
-      frag.appendChild(s);
-    }
-    return frag;
-  };
-
-  el.innerHTML = "";
-  parts.forEach((line, idx) => {
-    const lineText = line.replace(/<[^>]*>/g,"");
-    const lineWrap = document.createElement("span");
-    lineWrap.style.display = "inline-block";
-    lineWrap.appendChild(makeLine(lineText));
-    el.appendChild(lineWrap);
-    if(idx !== parts.length - 1){
-      el.appendChild(document.createElement("br"));
-    }
-  });
-
-  // seed per character for consistent "scatter"
-  const chars = el.querySelectorAll(".ch");
-  chars.forEach((c, n) => {
-    c.dataset.seedX = (Math.sin(n * 999) * 10000) % 1;
-    c.dataset.seedY = (Math.cos(n * 777) * 10000) % 1;
-    c.dataset.seedR = (Math.sin(n * 333) * 10000) % 1;
+    [...text].forEach((char, i) => {
+      const span = document.createElement("span");
+      span.className = "ch";
+      span.innerHTML = char === " " ? "&nbsp;" : char;
+      span.dataset.seedX = ((Math.sin((i + 1) * 91 + lineIndex * 17) + 1) / 2).toFixed(4);
+      span.dataset.seedY = ((Math.cos((i + 1) * 67 + lineIndex * 11) + 1) / 2).toFixed(4);
+      span.dataset.seedR = ((Math.sin((i + 1) * 43 + lineIndex * 9) + 1) / 2).toFixed(4);
+      line.appendChild(span);
+    });
   });
 })();
 
-/* scroll-driven background blocks + title fall-apart */
-(function scrollFX(){
-  const blocks = Array.from(document.querySelectorAll(".bg-blocks .block"));
-  const title = document.getElementById("heroTitle");
-  const chars = title ? Array.from(title.querySelectorAll(".ch")) : [];
+/* scroll effects */
+(function(){
+  const blocks = Array.from(document.querySelectorAll(".bg-block"));
   const hero = document.querySelector(".hero");
+  const chars = Array.from(document.querySelectorAll(".hero-title .ch"));
+  const navLinks = Array.from(document.querySelectorAll('.side-nav a'));
 
-  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+  function clamp(v, min, max){
+    return Math.min(max, Math.max(min, v));
+  }
 
-  function tick(){
+  function update(){
     const y = window.scrollY || 0;
 
-    // parallax blocks
-    blocks.forEach((b, idx) => {
-      const sp = parseFloat(b.dataset.speed || "0.15");
-      const rot = parseFloat(b.dataset.rot || "0.02");
-      const driftX = Math.sin((y * 0.001) + idx) * 18;
-      const driftY = y * sp * -0.55;
-      const r = (y * rot) * 0.12;
-      b.style.transform = `translate3d(${driftX}px, ${driftY}px, 0) rotate(${r}deg)`;
+    blocks.forEach((block, i) => {
+      const speed = parseFloat(block.dataset.speed || "0.12");
+      const rot = parseFloat(block.dataset.rot || "0.02");
+      const tx = Math.sin((y * 0.001) + i) * 18;
+      const ty = -y * speed * 0.55;
+      const rz = y * rot * 0.08;
+      block.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${rz}deg)`;
     });
 
-    // title fall-apart progress
-    if(hero && chars.length){
+    if (hero && chars.length) {
       const rect = hero.getBoundingClientRect();
-      // progress starts once hero begins leaving the viewport
-      const start = 80;              // pixels before effect starts
-      const range = 420;             // how quickly it falls apart
-      const p = clamp((start - rect.top) / range, 0, 1);
+      const progress = clamp((80 - rect.top) / 420, 0, 1);
+      const breathe = Math.sin(Date.now() * 0.0012) * 0.6;
 
-      // subtle pre-motion even at rest (feels premium)
-      const breathe = Math.sin((Date.now() * 0.0012)) * 0.6;
+      chars.forEach((char, i) => {
+        const sx = parseFloat(char.dataset.seedX || "0");
+        const sy = parseFloat(char.dataset.seedY || "0");
+        const sr = parseFloat(char.dataset.seedR || "0");
 
-      chars.forEach((c, n) => {
-        const sx = parseFloat(c.dataset.seedX || "0");
-        const sy = parseFloat(c.dataset.seedY || "0");
-        const sr = parseFloat(c.dataset.seedR || "0");
+        const tx = (sx - 0.5) * 180 * progress;
+        const ty = sy * 220 * progress;
+        const rz = (sr - 0.5) * 60 * progress;
 
-        // scatter amounts
-        const tx = (sx - 0.5) * 180 * p;
-        const ty = (sy) * 220 * p;         // fall downward
-        const rz = (sr - 0.5) * 60 * p;
+        const lift = (1 - progress) * (breathe + (i % 7) * 0.05);
+        const opacity = 1 - (progress * 0.32);
 
-        const lift = (1 - p) * (breathe + (n % 7) * 0.05);
-        const opacity = 1 - (p * 0.35);
-
-        c.style.transform = `translate3d(${tx}px, ${ty - lift}px, 0) rotate(${rz}deg)`;
-        c.style.opacity = opacity.toFixed(3);
+        char.style.transform = `translate3d(${tx}px, ${ty - lift}px, 0) rotate(${rz}deg)`;
+        char.style.opacity = opacity.toFixed(3);
       });
     }
 
-    requestAnimationFrame(tick);
+    const sections = [
+      { id: "#top", top: 0 },
+      ...Array.from(document.querySelectorAll("section[id]")).map(sec => ({
+        id: `#${sec.id}`,
+        top: sec.offsetTop - 120
+      }))
+    ];
+
+    let current = "#top";
+    sections.forEach(sec => {
+      if (y >= sec.top) current = sec.id;
+    });
+
+    navLinks.forEach(link => {
+      link.classList.toggle("active", link.getAttribute("href") === current);
+    });
+
+    requestAnimationFrame(update);
   }
 
-  requestAnimationFrame(tick);
+  requestAnimationFrame(update);
 })();
 </script>
 
