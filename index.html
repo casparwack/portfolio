@@ -27,13 +27,10 @@
 
 body{
 margin:0;
-
-/* NEW BACKGROUND */
-background-image:url("assets/background.png");
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-
+background:
+radial-gradient(circle at 20% 20%, rgba(45,106,79,.15), transparent 40%),
+radial-gradient(circle at 80% 80%, rgba(45,106,79,.08), transparent 40%),
+var(--bg);
 color:var(--text);
 font-family:Inter,system-ui;
 letter-spacing:-0.01em;
@@ -41,19 +38,7 @@ overflow-x:hidden;
 position:relative;
 }
 
-/* DARK OVERLAY so text stays readable */
-
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.55);
-z-index:0;
-pointer-events:none;
-}
-
-/* subtle grain */
-
+/* grain */
 body::after{
 content:"";
 position:fixed;
@@ -62,7 +47,16 @@ left:0;
 width:100%;
 height:100%;
 background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-opacity:.05;
+opacity:.04;
+pointer-events:none;
+z-index:0;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:-40%;
+background:radial-gradient(circle at 30% 20%, rgba(45,106,79,.10), transparent 55%);
 pointer-events:none;
 z-index:0;
 }
@@ -77,12 +71,17 @@ position:relative;
 z-index:2;
 }
 
+.full-bleed{
+width:100vw;
+margin-left:calc(50% - 50vw);
+}
+
 /* NAV */
 
 .nav{
 position:sticky;
 top:0;
-background:rgba(7,7,7,.75);
+background:rgba(7,7,7,.8);
 backdrop-filter:blur(10px);
 border-bottom:1px solid var(--line);
 z-index:10;
@@ -159,9 +158,9 @@ background:var(--accent);
 /* HERO */
 
 .hero{
-padding:120px 0 60px;
+padding:80px 0 40px;
 display:grid;
-grid-template-columns:1.3fr .7fr;
+grid-template-columns:1.2fr .8fr;
 gap:28px;
 align-items:center;
 }
@@ -170,32 +169,27 @@ align-items:center;
 
 h1{
 font-family:"Plus Jakarta Sans", sans-serif;
-font-size:72px;
-line-height:.95;
+font-size:64px;
+line-height:1;
 margin:10px 0;
 }
 
-/* MASSIVE DESKTOP HEADING */
+/* DESKTOP MASSIVE HEADING */
 
 @media (min-width:1000px){
 
 h1{
-font-size:160px;
-line-height:.9;
-letter-spacing:-0.05em;
-
-/* allows it to break outside the container */
-width:150%;
-margin-left:-120px;
-
+font-size:120px;
+line-height:.92;
+letter-spacing:-0.04em;
+width:140%;
+margin-left:-80px;
 }
 
 }
-
-/* BUTTON */
 
 .hero-buttons{
-margin-top:28px;
+margin-top:26px;
 }
 
 .primary-btn{
@@ -221,7 +215,6 @@ transform:translateY(-1px);
 border-radius:var(--radius);
 border:1px solid var(--line);
 overflow:hidden;
-background:#000;
 }
 
 .portrait{
@@ -303,20 +296,66 @@ display:flex;
 justify-content:space-between;
 }
 
-/* MOBILE */
+/* MARQUEE */
+
+.marquee{
+overflow:hidden;
+white-space:nowrap;
+border-top:1px solid var(--line);
+border-bottom:1px solid var(--line);
+padding:18px 0;
+}
+
+.marquee-inner{
+display:inline-flex;
+gap:20px;
+animation:scroll 35s linear infinite;
+align-items:center;
+}
+
+.marquee img{
+height:140px;
+border-radius:14px;
+border:1px solid var(--line);
+transition:transform .35s ease;
+}
+
+.marquee img:hover{
+transform:scale(1.06);
+}
+
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+
+/* CURSOR */
+
+.cursor-blob{
+position:fixed;
+left:0;
+top:0;
+width:220px;
+height:220px;
+border-radius:999px;
+background:radial-gradient(circle, rgba(45,106,79,.6) 0%, rgba(45,106,79,0) 70%);
+filter:blur(6px);
+pointer-events:none;
+z-index:1;
+transform:translate3d(-999px,-999px,0);
+}
+
+@media (hover:none) and (pointer:coarse){
+.cursor-blob{display:none;}
+}
 
 @media(max-width:900px){
 .hero{grid-template-columns:1fr}
 .contact{grid-template-columns:1fr}
 }
 
-@media(max-width:600px){
-h1{
-font-size:56px;
-line-height:1;
-width:100%;
-margin-left:0;
-}
+@media(max-width:500px){
+h1{font-size:40px;line-height:1.1;}
 }
 
 @media(max-width:420px){
@@ -327,6 +366,8 @@ margin-left:0;
 </head>
 
 <body>
+
+<div class="cursor-blob"></div>
 
 <div class="nav">
 <div class="nav-inner">
@@ -350,13 +391,11 @@ margin-left:0;
 <section class="hero">
 
 <div>
-
 <h1>It's not luck,<br>It's storytelling.</h1>
 
 <div class="hero-buttons">
 <a class="primary-btn" href="work.html">View my work →</a>
 </div>
-
 </div>
 
 <div class="hero-card">
@@ -373,8 +412,3 @@ margin-left:0;
 </div>
 
 </section>
-
-</main>
-
-</body>
-</html>
