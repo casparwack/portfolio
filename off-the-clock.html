@@ -265,17 +265,12 @@ body::after{
 
 /* HERO */
 .hero{
-  min-height:78vh;
-  display:grid;
-  grid-template-columns:minmax(0,1.06fr) 390px;
-  gap:34px;
-  align-items:start;
-  padding:28px 0 40px;
+  min-height:auto;
+  padding:38px 0 34px;
 }
 
 .hero-left{
   position:relative;
-  padding-top:24px;
   min-width:0;
 }
 
@@ -287,7 +282,7 @@ body::after{
   text-transform:uppercase;
   letter-spacing:.2em;
   color:var(--muted);
-  margin-bottom:22px;
+  margin-bottom:16px;
 }
 
 .eyebrow::before{
@@ -299,9 +294,10 @@ body::after{
 
 .hero-title-wrap{
   position:relative;
-  min-height:46vh;
+  min-height:auto;
   display:flex;
   align-items:flex-start;
+  margin-bottom:10px;
 }
 
 .hero-title{
@@ -317,106 +313,11 @@ body::after{
 }
 
 .hero-sub{
-  max-width:620px;
-  margin-top:18px;
+  max-width:700px;
+  margin-top:0;
   font-size:18px;
   line-height:1.75;
   color:var(--muted);
-}
-
-/* profile card */
-.profile-card{
-  position:sticky;
-  top:28px;
-  border:1px solid var(--line);
-  border-radius:30px;
-  background:rgba(16,16,18,.82);
-  backdrop-filter:blur(12px);
-  overflow:hidden;
-  box-shadow:0 30px 80px rgba(0,0,0,.28);
-}
-
-.profile-image-wrap{
-  padding:14px;
-}
-
-.profile-image{
-  width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  border-radius:20px;
-}
-
-.profile-body{
-  padding:0 18px 18px;
-}
-
-.profile-top{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:flex-start;
-  margin-bottom:18px;
-}
-
-.profile-name{
-  font-family:"Plus Jakarta Sans",sans-serif;
-  font-size:22px;
-  font-weight:700;
-  line-height:1.05;
-}
-
-.profile-role{
-  margin-top:7px;
-  font-size:13px;
-  line-height:1.5;
-  color:var(--muted);
-}
-
-.profile-chip{
-  border:1px solid rgba(105,216,110,.24);
-  background:rgba(105,216,110,.08);
-  color:var(--text);
-  border-radius:999px;
-  padding:8px 10px;
-  font-size:11px;
-  white-space:nowrap;
-}
-
-.profile-list{
-  display:grid;
-  gap:10px;
-  margin-top:16px;
-}
-
-.profile-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  padding:13px 14px;
-  border-radius:18px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.02);
-  transition:.25s ease;
-}
-
-.profile-item:hover{
-  background:rgba(255,255,255,.05);
-  border-color:var(--line-strong);
-}
-
-.profile-k{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.14em;
-  color:var(--muted);
-  margin-bottom:3px;
-}
-
-.profile-v{
-  font-size:14px;
-  line-height:1.4;
 }
 
 /* sections */
@@ -459,6 +360,13 @@ body::after{
   color:var(--muted);
   line-height:1.9;
   box-shadow:0 14px 40px rgba(0,0,0,.12);
+  transition:transform .5s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.18);
+  box-shadow:0 20px 48px rgba(0,0,0,.18);
 }
 
 /* playlist */
@@ -473,26 +381,27 @@ body::after{
   border-radius:24px;
   overflow:hidden;
   background:rgba(255,255,255,.02);
-  transition:transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  transition:transform .28s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
   box-shadow:0 14px 40px rgba(0,0,0,.10);
 }
 
 .artist:hover{
-  transform:translateY(-5px);
+  transform:translateY(-6px) scale(1.015);
   border-color:rgba(255,255,255,.22);
   background:rgba(255,255,255,.03);
-  box-shadow:0 22px 50px rgba(0,0,0,.18);
+  box-shadow:0 24px 52px rgba(0,0,0,.20);
 }
 
 .artist img{
   width:100%;
   height:180px;
   object-fit:cover;
-  transition:transform .6s ease;
+  transition:transform .7s ease, filter .35s ease;
 }
 
 .artist:hover img{
-  transform:scale(1.04);
+  transform:scale(1.06);
+  filter:contrast(1.04) saturate(1.04);
 }
 
 .artist-info{
@@ -525,17 +434,40 @@ body::after{
   border:1px solid var(--line);
   background:rgba(255,255,255,.02);
   box-shadow:0 14px 40px rgba(0,0,0,.10);
+  transition:transform .28s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.photo:hover{
+  transform:translateY(-6px) scale(1.01);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:0 24px 52px rgba(0,0,0,.20);
 }
 
 .photo img{
   width:100%;
   height:260px;
   object-fit:cover;
-  transition:transform .65s ease;
+  transition:transform .75s ease, filter .35s ease;
 }
 
 .photo:hover img{
-  transform:scale(1.06);
+  transform:scale(1.08);
+  filter:contrast(1.04) saturate(1.04);
+}
+
+/* scroll text motion */
+.reveal-text{
+  opacity:.78;
+  transform:translate3d(0,26px,0);
+  transition:
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    opacity .9s cubic-bezier(.2,.8,.2,1);
+  will-change:transform, opacity;
+}
+
+.reveal-text.in-view{
+  opacity:1;
+  transform:translate3d(0,0,0);
 }
 
 /* footer */
@@ -569,18 +501,6 @@ body::after{
 }
 
 /* responsive */
-@media (max-width:1280px){
-  .hero{
-    grid-template-columns:minmax(0,1fr) 360px;
-    gap:30px;
-  }
-
-  .hero-title{
-    font-size:clamp(54px, 7.6vw, 118px);
-    max-width:8.9ch;
-  }
-}
-
 @media (max-width:980px){
   :root{ --sidebar:0px; }
 
@@ -634,20 +554,12 @@ body::after{
   }
 
   .hero{
-    min-height:auto;
-    grid-template-columns:1fr;
     padding-top:28px;
-    gap:26px;
   }
 
   .hero-title{
     font-size:clamp(48px, 10.5vw, 92px);
     max-width:8.7ch;
-  }
-
-  .profile-card{
-    position:relative;
-    top:auto;
   }
 
   .section-grid{
@@ -665,10 +577,6 @@ body::after{
 }
 
 @media (max-width:640px){
-  .hero-title-wrap{
-    min-height:auto;
-  }
-
   .hero-title{
     font-size:clamp(38px, 11.6vw, 58px);
     line-height:.98;
@@ -749,58 +657,24 @@ body::after{
 
       <section class="hero">
         <div class="hero-left">
-          <div class="eyebrow">Off the clock</div>
+          <div class="eyebrow reveal-text">Off the clock</div>
 
           <div class="hero-title-wrap">
-            <h1 class="hero-title">Off the clock</h1>
+            <h1 class="hero-title reveal-text">Off the clock</h1>
           </div>
 
-          <p class="hero-sub">
+          <p class="hero-sub reveal-text">
             This is the part of me that doesn’t show up on LinkedIn.
             The music I work to, the sport that clears my head, and the things that keep me grounded outside of marketing.
           </p>
         </div>
-
-        <aside class="profile-card">
-          <div class="profile-image-wrap">
-            <img class="profile-image" src="assets/headshot.jpg" alt="Caspar headshot">
-          </div>
-
-          <div class="profile-body">
-            <div class="profile-top">
-              <div>
-                <div class="profile-name">Caspar<br>Wackrow</div>
-                <div class="profile-role">Outside work</div>
-              </div>
-              <div class="profile-chip">Off duty</div>
-            </div>
-
-            <div class="profile-list">
-              <a class="profile-item" href="index.html">
-                <div>
-                  <div class="profile-k">Back to</div>
-                  <div class="profile-v">Main page</div>
-                </div>
-                <div>↗</div>
-              </a>
-
-              <a class="profile-item" href="work.html">
-                <div>
-                  <div class="profile-k">Portfolio</div>
-                  <div class="profile-v">See my work</div>
-                </div>
-                <div>↗</div>
-              </a>
-            </div>
-          </div>
-        </aside>
       </section>
 
       <section class="section">
         <div class="section-grid">
-          <div class="section-label">About me</div>
+          <div class="section-label reveal-text">About me</div>
           <div class="section-content">
-            <h2 class="section-title">The real me</h2>
+            <h2 class="section-title reveal-text">The real me</h2>
 
             <div class="card">
               Outside of work I’m a 20-year-old uni student and the big brother to three other siblings. I currently live in a flat with seven boys, which means most weeknights involve training, uni work, and watching questionable romance movies. I’m a pretty social person, so weekends are usually spent with mates and tend to be slightly unproductive. I also get pretty fixated on learning things, which means there’s normally a new hobby or interest on the go.<br><br>
@@ -812,9 +686,9 @@ body::after{
 
       <section class="section">
         <div class="section-grid">
-          <div class="section-label">Music</div>
+          <div class="section-label reveal-text">Music</div>
           <div class="section-content">
-            <h2 class="section-title">Work playlist</h2>
+            <h2 class="section-title reveal-text">Work playlist</h2>
 
             <div class="playlist">
               <div class="artist">
@@ -847,9 +721,9 @@ body::after{
 
       <section class="section">
         <div class="section-grid">
-          <div class="section-label">Sport</div>
+          <div class="section-label reveal-text">Sport</div>
           <div class="section-content">
-            <h2 class="section-title">Kickboxing & Muay Thai</h2>
+            <h2 class="section-title reveal-text">Kickboxing & Muay Thai</h2>
 
             <div class="card" style="margin-bottom:20px;">
               Kickboxing and Muay Thai are a huge part of my life.
@@ -929,6 +803,24 @@ if (window.matchMedia("(hover:hover)").matches) {
 
   animate();
 }
+
+/* subtle text reveal / top-of-page motion */
+(function(){
+  const items = Array.from(document.querySelectorAll(".reveal-text"));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("in-view");
+      }
+    });
+  }, {
+    threshold: 0.18,
+    rootMargin: "0px 0px -10% 0px"
+  });
+
+  items.forEach((item) => io.observe(item));
+})();
 </script>
 
 </body>
