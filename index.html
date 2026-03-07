@@ -11,15 +11,15 @@
 
 <style>
 :root{
-  --bg:#080809;
-  --panel:#101012;
-  --panel-2:#151517;
-  --text:#f5f5f5;
-  --muted:rgba(245,245,245,.68);
-  --line:rgba(255,255,255,.10);
-  --line-strong:rgba(255,255,255,.16);
-  --accent:#69d86e;
-  --accent-soft:rgba(105,216,110,.10);
+  --bg:#f3f3ef;
+  --panel:#f7f7f3;
+  --panel-2:#fbfbf8;
+  --text:#0c0c0d;
+  --muted:rgba(12,12,13,.62);
+  --line:#ffffff;
+  --line-strong:#ffffff;
+  --accent:#2f7d45;
+  --accent-soft:rgba(47,125,69,.10);
   --radius:26px;
   --max:1440px;
   --sidebar:120px;
@@ -41,15 +41,15 @@ body{
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
-/* darker lighting only, no green top-right glow */
+/* soft light atmosphere */
 body::before{
   content:"";
   position:fixed;
   inset:-20%;
   background:
-    radial-gradient(circle at 14% 22%, rgba(255,255,255,.04), transparent 26%),
-    radial-gradient(circle at 62% 78%, rgba(255,255,255,.028), transparent 24%);
-  animation:ambientGlow 18s ease-in-out infinite alternate;
+    radial-gradient(circle at 14% 22%, rgba(255,255,255,.88), transparent 22%),
+    radial-gradient(circle at 72% 76%, rgba(255,255,255,.62), transparent 26%);
+  animation:ambientGlow 16s ease-in-out infinite alternate;
   pointer-events:none;
   z-index:0;
 }
@@ -61,8 +61,8 @@ body::after{
   inset:0;
   z-index:1;
   pointer-events:none;
-  opacity:.06;
-  mix-blend-mode:overlay;
+  opacity:.11;
+  mix-blend-mode:multiply;
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
   background-size:220px 220px;
   animation:grain 1s steps(2) infinite;
@@ -80,80 +80,11 @@ body::after{
 @keyframes ambientGlow{
   0%{
     transform:translate3d(0,0,0) scale(1);
-    opacity:.92;
+    opacity:.95;
   }
   100%{
     transform:translate3d(.8%,-.8%,0) scale(1.02);
     opacity:1;
-  }
-}
-
-/* twinkling stars */
-.starfield{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:2;
-  overflow:hidden;
-}
-
-.star{
-  position:absolute;
-  width:10px;
-  height:10px;
-  opacity:.18;
-  transform:rotate(45deg) scale(.45);
-  border-radius:1px;
-  filter:drop-shadow(0 0 6px currentColor);
-  animation:twinkle var(--dur, 7s) ease-in-out infinite;
-  animation-delay:var(--delay, 0s);
-}
-
-.star::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:currentColor;
-  clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-}
-
-.star::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:18px;
-  height:1px;
-  background:currentColor;
-  opacity:.45;
-  transform:translate(-50%,-50%) rotate(45deg);
-  transform-origin:center;
-}
-
-.star.blue{ color:rgba(92,180,255,.92); }
-.star.green{ color:rgba(105,216,110,.9); }
-.star.purple{ color:rgba(168,125,255,.92); }
-
-@keyframes twinkle{
-  0%, 70%, 100%{
-    opacity:.08;
-    transform:rotate(45deg) scale(.42);
-  }
-  78%{
-    opacity:.22;
-    transform:rotate(45deg) scale(.62);
-  }
-  84%{
-    opacity:.95;
-    transform:rotate(45deg) scale(1);
-  }
-  90%{
-    opacity:.32;
-    transform:rotate(45deg) scale(.74);
-  }
-  95%{
-    opacity:.62;
-    transform:rotate(45deg) scale(.88);
   }
 }
 
@@ -171,7 +102,7 @@ body::after{
   width:var(--sidebar);
   height:100vh;
   border-right:1px solid var(--line);
-  background:rgba(16,16,18,.74);
+  background:rgba(255,255,255,.34);
   backdrop-filter:blur(14px);
   z-index:20;
   display:flex;
@@ -189,7 +120,7 @@ body::after{
   font-size:15px;
   letter-spacing:.18em;
   text-transform:uppercase;
-  color:rgba(245,245,245,.9);
+  color:rgba(12,12,13,.92);
 }
 
 .side-nav{
@@ -213,13 +144,13 @@ body::after{
   font-size:11px;
   line-height:1.15;
   color:var(--muted);
-  background:rgba(255,255,255,.02);
+  background:rgba(255,255,255,.42);
   transition:.25s ease;
 }
 
 .side-nav a:hover,
 .side-nav a.active{
-  background:rgba(255,255,255,.06);
+  background:rgba(255,255,255,.82);
   color:var(--text);
   border-color:var(--line-strong);
   transform:translateY(-1px);
@@ -243,7 +174,7 @@ body::after{
   height:8px;
   border-radius:999px;
   background:var(--accent);
-  box-shadow:0 0 18px rgba(105,216,110,.35);
+  box-shadow:0 0 0 6px rgba(47,125,69,.12);
   display:inline-block;
 }
 
@@ -289,7 +220,7 @@ body::after{
   content:"";
   width:32px;
   height:1px;
-  background:rgba(255,255,255,.24);
+  background:rgba(12,12,13,.18);
 }
 
 .hero-title-wrap{
@@ -309,6 +240,7 @@ body::after{
   width:100%;
   position:relative;
   z-index:2;
+  color:var(--text);
 }
 
 .hero-title .line{
@@ -346,25 +278,26 @@ body::after{
   padding:14px 18px;
   border-radius:999px;
   border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
+  background:rgba(255,255,255,.52);
   color:var(--text);
   font-size:14px;
   transition:.25s ease;
+  box-shadow:0 12px 30px rgba(0,0,0,.05);
 }
 
 .btn:hover{
   transform:translateY(-1px);
-  background:rgba(255,255,255,.06);
+  background:rgba(255,255,255,.9);
   border-color:var(--line-strong);
 }
 
 .btn-primary{
   background:var(--accent-soft);
-  border-color:rgba(105,216,110,.24);
+  border-color:rgba(47,125,69,.18);
 }
 
 .btn-primary:hover{
-  background:rgba(105,216,110,.16);
+  background:rgba(47,125,69,.16);
 }
 
 .work-feature-btn{
@@ -373,24 +306,18 @@ body::after{
   font-weight:700;
   letter-spacing:-0.01em;
   border-radius:999px;
-  background:linear-gradient(180deg, rgba(105,216,110,.24), rgba(105,216,110,.14));
-  border:1px solid rgba(105,216,110,.38);
+  background:linear-gradient(180deg, rgba(47,125,69,.20), rgba(47,125,69,.12));
+  border:1px solid rgba(47,125,69,.24);
   box-shadow:
-    0 14px 36px rgba(0,0,0,.26),
-    0 0 0 1px rgba(255,255,255,.04) inset,
-    0 0 24px rgba(105,216,110,.10);
+    0 14px 36px rgba(0,0,0,.08),
+    0 0 0 1px rgba(255,255,255,.48) inset;
 }
 
 .work-feature-btn:hover{
-  background:linear-gradient(180deg, rgba(105,216,110,.32), rgba(105,216,110,.20));
+  background:linear-gradient(180deg, rgba(47,125,69,.28), rgba(47,125,69,.18));
   transform:translateY(-2px) scale(1.015);
-  box-shadow:
-    0 18px 44px rgba(0,0,0,.30),
-    0 0 0 1px rgba(255,255,255,.05) inset,
-    0 0 30px rgba(105,216,110,.14);
 }
 
-/* removed storytelling shadow/ghost */
 .hero-ghost{
   display:none;
 }
@@ -401,10 +328,10 @@ body::after{
   top:28px;
   border:1px solid var(--line);
   border-radius:30px;
-  background:rgba(16,16,18,.82);
+  background:rgba(255,255,255,.62);
   backdrop-filter:blur(12px);
   overflow:hidden;
-  box-shadow:0 30px 80px rgba(0,0,0,.28);
+  box-shadow:0 30px 80px rgba(0,0,0,.08);
 }
 
 .profile-image-wrap{
@@ -435,6 +362,7 @@ body::after{
   font-size:22px;
   font-weight:700;
   line-height:1.05;
+  color:var(--text);
 }
 
 .profile-role{
@@ -445,8 +373,8 @@ body::after{
 }
 
 .profile-chip{
-  border:1px solid rgba(105,216,110,.24);
-  background:rgba(105,216,110,.08);
+  border:1px solid rgba(47,125,69,.18);
+  background:rgba(47,125,69,.08);
   color:var(--text);
   border-radius:999px;
   padding:8px 10px;
@@ -468,12 +396,12 @@ body::after{
   padding:13px 14px;
   border-radius:18px;
   border:1px solid var(--line);
-  background:rgba(255,255,255,.02);
+  background:rgba(255,255,255,.45);
   transition:.25s ease;
 }
 
 .profile-item:hover{
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.82);
   border-color:var(--line-strong);
 }
 
@@ -488,6 +416,7 @@ body::after{
 .profile-v{
   font-size:14px;
   line-height:1.4;
+  color:var(--text);
 }
 
 /* sections */
@@ -520,6 +449,7 @@ body::after{
   font-size:clamp(28px, 4vw, 56px);
   line-height:.98;
   letter-spacing:-0.05em;
+  color:var(--text);
 }
 
 .section-copy{
@@ -553,7 +483,7 @@ body::after{
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
   padding:22px 0;
-  background:rgba(255,255,255,.015);
+  background:rgba(255,255,255,.22);
 }
 
 .carousel-track{
@@ -572,8 +502,8 @@ body::after{
   border-radius:26px;
   overflow:hidden;
   border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
-  box-shadow:0 18px 40px rgba(0,0,0,.18);
+  background:rgba(255,255,255,.52);
+  box-shadow:0 18px 40px rgba(0,0,0,.08);
 }
 
 .carousel-card img{
@@ -601,7 +531,7 @@ body::after{
   padding:22px 24px;
   border:1px solid var(--line);
   border-radius:28px;
-  background:linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  background:rgba(255,255,255,.42);
 }
 
 .offclock-copy{
@@ -634,8 +564,8 @@ body::after{
   background:var(--accent);
   transform:translate3d(-999px,-999px,0);
   box-shadow:
-    0 0 0 2px rgba(255,255,255,.06),
-    0 6px 20px rgba(105,216,110,.28);
+    0 0 0 2px rgba(255,255,255,.7),
+    0 6px 20px rgba(47,125,69,.20);
 }
 
 .mobile-top{
@@ -679,7 +609,7 @@ body::after{
     justify-content:space-between;
     align-items:center;
     padding:16px 18px;
-    background:rgba(16,16,18,.9);
+    background:rgba(255,255,255,.64);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
   }
@@ -696,6 +626,7 @@ body::after{
     overflow:hidden;
     text-overflow:ellipsis;
     padding-right:10px;
+    color:var(--text);
   }
 
   .mobile-links{
@@ -713,6 +644,7 @@ body::after{
     font-size:12px;
     color:var(--muted);
     white-space:nowrap;
+    background:rgba(255,255,255,.56);
   }
 
   .main{
@@ -777,10 +709,11 @@ body::after{
     margin-bottom:8px;
   }
 
+  /* bigger on phone, fixed 2-line lockup */
   .hero-title{
-    font-size:clamp(34px, 10.6vw, 50px);
-    line-height:.94;
-    letter-spacing:-0.06em;
+    font-size:clamp(42px, 12.6vw, 58px);
+    line-height:.90;
+    letter-spacing:-0.075em;
     max-width:none;
     width:auto;
   }
@@ -818,11 +751,6 @@ body::after{
   .cursor-blob{
     display:none;
   }
-
-  .star{
-    width:8px;
-    height:8px;
-  }
 }
 
 @media (max-width:480px){
@@ -853,9 +781,9 @@ body::after{
   }
 
   .hero-title{
-    font-size:clamp(30px, 10.2vw, 44px);
-    line-height:.96;
-    letter-spacing:-0.055em;
+    font-size:clamp(40px, 12.4vw, 54px);
+    line-height:.90;
+    letter-spacing:-0.075em;
   }
 
   .hero-sub{
@@ -871,9 +799,9 @@ body::after{
 
 @media (max-width:390px){
   .hero-title{
-    font-size:29px;
-    line-height:.98;
-    letter-spacing:-0.05em;
+    font-size:36px;
+    line-height:.92;
+    letter-spacing:-0.068em;
   }
 
   .eyebrow{
@@ -888,23 +816,6 @@ body::after{
 </head>
 
 <body>
-
-<div class="starfield" aria-hidden="true">
-  <span class="star blue"   style="left:9%;  top:12%; --dur:8s;   --delay:0s;"></span>
-  <span class="star purple" style="left:22%; top:28%; --dur:11s;  --delay:.8s;"></span>
-  <span class="star green"  style="left:36%; top:16%; --dur:9s;   --delay:1.6s;"></span>
-  <span class="star blue"   style="left:48%; top:37%; --dur:13s;  --delay:2.4s;"></span>
-  <span class="star purple" style="left:63%; top:20%; --dur:10s;  --delay:3.2s;"></span>
-  <span class="star green"  style="left:77%; top:31%; --dur:12s;  --delay:1.2s;"></span>
-  <span class="star blue"   style="left:88%; top:14%; --dur:9.5s; --delay:2s;"></span>
-  <span class="star green"  style="left:14%; top:54%; --dur:14s;  --delay:.4s;"></span>
-  <span class="star purple" style="left:29%; top:68%; --dur:10.8s;--delay:1.4s;"></span>
-  <span class="star blue"   style="left:43%; top:58%; --dur:12.5s;--delay:2.8s;"></span>
-  <span class="star green"  style="left:57%; top:72%; --dur:15s;  --delay:.9s;"></span>
-  <span class="star purple" style="left:71%; top:63%; --dur:9.8s; --delay:1.9s;"></span>
-  <span class="star blue"   style="left:84%; top:78%; --dur:13.5s;--delay:3.1s;"></span>
-  <span class="star green"  style="left:92%; top:52%; --dur:11.4s;--delay:.6s;"></span>
-</div>
 
 <div class="cursor-blob"></div>
 
@@ -1126,8 +1037,11 @@ if (window.matchMedia("(hover:hover)").matches) {
   animateBlob();
 }
 
-/* split title for letter motion, but keep it normal at start */
+/* split title for letter motion */
 (function splitTitle(){
+  const isPhone = window.matchMedia("(max-width: 480px)").matches;
+  if (isPhone) return; /* no broken-letter effect on iPhone / phone */
+
   const title = document.getElementById("heroTitle");
   if (!title) return;
 
@@ -1152,6 +1066,7 @@ if (window.matchMedia("(hover:hover)").matches) {
 
 /* scroll effects */
 (function(){
+  const isPhone = window.matchMedia("(max-width: 480px)").matches;
   const hero = document.querySelector(".hero");
   const chars = Array.from(document.querySelectorAll(".hero-title .ch"));
   const navLinks = Array.from(document.querySelectorAll('.side-nav a'));
@@ -1163,7 +1078,7 @@ if (window.matchMedia("(hover:hover)").matches) {
   function update(){
     const y = window.scrollY || 0;
 
-    if (hero && chars.length) {
+    if (!isPhone && hero && chars.length) {
       const rect = hero.getBoundingClientRect();
       const progress = clamp((0 - rect.top) / 360, 0, 1);
 
