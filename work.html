@@ -728,10 +728,10 @@
 
               <article class="case" id="dadandme" data-track="Dad &amp; Me">
                 <div class="case-hero-wrap">
-                  <img class="case-hero" id="dadHero" src="assets/work-1.jpg" alt="Dad &amp; Me case study cover" />
+                  <img class="case-hero" id="dadHero" src="assets/dad&me1.jpg" alt="Dad &amp; Me case study cover" />
                   <button class="navbtn left" type="button" aria-label="Previous image" id="dadPrev"><span>←</span></button>
                   <button class="navbtn right" type="button" aria-label="Next image" id="dadNext"><span>→</span></button>
-                  <div class="hero-counter" id="dadCounter">1 / 3</div>
+                  <div class="hero-counter" id="dadCounter">1 / 5</div>
                 </div>
 
                 <div class="case-body">
@@ -777,10 +777,7 @@
               <!-- Oneview -->
               <article class="case" id="oneview" data-track="Oneview Studios">
                 <div class="case-hero-wrap">
-                  <img class="case-hero" id="oneHero" src="assets/work-3.jpg" alt="Oneview Studios case study cover" />
-                  <button class="navbtn left" type="button" aria-label="Previous image" id="onePrev"><span>←</span></button>
-                  <button class="navbtn right" type="button" aria-label="Next image" id="oneNext"><span>→</span></button>
-                  <div class="hero-counter" id="oneCounter">1 / 3</div>
+                  <img class="case-hero" src="assets/work-3.jpg" alt="Oneview Studios case study cover" />
                 </div>
 
                 <div class="case-body">
@@ -789,18 +786,6 @@
                     <p>
                       I started my own studio and began landing clients through real work — projects like Dad &amp; Me, plus shoots for gyms, athletes, and homeware stores. The focus was always the same: clean visuals, strong pacing, and content that feels premium without feeling overdone.
                     </p>
-
-                    <div class="media-grid" aria-label="Oneview image gallery">
-                      <a class="big" href="assets/work-3.jpg" aria-label="Open image 1">
-                        <img src="assets/work-3.jpg" alt="Oneview related image 1" />
-                      </a>
-                      <a href="assets/work-1.jpg" aria-label="Open image 2">
-                        <img src="assets/work-1.jpg" alt="Oneview related image 2" />
-                      </a>
-                      <a href="assets/work-2.jpg" aria-label="Open image 3">
-                        <img src="assets/work-2.jpg" alt="Oneview related image 3" />
-                      </a>
-                    </div>
                   </div>
 
                   <div class="box">
@@ -836,17 +821,17 @@
                 </video>
               </div>
 
-              <article class="case" id="matariki" data-track="Matariki Kickboxing">
+              <article class="case" id="matariki" data-track="Matariki Kickboxing &amp; ZMA Combat Fitness">
                 <div class="case-hero-wrap">
-                  <img class="case-hero" id="matarikiHero" src="assets/matariki-1.jpg" alt="Matariki Kickboxing project cover" />
+                  <img class="case-hero" id="matarikiHero" src="assets/matariki-1.jpg" alt="Matariki Kickboxing and ZMA Combat Fitness project cover" />
                   <button class="navbtn left" type="button" aria-label="Previous image" id="matarikiPrev"><span>←</span></button>
                   <button class="navbtn right" type="button" aria-label="Next image" id="matarikiNext"><span>→</span></button>
-                  <div class="hero-counter" id="matarikiCounter">1 / 3</div>
+                  <div class="hero-counter" id="matarikiCounter">1 / 4</div>
                 </div>
 
                 <div class="case-body">
                   <div class="case-left">
-                    <h3>Matariki Kickboxing</h3>
+                    <h3>Matariki Kickboxing &amp; ZMA Combat Fitness</h3>
                     <p>
                       Fight content built around energy, atmosphere, and sharp pacing — designed to feel raw, cinematic, and memorable.
                     </p>
@@ -868,14 +853,14 @@
                     </p>
 
                     <div class="media-grid" aria-label="Leaft image gallery">
-                      <a class="big" href="assets/work-1.jpg" aria-label="Open image 1">
-                        <img src="assets/work-1.jpg" alt="Leaft related image 1" />
+                      <a class="big" href="assets/leaftpic-1.jpg" aria-label="Open image 1">
+                        <img src="assets/leaftpic-1.jpg" alt="Leaft related image 1" />
                       </a>
-                      <a href="assets/work-2.jpg" aria-label="Open image 2">
-                        <img src="assets/work-2.jpg" alt="Leaft related image 2" />
+                      <a href="assets/leaftpic-2.jpg" aria-label="Open image 2">
+                        <img src="assets/leaftpic-2.jpg" alt="Leaft related image 2" />
                       </a>
-                      <a href="assets/work-3.jpg" aria-label="Open image 3">
-                        <img src="assets/work-3.jpg" alt="Leaft related image 3" />
+                      <a href="assets/leaftpic-3.jpg" aria-label="Open image 3">
+                        <img src="assets/leaftpic-3.jpg" alt="Leaft related image 3" />
                       </a>
                     </div>
                   </div>
@@ -954,9 +939,11 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const dadImages = [
-      "assets/work-1.jpg",
-      "assets/work-2.jpg",
-      "assets/work-3.jpg"
+      "assets/dadandme1.jpg",
+      "assets/dadandme2.jpg",
+      "assets/dadandme3.jpg",
+      "assets/dadandme4.jpg",
+      "assets/dadandme5.jpg"
     ];
 
     let dadIndex = 0;
@@ -980,37 +967,11 @@
       renderDad();
     });
 
-    const oneImages = [
-      "assets/work-3.jpg",
-      "assets/work-1.jpg",
-      "assets/work-2.jpg"
-    ];
-
-    let oneIndex = 0;
-    const oneHero = document.getElementById("oneHero");
-    const onePrev = document.getElementById("onePrev");
-    const oneNext = document.getElementById("oneNext");
-    const oneCounter = document.getElementById("oneCounter");
-
-    function renderOne(){
-      oneHero.src = oneImages[oneIndex];
-      oneCounter.textContent = `${oneIndex + 1} / ${oneImages.length}`;
-    }
-
-    onePrev.addEventListener("click", () => {
-      oneIndex = (oneIndex - 1 + oneImages.length) % oneImages.length;
-      renderOne();
-    });
-
-    oneNext.addEventListener("click", () => {
-      oneIndex = (oneIndex + 1) % oneImages.length;
-      renderOne();
-    });
-
     const matarikiImages = [
       "assets/matariki-1.jpg",
       "assets/matariki-2.jpg",
-      "assets/matariki-3.jpg"
+      "assets/matariki-3.jpg",
+      "assets/matariki-4.jpg"
     ];
 
     let matarikiIndex = 0;
@@ -1062,7 +1023,6 @@
     });
 
     renderDad();
-    renderOne();
     renderMatariki();
     renderGuthrie();
 
