@@ -260,36 +260,39 @@
 
     .project-divider{
       position:relative;
-      height:34px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:2px 0 18px;
+      height:42px;
+      margin:10px 0 18px;
     }
 
     .project-divider::before{
       content:"";
-      width:100%;
+      position:absolute;
+      top:50%;
+      left:0;
+      right:0;
       height:1px;
       background:linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(12,12,13,.08) 18%,
-        rgba(255,255,255,.95) 50%,
-        rgba(12,12,13,.08) 82%,
-        transparent 100%
+        to right,
+        rgba(255,255,255,0),
+        rgba(255,255,255,.95) 12%,
+        rgba(255,255,255,.95) 88%,
+        rgba(255,255,255,0)
       );
+      transform:translateY(-50%);
     }
 
     .project-divider::after{
       content:"";
       position:absolute;
+      top:50%;
+      left:50%;
       width:10px;
       height:10px;
       border-radius:999px;
-      background:rgba(255,255,255,.82);
+      background:rgba(255,255,255,.9);
       border:1px solid rgba(12,12,13,.06);
-      box-shadow:0 0 0 8px rgba(255,255,255,.26);
+      box-shadow:0 0 0 10px rgba(243,243,239,.9);
+      transform:translate(-50%,-50%);
     }
 
     .case{
@@ -663,8 +666,8 @@
       }
 
       .project-divider{
-        height:28px;
-        margin:0 0 16px;
+        height:32px;
+        margin:6px 0 14px;
       }
     }
 
@@ -829,14 +832,14 @@
                     </p>
 
                     <div class="media-grid" aria-label="Oneview image gallery">
-                      <a class="big" href="assets/oneview-1.jpg" aria-label="Open image 1">
-                        <img src="assets/oneview-1.jpg" alt="Oneview related image 1" />
+                      <a class="big" href="assets/oneview-1.jpg" aria-label="Open Oneview image 1">
+                        <img src="assets/oneview-1.jpg" alt="Oneview Studios image 1" />
                       </a>
-                      <a href="assets/oneview-2.jpg" aria-label="Open image 2">
-                        <img src="assets/oneview-2.jpg" alt="Oneview related image 2" />
+                      <a href="assets/oneview-2.jpg" aria-label="Open Oneview image 2">
+                        <img src="assets/oneview-2.jpg" alt="Oneview Studios image 2" />
                       </a>
-                      <a href="assets/oneview-3.jpg" aria-label="Open image 3">
-                        <img src="assets/oneview-3.jpg" alt="Oneview related image 3" />
+                      <a href="assets/oneview-3.jpg" aria-label="Open Oneview image 3">
+                        <img src="assets/oneview-3.jpg" alt="Oneview Studios image 3" />
                       </a>
                     </div>
                   </div>
