@@ -258,6 +258,40 @@
       max-width:100%;
     }
 
+    .project-divider{
+      position:relative;
+      height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:2px 0 18px;
+    }
+
+    .project-divider::before{
+      content:"";
+      width:100%;
+      height:1px;
+      background:linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(12,12,13,.08) 18%,
+        rgba(255,255,255,.95) 50%,
+        rgba(12,12,13,.08) 82%,
+        transparent 100%
+      );
+    }
+
+    .project-divider::after{
+      content:"";
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(12,12,13,.06);
+      box-shadow:0 0 0 8px rgba(255,255,255,.26);
+    }
+
     .case{
       border:1px solid var(--line);
       border-radius:28px;
@@ -627,6 +661,11 @@
       .case-video-full video{
         aspect-ratio:16/9;
       }
+
+      .project-divider{
+        height:28px;
+        margin:0 0 16px;
+      }
     }
 
     @media (max-width:640px){
@@ -728,7 +767,7 @@
 
               <article class="case" id="dadandme" data-track="Dad &amp; Me">
                 <div class="case-hero-wrap">
-                  <img class="case-hero" id="dadHero" src="assets/dad&me1.jpg" alt="Dad &amp; Me case study cover" />
+                  <img class="case-hero" id="dadHero" src="assets/dadandme1.jpg" alt="Dad &amp; Me case study cover" />
                   <button class="navbtn left" type="button" aria-label="Previous image" id="dadPrev"><span>←</span></button>
                   <button class="navbtn right" type="button" aria-label="Next image" id="dadNext"><span>→</span></button>
                   <div class="hero-counter" id="dadCounter">1 / 5</div>
@@ -774,6 +813,8 @@
                 </div>
               </article>
 
+              <div class="project-divider" aria-hidden="true"></div>
+
               <!-- Oneview -->
               <article class="case" id="oneview" data-track="Oneview Studios">
                 <div class="case-hero-wrap">
@@ -786,6 +827,18 @@
                     <p>
                       I started my own studio and began landing clients through real work — projects like Dad &amp; Me, plus shoots for gyms, athletes, and homeware stores. The focus was always the same: clean visuals, strong pacing, and content that feels premium without feeling overdone.
                     </p>
+
+                    <div class="media-grid" aria-label="Oneview image gallery">
+                      <a class="big" href="assets/oneview-1.jpg" aria-label="Open image 1">
+                        <img src="assets/oneview-1.jpg" alt="Oneview related image 1" />
+                      </a>
+                      <a href="assets/oneview-2.jpg" aria-label="Open image 2">
+                        <img src="assets/oneview-2.jpg" alt="Oneview related image 2" />
+                      </a>
+                      <a href="assets/oneview-3.jpg" aria-label="Open image 3">
+                        <img src="assets/oneview-3.jpg" alt="Oneview related image 3" />
+                      </a>
+                    </div>
                   </div>
 
                   <div class="box">
@@ -814,6 +867,8 @@
                 </div>
               </article>
 
+              <div class="project-divider" aria-hidden="true"></div>
+
               <!-- Matariki -->
               <div class="case-video-full" aria-label="Matariki Kickboxing autoplay video">
                 <video autoplay muted loop playsinline preload="auto">
@@ -838,6 +893,8 @@
                   </div>
                 </div>
               </article>
+
+              <div class="project-divider" aria-hidden="true"></div>
 
               <!-- Leaft -->
               <article class="case" id="leaft" data-track="Leaft Foods">
@@ -890,6 +947,8 @@
                   </div>
                 </div>
               </article>
+
+              <div class="project-divider" aria-hidden="true"></div>
 
               <!-- Guthrie Bowron -->
               <div class="case-video-full" aria-label="Guthrie Bowron autoplay video">
