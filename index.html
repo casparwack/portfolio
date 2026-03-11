@@ -459,6 +459,49 @@ body::after{
   color:var(--muted);
 }
 
+/* AI section */
+.ai-intro{
+  margin-bottom:24px;
+  max-width:780px;
+}
+
+.ai-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.ai-card{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:rgba(255,255,255,.52);
+  padding:20px;
+  box-shadow:0 14px 40px rgba(0,0,0,.06);
+  transition:transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.ai-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--line-strong);
+  background:rgba(255,255,255,.85);
+  box-shadow:0 22px 50px rgba(0,0,0,.10);
+}
+
+.ai-card h3{
+  margin:0 0 8px;
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-size:18px;
+  letter-spacing:-0.03em;
+  color:var(--text);
+}
+
+.ai-card p{
+  margin:0;
+  font-size:14px;
+  line-height:1.8;
+  color:var(--muted);
+}
+
 /* work carousel */
 .work-intro{
   display:flex;
@@ -669,6 +712,10 @@ body::after{
     gap:12px;
   }
 
+  .ai-grid{
+    grid-template-columns:1fr;
+  }
+
   .carousel-card{
     width:240px;
     height:320px;
@@ -824,6 +871,7 @@ body::after{
   <nav class="side-nav">
     <a class="active" href="#top">Home</a>
     <a href="#about">About</a>
+    <a href="#ai">AI</a>
     <a href="#work">Work</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -835,6 +883,7 @@ body::after{
   <div class="mobile-brand">Caspar Wackrow</div>
   <div class="mobile-links">
     <a href="#about">About</a>
+    <a href="#ai">AI</a>
     <a href="#work">Work</a>
     <a href="#contact">Contact</a>
   </div>
@@ -916,6 +965,37 @@ body::after{
         </div>
       </section>
 
+      <section class="section" id="ai">
+        <div class="section-grid">
+          <div class="section-label">AI</div>
+
+          <div class="section-content">
+            <h2 class="section-title">Helping businesses adapt to AI</h2>
+
+            <div class="section-copy ai-intro">
+              AI is changing how companies create, market, and operate. I help businesses explore where it can improve content, workflows, and decision-making — then turn that into practical, brand-safe execution.
+            </div>
+
+            <div class="ai-grid">
+              <div class="ai-card">
+                <h3>Content systems</h3>
+                <p>Use AI to speed up ideation, scripting, repurposing, and production.</p>
+              </div>
+
+              <div class="ai-card">
+                <h3>Smarter insights</h3>
+                <p>Turn customer feedback, trends, and research into clearer marketing decisions.</p>
+              </div>
+
+              <div class="ai-card">
+                <h3>Workflow integration</h3>
+                <p>Find practical ways to integrate AI into day-to-day business processes without losing quality or brand direction.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="work">
         <div class="section-grid">
           <div class="section-label">Selected Work</div>
@@ -936,52 +1016,52 @@ body::after{
       </section>
 
       <section class="carousel-shell" aria-label="Selected work carousel">
-  <div class="carousel-track">
-    <div class="carousel-card"><img src="assets/guthrie-2.jpg" alt="Selected work image 1"></div>
-    <div class="carousel-card"><img src="assets/dadandme4.jpg" alt="Selected work image 2"></div>
-    <div class="carousel-card"><img src="assets/DSC08893.jpg" alt="Selected work image 3"></div>
-    <div class="carousel-card"><img src="assets/matariki-1.jpg" alt="Selected work image 4"></div>
-    <div class="carousel-card"><img src="assets/leaftpic-2.jpg" alt="Selected work image 5"></div>
-    <div class="carousel-card"><img src="assets/DSC01029.jpg" alt="Selected work image 6"></div>
-    <div class="carousel-card"><img src="assets/dadandme1.jpg" alt="Selected work image 7"></div>
-    <div class="carousel-card"><img src="assets/guthrie-1.jpg" alt="Selected work image 8"></div>
-    <div class="carousel-card"><img src="assets/DSC09994.jpg" alt="Selected work image 9"></div>
-    <div class="carousel-card"><img src="assets/matariki-3.jpg" alt="Selected work image 10"></div>
-    <div class="carousel-card"><img src="assets/leaftpic-1.jpg" alt="Selected work image 11"></div>
-    <div class="carousel-card"><img src="assets/DSC00432.jpg" alt="Selected work image 12"></div>
-    <div class="carousel-card"><img src="assets/dadandme5.jpg" alt="Selected work image 13"></div>
-    <div class="carousel-card"><img src="assets/guthrie-3.jpg" alt="Selected work image 14"></div>
-    <div class="carousel-card"><img src="assets/DSC08892.jpg" alt="Selected work image 15"></div>
-    <div class="carousel-card"><img src="assets/matariki-2.jpg" alt="Selected work image 16"></div>
-    <div class="carousel-card"><img src="assets/dadandme2.jpg" alt="Selected work image 17"></div>
-    <div class="carousel-card"><img src="assets/leaftpic-3.jpg" alt="Selected work image 18"></div>
-    <div class="carousel-card"><img src="assets/DSC01055.jpg" alt="Selected work image 19"></div>
-    <div class="carousel-card"><img src="assets/matariki-4.jpg" alt="Selected work image 20"></div>
-    <div class="carousel-card"><img src="assets/dadandme3.jpg" alt="Selected work image 21"></div>
+        <div class="carousel-track">
+          <div class="carousel-card"><img src="assets/DSC00432.jpg" alt="Selected work image 1"></div>
+          <div class="carousel-card"><img src="assets/DSC01029.jpg" alt="Selected work image 2"></div>
+          <div class="carousel-card"><img src="assets/DSC01055.jpg" alt="Selected work image 3"></div>
+          <div class="carousel-card"><img src="assets/DSC08892.jpg" alt="Selected work image 4"></div>
+          <div class="carousel-card"><img src="assets/DSC08893.jpg" alt="Selected work image 5"></div>
+          <div class="carousel-card"><img src="assets/DSC09994.jpg" alt="Selected work image 6"></div>
+          <div class="carousel-card"><img src="assets/dadandme1.jpg" alt="Selected work image 7"></div>
+          <div class="carousel-card"><img src="assets/dadandme2.jpg" alt="Selected work image 8"></div>
+          <div class="carousel-card"><img src="assets/dadandme3.jpg" alt="Selected work image 9"></div>
+          <div class="carousel-card"><img src="assets/dadandme4.jpg" alt="Selected work image 10"></div>
+          <div class="carousel-card"><img src="assets/dadandme5.jpg" alt="Selected work image 11"></div>
+          <div class="carousel-card"><img src="assets/guthrie-1.jpg" alt="Selected work image 12"></div>
+          <div class="carousel-card"><img src="assets/guthrie-2.jpg" alt="Selected work image 13"></div>
+          <div class="carousel-card"><img src="assets/guthrie-3.jpg" alt="Selected work image 14"></div>
+          <div class="carousel-card"><img src="assets/leaftpic-1.jpg" alt="Selected work image 15"></div>
+          <div class="carousel-card"><img src="assets/leaftpic-2.jpg" alt="Selected work image 16"></div>
+          <div class="carousel-card"><img src="assets/leaftpic3.jpg" alt="Selected work image 17"></div>
+          <div class="carousel-card"><img src="assets/matariki-1.jpg" alt="Selected work image 18"></div>
+          <div class="carousel-card"><img src="assets/matariki-2.jpg" alt="Selected work image 19"></div>
+          <div class="carousel-card"><img src="assets/matariki-3.jpg" alt="Selected work image 20"></div>
+          <div class="carousel-card"><img src="assets/matariki-4.jpg" alt="Selected work image 21"></div>
 
-    <div class="carousel-card"><img src="assets/guthrie-2.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/dadandme4.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/DSC08893.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/matariki-1.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/leaftpic-2.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/DSC01029.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/dadandme1.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/guthrie-1.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/DSC09994.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/matariki-3.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/leaftpic-1.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/DSC00432.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/dadandme5.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/guthrie-3.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/DSC08892.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/matariki-2.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/dadandme2.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/leaftpic-3.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/DSC01055.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/matariki-4.jpg" alt=""></div>
-    <div class="carousel-card"><img src="assets/dadandme3.jpg" alt=""></div>
-  </div>
-</section>
+          <div class="carousel-card"><img src="assets/DSC00432.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/DSC01029.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/DSC01055.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/DSC08892.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/DSC08893.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/DSC09994.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/dadandme1.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/dadandme2.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/dadandme3.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/dadandme4.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/dadandme5.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/guthrie-1.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/guthrie-2.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/guthrie-3.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/leaftpic-1.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/leaftpic-2.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/leaftpic3.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/matariki-1.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/matariki-2.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/matariki-3.jpg" alt=""></div>
+          <div class="carousel-card"><img src="assets/matariki-4.jpg" alt=""></div>
+        </div>
+      </section>
 
       <section class="section">
         <div class="section-grid">
